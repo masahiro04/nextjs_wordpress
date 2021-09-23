@@ -1,0 +1,40 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "prismjs",
+      {
+        "languages": [
+          "javascript",
+          "java",
+          "css",
+          "markup",
+          "bash",
+          "diff",
+          "docker",
+          "go",
+          "graphql",
+          "ignore",
+          "json",
+          "markdown",
+          "nginx",
+          "php",
+          "python",
+          "jsx",
+          "tsx",
+          "regex",
+          "ruby",
+          "sql",
+          "swift",
+          "typescript",
+          "dart",
+          "vim",
+          "yaml"
+        ],
+        "plugins": [],
+        "theme": "tomorrow",
+        "css": true
+      }
+    ]
+  ]
+}

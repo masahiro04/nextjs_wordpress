@@ -1,0 +1,26 @@
+@tailwind base;
+
+/* classの継承的な */
+@layer base {
+    h1 {
+        @apply font-bold break-all text-gray-700 text-6xl;
+    }
+    h2 {
+        @apply font-bold break-all text-gray-700 text-3xl;
+    }
+    h3 {
+        @apply font-bold break-all text-gray-700 text-xl;
+    }
+}
+
+/* Write your own custom base styles here */
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Write you own custom component styles here */
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
