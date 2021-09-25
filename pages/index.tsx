@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import PostPreview from "../components/post/post-preview";
 import { GetStaticProps } from 'next';
 import { generateRSSFeed } from '../utils/feed';
+import { isDevelopment } from '../utils/helpers';
 
 const Index = ({ allPosts: { edges } }) => {
   const router = useRouter();
@@ -61,18 +62,19 @@ export default Index;
 
 export const getStaticProps: GetStaticProps = async () => {
   let edges = [];
-  const postsBeforeFirstGet: any = await getAllPosts(200, "");
+  const postsBeforeFirstGet: any = await getAllPosts(100, "");
   edges = edges.concat(postsBeforeFirstGet.edges);
   let next = postsBeforeFirstGet.pageInfo.hasNextPage;
   let offset = postsBeforeFirstGet.pageInfo.endCursor;
 
-  while (next) {
-    const postsAfterFirstGet: any = await getAllPosts(200, offset)
-    Array.prototype.push.apply(edges, postsAfterFirstGet.edges);
-    next = postsAfterFirstGet.pageInfo.hasNextPage;
-    offset = postsAfterFirstGet.pageInfo.endCursor;
+  if(!isDevelopment()){
+    while (next) {
+      const postsAfterFirstGet: any = await getAllPosts(100, offset)
+      Array.prototype.push.apply(edges, postsAfterFirstGet.edges);
+      next = postsAfterFirstGet.pageInfo.hasNextPage;
+      offset = postsAfterFirstGet.pageInfo.endCursor;
+    }
   }
-
   const allPosts = { edges };
   generateRSSFeed(edges); // feedの生成
   return { props: { allPosts } }
