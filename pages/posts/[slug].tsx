@@ -11,6 +11,7 @@ import Categories from "../../components/post/categories";
 import ModePostPreview from "../../components/post/more-post-preview";
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { isDevelopment } from '../../utils/helpers';
+import AboutMeSection from '../../components/common/about_me_section';
 
 const Post = ({ post, posts }) => {
   const router = useRouter();
@@ -62,6 +63,7 @@ const Post = ({ post, posts }) => {
               />
               <Categories categories={post.categories} />
               <PostBody content={post.content} />
+              <AboutMeSection />
               <SectionSeparator />
               <h2 className="text-center">関連記事</h2>
               <div className="my-3">

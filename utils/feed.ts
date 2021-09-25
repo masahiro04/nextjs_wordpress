@@ -5,7 +5,7 @@ export const generateRSSFeed = (edges: any[]) => {
   const baseUrl = process.env.HOST_URL;
   const author = {
     name: 'Masahiro Okubo',
-    email: '',
+    email: 'Masahiro Okubo',
     link: 'https://twitter.com/masa_okubo',
   };
 
