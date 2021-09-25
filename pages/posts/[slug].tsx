@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import PostBody from '../../components/post/post-body'

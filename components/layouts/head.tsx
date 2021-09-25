@@ -24,9 +24,6 @@ const CustomHead = ({ title, description, keywords, imageSrc }) => (
     } }>
     </script>
 
-    {/* Twitterシェア */}
-   <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8" />
-
     <link rel="shortcut icon" href="../static/images/favicon.ico"/>
     <link
       rel="preconnect"
