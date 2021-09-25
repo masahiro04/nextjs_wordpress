@@ -13,7 +13,7 @@ const CustomHead = ({ title, description, keywords, imageSrc }) => (
     <meta name="twitter:image" content={ imageSrc }/>
 
     {/* Global site tag (gtag.js) - Google Analytics */}
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-63213825-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-63213825-1" />
     <script dangerouslySetInnerHTML={ {
       __html: `
         window.dataLayer = window.dataLayer || [];

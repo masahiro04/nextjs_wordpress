@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import PostBody from '../../components/post/post-body'
@@ -10,6 +10,8 @@ import PostHeaderImg from "../../components/post/post-header-img";
 import Categories from "../../components/post/categories";
 import ModePostPreview from "../../components/post/more-post-preview";
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { isDevelopment } from '../../utils/helpers';
+import AboutMeSection from '../../components/common/about_me_section';
 
 const Post = ({ post, posts }) => {
   const router = useRouter();
@@ -61,6 +63,7 @@ const Post = ({ post, posts }) => {
               />
               <Categories categories={post.categories} />
               <PostBody content={post.content} />
+              <AboutMeSection />
               <SectionSeparator />
               <h2 className="text-center">関連記事</h2>
               <div className="my-3">
@@ -101,17 +104,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // NOTE: pathをあらかじめ全部準備しておかないと404 error出るので対処してる
+  // TODO: 全部APIにまとめたい
   let edges = [];
-  const allP: any = await getAllPosts(100, "");
+  const allP: any = await getAllPosts(!isDevelopment() ? 10 : 100, "");
   edges = edges.concat(allP.edges);
   let next = allP.pageInfo.hasNextPage;
   let offset = allP.pageInfo.endCursor;
 
-  while (next) {
-    const allPInLoop: any = await getAllPosts(100, offset)
-    edges = edges.concat(allPInLoop.edges);
-    next = allPInLoop.pageInfo.hasNextPage;
-    offset = allPInLoop.pageInfo.endCursor;
+  if(!isDevelopment()){
+    while (next) {
+      const allPInLoop: any = await getAllPosts(100, offset)
+      edges = edges.concat(allPInLoop.edges);
+      next = allPInLoop.pageInfo.hasNextPage;
+      offset = allPInLoop.pageInfo.endCursor;
+    }
   }
 
   const allPosts = { edges };
