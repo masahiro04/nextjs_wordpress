@@ -6,7 +6,7 @@ const Footer = (): JSX.Element => (
         <a href="https://twitter.com/masa_okubo" target="_blank">
           <i className="fab fa-twitter text-white fa-lg mx-2" />
         </a>
-        <a href="https://github.com/masa-okubo" target="_blank">
+        <a href="https://github.com/masahiro04" target="_blank">
           <i className="fab fa-github text-white fa-lg mx-2" />
         </a>
         <a href="https://masahiro.me/rss.xml" target="_blank">
