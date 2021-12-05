@@ -26,13 +26,17 @@ const Index = ({ allPosts: { edges } }) => {
     ? filteredPosts.slice(start, start + PER_PAGE)
     : filteredPosts.slice(start, start + PER_PAGE);
 
-  const handleWord = async (newWord) => {
+  const handleSearch = async (newWord: string) => {
     await router.replace('/', undefined, { shallow: true });
     setWord(newWord);
   }
+    // const handleWord = async (newWord: string) => {
+    //   // await router.replace('/', undefined, { shallow: true });
+    //   setWord(newWord);
+    // }
 
   return (
-    <Layout setWord={ handleWord } word={word}>
+    <Layout handleSearch={handleSearch} setWord={setWord} word={word}>
       <div className="mt-3 mt-md-5">
         <div className="mx-auto text-center my-2">
           <h1 className="font-bold text-gray-700 break-all text-4xl border-indigo-800">
@@ -80,10 +84,10 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { allPosts } }
 }
 
-const filterByCategory = (posts, target): any[] =>
+const filterByCategory = (posts: Array<any>, target): any[] =>
   posts.filter((post) => ( post.node.categories?.edges?.filter(category => category.node.name === target ) ).length !== 0);
 
-const filterByWord = (posts, word): any[] => {
+const filterByWord = (posts: Array<any>, word): any[] => {
   const reg = new RegExp(word);
-  return posts.filter((post) => ((reg.test(post.node['title']) === true) || (reg.test(post.node['excerpt'])) === true));
+  return posts.filter((post) => (reg.test(post.node['title']) || (reg.test(post.node['excerpt'])) || (reg.test(post.node['content']))));
 }

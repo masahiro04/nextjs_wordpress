@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import { PAGES } from '../../lib/constants';
-import Search from '../common/Search';
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import Image from 'next/image'
+import Link from "next/link";
+import { PAGES } from "../../lib/constants";
+import Search from "../common/Search";
+import { Fragment } from "react";
+import { Popover, Transition } from "@headlessui/react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
+import Image from "next/image";
 
-const Header = ({ word, setWord }) => (
+const Header = ({ word, setWord, handleSearch }) => (
   <div className="px-6 mx-auto sm:px-10 sm:max-w-screen-md lg:max-w-screen-lg">
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -29,30 +29,34 @@ const Header = ({ word, setWord }) => (
             </Popover.Button>
           </div>
           <Popover.Group as="nav" className="hidden md:flex space-x-10">
-            { PAGES.map((page) => (
+            {PAGES.map((page) => (
               <Link href={`/${page.url}`} key={page.url.toString()}>
                 <a
                   key={page.url.toString()}
                   href="#"
                   className="text-base font-medium text-gray-500 hover:text-gray-900"
                 >
-                  { page.title }
+                  {page.title}
                 </a>
               </Link>
-            )) }
+            ))}
           </Popover.Group>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <div className="flex">
-              { setWord !== undefined && (
+              {handleSearch !== undefined && (
                 <div className="my-auto">
-                  <Search word={ word } setWord={ setWord }/>
+                  <Search
+                    word={word}
+                    setWord={setWord}
+                    handleSearch={handleSearch}
+                  />
                 </div>
-              ) }
+              )}
             </div>
           </div>
         </div>
       </div>
-      
+
       <Transition
         as={Fragment}
         enter="duration-200 ease-out"
@@ -62,7 +66,10 @@ const Header = ({ word, setWord }) => (
         leaveFrom="opacity-100 scale-100"
         leaveTo="opacity-0 scale-95"
       >
-        <Popover.Panel focus className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+        <Popover.Panel
+          focus
+          className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+        >
           <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
             <div className="pt-5 pb-6 px-5">
               <div className="flex items-center justify-between">
@@ -84,17 +91,19 @@ const Header = ({ word, setWord }) => (
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  { PAGES.map((page) => (
+                  {PAGES.map((page) => (
                     <Link href={`/${page.url}`} key={page.url.toString()}>
                       <a
                         key={page.url.toString()}
                         href="#"
                         className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                       >
-                        <span className="ml-3 text-base font-medium text-gray-900">{ page.title }</span>
+                        <span className="ml-3 text-base font-medium text-gray-900">
+                          {page.title}
+                        </span>
                       </a>
                     </Link>
-                  )) }
+                  ))}
                 </nav>
               </div>
             </div>
