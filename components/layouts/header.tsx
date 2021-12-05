@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PAGES } from "../../lib/constants";
-import Search from "../common/Search";
+import { Search } from "../common/Search";
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
