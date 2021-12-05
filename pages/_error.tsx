@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import Layout from "../components/layouts/layout";
 import Link from "next/link";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 const Custom404 = (): JSX.Element => {
   const router = useRouter();
   const [word, setWord] = useState<string>("");
 
   const handleSearch = () =>
-    router.replace(`/?word=${word}`, undefined, {shallow: true});
-    
+    router.replace(`/?word=${word}`, undefined, { shallow: true });
+
   return (
     <Layout
       title="Not found"
