@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import PostBody from "../../components/post/post-body";
-import PostHeader from "../../components/post/post-header";
+import { PostBody } from "../../components/post/post-body";
+import { PostHeader } from "../../components/post/post-header";
 import { SectionSeparator } from "../../components/common/section-separator";
 import Layout from "../../components/layouts/layout";
 import { getAllPosts, getRelatedPosts, getPost } from "../../lib/api";
-import PostHeaderImg from "../../components/post/post-header-img";
+import { PostHeaderImg } from "../../components/post/post-header-img";
 import { Categories } from "../../components/post/categories";
-import ModePostPreview from "../../components/post/more-post-preview";
+import { ModePostPreview } from "../../components/post/more-post-preview";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { isDevelopment } from "../../utils/helpers";
 import { AboutMeSection } from "../../components/common/about_me_section";

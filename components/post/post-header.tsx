@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar } from "../common/avatar";
 import { Date } from "../common/date";
 
-const PostHeader = ({ title, date, author }): JSX.Element => (
+export const PostHeader = ({ title, date, author }): JSX.Element => (
   <>
     <div className="flex flex-column my-auto">
       <div>{author && <Avatar name={author.name} />}</div>
@@ -16,4 +16,3 @@ const PostHeader = ({ title, date, author }): JSX.Element => (
   </>
 );
 
-export default PostHeader;

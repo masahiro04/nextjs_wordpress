@@ -4,7 +4,7 @@ import { getAllPosts } from '../lib/api';
 import { PER_PAGE } from '../lib/constants';
 import { Pagination } from '../components/common/pagination';
 import { useRouter } from 'next/router';
-import PostPreview from "../components/post/post-preview";
+import { PostPreview } from "../components/post/post-preview";
 import { GetStaticProps } from 'next';
 import { generateRSSFeed } from '../utils/feed';
 import { isDevelopment } from '../utils/helpers';
