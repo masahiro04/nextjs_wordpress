@@ -11,7 +11,7 @@ import { Categories } from "../../components/post/categories";
 import ModePostPreview from "../../components/post/more-post-preview";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { isDevelopment } from "../../utils/helpers";
-import AboutMeSection from "../../components/common/about_me_section";
+import { AboutMeSection } from "../../components/common/about_me_section";
 
 const Post = ({ post, posts }) => {
   const router = useRouter();
