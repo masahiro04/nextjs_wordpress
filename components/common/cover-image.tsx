@@ -6,7 +6,8 @@ export const CoverImage = ({ title, url, slug }): JSX.Element => {
     <Image
       src={url}
       alt={title}
-      className="w-full object-contain"
+      className="w-full"
+      objectFit="contain"
       width={900}
       height={500}
     />
