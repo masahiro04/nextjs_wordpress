@@ -12,11 +12,12 @@ const PostPreview = ({
   <Link as={`/posts/${slug}`} href={`/posts/${slug}`}>
     <a className="m-4" href={`/posts/${slug}`}>
       <Image
-        className="rounded object-contain h-48 w-full"
+        className="rounded h-48 w-full"
         src={coverImage}
         alt={slug}
         loading="lazy"
         width={500}
+        objectFit={"contain"}
         height={300}
       />
       <h3

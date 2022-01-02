@@ -7,7 +7,7 @@ import SectionSeparator from "../../components/common/section-separator";
 import Layout from "../../components/layouts/layout";
 import { getAllPosts, getRelatedPosts, getPost } from "../../lib/api";
 import PostHeaderImg from "../../components/post/post-header-img";
-import Categories from "../../components/post/categories";
+import { Categories } from "../../components/post/categories";
 import ModePostPreview from "../../components/post/more-post-preview";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { isDevelopment } from "../../utils/helpers";

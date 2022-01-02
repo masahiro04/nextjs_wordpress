@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const Categories = ({ categories }): JSX.Element => (
+export const Categories = ({ categories }): JSX.Element => (
   <span className="ml-1">
     { categories.edges.length > 0
       ? categories.edges.map((category) => (
@@ -21,4 +21,3 @@ const Categories = ({ categories }): JSX.Element => (
   </span>
 );
 
-export default Categories;
