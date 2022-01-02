@@ -3,7 +3,7 @@ import React from 'react';
 import { reistrictCharacters } from '../../utils/helpers';
 import Image from 'next/image'
 
-const ModePostPreview = ({
+export const ModePostPreview = ({
   title,
   coverImage  = `${process.env.HOST_URL}/static/images/not_found.png`,
   slug,
@@ -32,4 +32,3 @@ const ModePostPreview = ({
   </Link>
 );
 
-export default ModePostPreview;

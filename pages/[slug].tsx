@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
-import PostBody from "../components/post/post-body";
-import PostHeader from "../components/post/post-header";
-import Layout from "../components/layouts/layout";
+import { PostBody } from "../components/post/post-body";
+import { PostHeader } from "../components/post/post-header";
+import { Layout } from "../components/layouts/layout";
 import { getPage } from "../lib/api";
 import { PAGES } from "../lib/constants";
 import { GetStaticPaths, GetStaticProps } from "next";

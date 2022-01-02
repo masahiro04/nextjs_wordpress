@@ -9,15 +9,15 @@ const convertBreadcrumb = (str: string): string => str
   .replace(/ue/g, 'ü')
   .toUpperCase();
 
-const Breadcrumbs = ({ title }): JSX.Element => {
+export const Breadcrumbs = ({ title }): JSX.Element => {
   const router = useRouter();
   const [breadcrumbs, setBreadcrumbs] = useState(null);
-  
+
   useEffect(() => {
     if (router) {
       const linkPath = router.asPath.split('/');
       linkPath.shift();
-      
+
       const pathArray = [
         {
           breadcrumb: linkPath.slice(-1)[0],
@@ -27,7 +27,7 @@ const Breadcrumbs = ({ title }): JSX.Element => {
       setBreadcrumbs(pathArray);
     }
   }, [router]);
-  
+
   return (
     <>
       { breadcrumbs &&
@@ -61,4 +61,3 @@ const Breadcrumbs = ({ title }): JSX.Element => {
   );
 };
 
-export default Breadcrumbs;

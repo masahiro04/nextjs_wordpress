@@ -1,3 +1,2 @@
-const Avatar = ({ name }): JSX.Element => <div className="text-gray-500">{name}</div>;
+export const Avatar = ({ name }): JSX.Element => <div className="text-gray-500">{name}</div>;
 
-export default Avatar;

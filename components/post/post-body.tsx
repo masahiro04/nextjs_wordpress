@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 // 公式が出していたコードから引き継いでる
 import styles from '../../styles/post-body.module.css';
 
-const PostBody = ({ content }): JSX.Element => {
+export const PostBody = ({ content }): JSX.Element => {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
@@ -18,4 +18,3 @@ const PostBody = ({ content }): JSX.Element => {
   );
 };
 
-export default PostBody;

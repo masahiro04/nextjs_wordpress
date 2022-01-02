@@ -3,7 +3,7 @@ import React from 'react';
 import { reistrictCharacters } from '../../utils/helpers';
 import Image from 'next/image'
 
-const PostPreview = ({
+export const PostPreview = ({
   title,
   coverImage = `${process.env.HOST_URL}/static/images/not_found.png`,
   excerpt,
@@ -12,11 +12,12 @@ const PostPreview = ({
   <Link as={`/posts/${slug}`} href={`/posts/${slug}`}>
     <a className="m-4" href={`/posts/${slug}`}>
       <Image
-        className="rounded object-contain h-48 w-full"
+        className="rounded h-48 w-full"
         src={coverImage}
         alt={slug}
         loading="lazy"
         width={500}
+        objectFit={"contain"}
         height={300}
       />
       <h3
@@ -28,4 +29,3 @@ const PostPreview = ({
   </Link>
 );
 
-export default PostPreview;
