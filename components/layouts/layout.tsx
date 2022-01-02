@@ -1,9 +1,9 @@
-import Header from "./header";
-import Footer from "./footer";
-import CustomHead from "./head";
-import Breadcrumbs from "./bread-crumbs";
+import { Header } from "./header";
+import { Footer } from "./footer";
+import { CustomHead } from "./head";
+import { Breadcrumbs } from "./bread-crumbs";
 
-const Layout = ({
+export const Layout = ({
   children,
   title = "",
   description = "名古屋のフルスタックエンジニア。SaaSやマッチングサービス、AR/VR等の開発を経て現在は独立して名古屋で開発やITコンサルしています。サービス開発の所感や、ハマった際の解決方法を記載しております。",
@@ -30,5 +30,3 @@ const Layout = ({
     <Footer />
   </div>
 );
-
-export default Layout;

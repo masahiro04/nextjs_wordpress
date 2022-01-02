@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const CustomHead = ({ title, description, keywords, imageSrc }) => (
+export const CustomHead = ({ title, description, keywords, imageSrc }) => (
   <Head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>{ title }</title>;
@@ -44,5 +44,3 @@ const CustomHead = ({ title, description, keywords, imageSrc }) => (
       onLoad="this.media='all'"/>
   </Head>
 );
-
-export default CustomHead;

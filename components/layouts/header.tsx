@@ -6,7 +6,7 @@ import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 
-const Header = ({ word, setWord, handleSearch }) => (
+export const Header = ({ word, setWord, handleSearch }) => (
   <div className="px-6 mx-auto sm:px-10 sm:max-w-screen-md lg:max-w-screen-lg">
     <Popover className="relative bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -113,5 +113,3 @@ const Header = ({ word, setWord, handleSearch }) => (
     </Popover>
   </div>
 );
-
-export default Header;
