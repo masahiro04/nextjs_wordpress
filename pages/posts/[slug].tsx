@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import PostBody from "../../components/post/post-body";
 import PostHeader from "../../components/post/post-header";
-import SectionSeparator from "../../components/common/section-separator";
+import { SectionSeparator } from "../../components/common/section-separator";
 import Layout from "../../components/layouts/layout";
 import { getAllPosts, getRelatedPosts, getPost } from "../../lib/api";
 import PostHeaderImg from "../../components/post/post-header-img";

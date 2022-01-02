@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { PER_PAGE } from '../../lib/constants';
 
-const Pagination = ({ count }): JSX.Element => {
+export const Pagination = ({ count }): JSX.Element => {
   const router = useRouter();
   const pages = count < PER_PAGE
     ? 1
@@ -52,5 +52,3 @@ const Pagination = ({ count }): JSX.Element => {
     </nav>
   )
 }
-
-export default Pagination;

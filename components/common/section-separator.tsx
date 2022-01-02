@@ -1,3 +1,1 @@
-const SectionSeparator = (): JSX.Element => <hr className="my-20" />;
-
-export default SectionSeparator;
+export const SectionSeparator = (): JSX.Element => <hr className="my-20" />;

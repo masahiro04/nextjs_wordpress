@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar } from "../common/avatar";
-import Date from "../common/date";
+import { Date } from "../common/date";
 
 const PostHeader = ({ title, date, author }): JSX.Element => (
   <>
