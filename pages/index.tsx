@@ -5,11 +5,11 @@ import { PER_PAGE } from '../lib/constants';
 import { Pagination } from '../components/common/pagination';
 import { useRouter } from 'next/router';
 import { PostPreview } from "../components/post/post-preview";
-import { GetStaticProps } from 'next';
+import { GetStaticProps, NextPage } from 'next';
 import { generateRSSFeed } from '../utils/feed';
 import { isDevelopment } from '../utils/helpers';
 
-const Index = ({ allPosts: { edges } }) => {
+const Index: NextPage<any>= ({ allPosts: { edges } }) => {
   const router = useRouter();
   const [word, setWord] = useState<string>(router.query.word ? router.query.word.toString() : '');
   const category = router.query.categoryName;
@@ -30,10 +30,6 @@ const Index = ({ allPosts: { edges } }) => {
     await router.replace('/', undefined, { shallow: true });
     setWord(newWord);
   }
-    // const handleWord = async (newWord: string) => {
-    //   // await router.replace('/', undefined, { shallow: true });
-    //   setWord(newWord);
-    // }
 
   return (
     <Layout handleSearch={handleSearch} setWord={setWord} word={word}>
