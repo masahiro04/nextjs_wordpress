@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build && next-sitemap --config sitemap.config.js",
-    "start": "next start"
+    "start": "node server.js"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.2",

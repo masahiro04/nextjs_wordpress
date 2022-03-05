@@ -2,5 +2,8 @@
 User-agent: *
 Allow: /
 
+# Host
+Host: https://masahiro.me
+
 # Sitemaps
 Sitemap: https://masahiro.me/sitemap.xml
