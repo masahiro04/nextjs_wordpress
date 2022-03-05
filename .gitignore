@@ -13,7 +13,7 @@
 /out/
 
 # public
-/public/robots.txt
+# /public/robots.txt
 /public/sitemap.xml
 /public/rss.xml
 
