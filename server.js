@@ -4,10 +4,12 @@ const { parse } = require('url')
 const next = require('next')
 
 const dev = process.env.NODE_ENV === 'production'
-const hostname = 'masahiro.me'
+const hostname = 'nextjswordpress-git-fix-ui-hiyashikyuri.vercel.app'
+// const hostname = 'masahiro.me'
+
 const port = 3000
 // when using middleware `hostname` and `port` must be provided below
-const app = next({ dev, hostname, port })
+const app = next({ hostname, port })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
@@ -16,11 +18,12 @@ app.prepare().then(() => {
       // Be sure to pass `true` as the second argument to `url.parse`.
       // This tells it to parse the query portion of the URL.
       const parsedUrl = parse(req.url, true)
-      const {pathname, query} = parsedUrl
+      const { pathname, query } = parsedUrl
+      console.log(req.url)
 
       if (req.headers.host.match(/^www\./)) {
-        console.log('haitta', `http://${hostname}:${port}${pathname}`);
-        res.writeHead(301, {'Location': `http://${hostname}:${port}${pathname}`});
+        console.log('haitta', `https://${hostname}:${port}${pathname}`);
+        res.writeHead(301, {'Location': `https://${hostname}${pathname}`});
         res.end();
       }
       //
