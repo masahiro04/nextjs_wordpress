@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react';
 import { Layout } from '../components/layouts/layout';
 import { getAllPosts } from '../lib/api';

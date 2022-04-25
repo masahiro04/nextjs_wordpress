@@ -1,7 +1,15 @@
+import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image'
 
-export const CoverImage = ({ title, url, slug }): JSX.Element => {
+type Props = {
+  title: string;
+  url: string
+  slug: string
+}
+
+export const CoverImage: React.FC<Props> = (props): JSX.Element => {
+  const { title, url, slug } = props
   const image = (
     <Image
       src={url}

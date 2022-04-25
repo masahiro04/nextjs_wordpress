@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import { PostBody } from "../components/post/post-body";
@@ -8,7 +9,10 @@ import { PAGES } from "../lib/constants";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useState } from "react";
 
-const Post = ({ page }) => {
+type Props = {
+  page: number;
+}
+const Post: React.FC<Props> = ({ page }) => {
   const router = useRouter();
   const [word, setWord] = useState<string>("");
 

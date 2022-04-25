@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 export const AboutMeSection = (): JSX.Element => {
   useEffect(() => {
@@ -21,7 +21,7 @@ export const AboutMeSection = (): JSX.Element => {
         </a>
       </div>
       <div className="my-2">
-        <a href="https://www.buymeacoffee.com/masaokubo" target="_blank">
+        <a href="https://www.buymeacoffee.com/masaokubo" target="_blank" rel="noreferrer">
           <img
             className="h-16"
             src="https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png"

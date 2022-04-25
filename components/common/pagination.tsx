@@ -1,8 +1,14 @@
+import React from 'react'
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { PER_PAGE } from '../../lib/constants';
 
-export const Pagination = ({ count }): JSX.Element => {
+type Props = {
+  count: number;
+}
+
+export const Pagination: React.FC<Props> = (props): JSX.Element => {
+  const { count } = props;
   const router = useRouter();
   const pages = count < PER_PAGE
     ? 1
@@ -11,7 +17,8 @@ export const Pagination = ({ count }): JSX.Element => {
     ? 1
     : Number(router.query?.page);
 
-  const categoryRoutename = router.query.categoryName === '' || router.query.categoryName === undefined
+  const categoryRoutename =
+    router.query.categoryName === '' || router.query.categoryName === undefined
     ? ''
     : `&categoryName=${router.query.categoryName}`;
 

@@ -1,7 +1,14 @@
-import { parseISO, format } from "date-fns";
+import { format, parseISO } from 'date-fns';
+import React from 'react';
 
-export const Date = ({ dateString }): JSX.Element => (
-  <time dateTime={dateString} className="text-gray-500">
-    {format(parseISO(dateString), "yyyy年MM月dd日")}
-  </time>
-);
+type Props = {
+  dateString: string;
+};
+export const Date: React.FC<Props> = (props): JSX.Element => {
+  const { dateString } = props;
+  return (
+    <time dateTime={dateString} className='text-gray-500'>
+      {format(parseISO(dateString), 'yyyy年MM月dd日')}
+    </time>
+  );
+};
