@@ -1,7 +1,8 @@
-import fs from 'fs'
 import { Feed } from 'feed';
+import fs from 'fs';
+import { Node } from '../types/post';
 
-export const generateRSSFeed = (edges: any[]) => {
+export const generateRSSFeed = (nodes: Array<Node>): void => {
   const baseUrl = process.env.HOST_URL;
 
   // Construct a new Feed object
@@ -17,18 +18,18 @@ export const generateRSSFeed = (edges: any[]) => {
     // updated: new Date(), // optional, default = today
     // generator: "awesome", // optional, default = 'Feed for Node.js'
     feedLinks: {
-      rss2: `${baseUrl}/rss.xml`,
-    },
+      rss2: `${baseUrl}/rss.xml`
+    }
   });
 
   // Add each article to the feed
-  edges.forEach(({ node }) => {
+  nodes.forEach(({ node }) => {
     const {
       slug,
       title,
       // excerpt,
       // content,
-      date,
+      date
     } = node;
     const url = `${baseUrl}/posts/${slug}`;
 
@@ -39,7 +40,7 @@ export const generateRSSFeed = (edges: any[]) => {
       link: url,
       // description: excerpt,
       // content: '',
-      date: new Date(date),
+      date: new Date(date)
     });
   });
 
