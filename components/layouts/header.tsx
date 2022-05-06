@@ -3,16 +3,9 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
 import { PAGES } from '../../lib/constants';
-import { Search } from '../common/Search';
+import { SearchInput } from '../common/searchInput';
 
-type Props = {
-  word: string;
-  setWord: (word: string) => void;
-  handleSearch: (word: string) => void;
-};
-
-export const Header: React.FC<Props> = (props) => {
-  const { word, setWord, handleSearch } = props;
+export const Header: React.FC = () => {
   return (
     <div className='px-6 mx-auto sm:px-10 sm:max-w-screen-md lg:max-w-screen-lg'>
       <Popover className='relative bg-white'>
@@ -50,11 +43,9 @@ export const Header: React.FC<Props> = (props) => {
             </Popover.Group>
             <div className='hidden md:flex items-center justify-end md:flex-1 lg:w-0'>
               <div className='flex'>
-                {handleSearch !== undefined && (
-                  <div className='my-auto'>
-                    <Search word={word} setWord={setWord} handleSearch={handleSearch} />
-                  </div>
-                )}
+                <div className='my-auto'>
+                  <SearchInput />
+                </div>
               </div>
             </div>
           </div>

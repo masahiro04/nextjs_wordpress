@@ -10,19 +10,20 @@ export const AboutMeSection: React.FC = () => {
 
   return (
     <>
-      <div className='my-2'>
-        <a
-          href='https://twitter.com/masa_okubo?ref_src=twsrc%5Etfw'
-          className='twitter-follow-button'
-          data-show-count='false'
-          data-size='large'
-        >
-          Follow @masa_okubo
-        </a>
-      </div>
-      <div className='my-2'>
-        <a href='https://www.buymeacoffee.com/masaokubo' target='_blank' rel='noreferrer'>
-          <img className='h-16' src='https://cdn.buymeacoffee.com/buttons/v2/arial-yellow.png' alt='Buy Me A Coffee' />
+      <div className='mt-5'>
+        <div className='flex justify-center space-x-12'>
+          <a href='https://github.com/masahiro04' target='_blank' rel='noreferrer'>
+            <img src={`${process.env.HOST_URL}/static/images/github.svg`} className='' width={50} alt='' />
+          </a>
+          <a href='https://menta.work/user/20351' target='_blank' rel='noreferrer'>
+            <img src={`${process.env.HOST_URL}/static/images/menta.svg`} className='' width={50} alt='' />
+          </a>
+          <a href='https://twitter.com/masa_okubo' target='_blank' rel='noreferrer'>
+            <img src={`${process.env.HOST_URL}/static/images/twitter.svg`} className='' width={50} alt='' />
+          </a>
+        </div>
+        <a href='https://twitter.com/masa_okubo' className='text-white' target='_blank' rel='noreferrer'>
+          <i className='fab fa-twitter z-100 fill-white-500 text-white fa-lg mx-2' />
         </a>
       </div>
     </>

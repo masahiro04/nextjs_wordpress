@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import { Pagination } from '../components/common/pagination';
 import { Layout } from '../components/layouts/layout';
 import { PostPreview } from '../components/post/postPreview';
@@ -8,7 +8,7 @@ import { getAllPosts } from '../lib/api';
 import { PER_PAGE } from '../lib/constants';
 import { Node, PostsResponse } from '../types/post';
 import { generateRSSFeed } from '../utils/feed';
-import { isDevelopment } from '../utils/helpers';
+import { filterByCategory, filterByWord, isDevelopment } from '../utils/helpers';
 
 type Props = {
   nodes: Array<Node>;
@@ -17,28 +17,16 @@ type Props = {
 const Index: NextPage<Props> = (props: Props) => {
   const { nodes } = props;
   const router = useRouter();
-  const [word, setWord] = useState<string>(router.query.word ? router.query.word.toString() : '');
+  const word = router.query.word ? router.query.word.toString() : '';
   const category = router.query.categoryName?.toString();
-
   const filteredPosts =
     category === undefined ? filterByWord(nodes, word) : filterByWord(filterByCategory(nodes, category), word);
-
   const pageNumber = Number(router.query.page) || 1;
-
   const start = pageNumber === 1 ? 0 : pageNumber * PER_PAGE;
-
-  const posts =
-    router.query.categoryName === undefined
-      ? filteredPosts.slice(start, start + PER_PAGE)
-      : filteredPosts.slice(start, start + PER_PAGE);
-
-  const handleSearch = async (newWord: string) => {
-    await router.replace('/', undefined, { shallow: true });
-    setWord(newWord);
-  };
+  const posts = filteredPosts.slice(start, start + PER_PAGE);
 
   return (
-    <Layout handleSearch={handleSearch} setWord={setWord} word={word}>
+    <Layout>
       <div className='mt-3 mt-md-5'>
         <div className='mx-auto text-center my-2'>
           <h1 className='font-bold text-gray-700 break-all text-4xl border-indigo-800'>
@@ -67,33 +55,21 @@ const Index: NextPage<Props> = (props: Props) => {
 export default Index;
 
 export const getStaticProps: GetStaticProps = async () => {
-  let nodes: Array<Node> = [];
-  const postsBeforeFirstGet: PostsResponse = await getAllPosts(100, '');
-  nodes = nodes.concat(postsBeforeFirstGet.posts.edges);
-  let next = postsBeforeFirstGet.posts.pageInfo.hasNextPage;
-  let offset = postsBeforeFirstGet.posts.pageInfo.endCursor;
-
-  if (!isDevelopment()) {
-    while (next) {
-      const postsAfterFirstGet: PostsResponse = await getAllPosts(100, offset);
-      Array.prototype.push.apply(nodes, postsAfterFirstGet.posts.edges);
-      next = postsAfterFirstGet.posts.pageInfo.hasNextPage;
-      offset = postsAfterFirstGet.posts.pageInfo.endCursor;
+  const getPostsWithOffset = async (
+    posts: Array<Node>,
+    _offset: string
+  ): Promise<{ nodes: Array<Node>; hasNextPage: boolean; offset: string }> => {
+    const res: PostsResponse = await getAllPosts(100, _offset);
+    if (!res.posts.pageInfo.hasNextPage || isDevelopment()) {
+      return {
+        nodes: [...posts, ...res.posts.edges],
+        hasNextPage: res.posts.pageInfo.hasNextPage,
+        offset: res.posts.pageInfo.endCursor
+      };
     }
-  }
-
+    return getPostsWithOffset([...posts, ...res.posts.edges], res.posts.pageInfo.endCursor);
+  };
+  const { nodes } = await getPostsWithOffset([], '');
   generateRSSFeed(nodes); // feedの生成
   return { props: { nodes } };
-};
-
-const filterByCategory = (posts: Array<Node>, target: string): Array<Node> =>
-  posts.filter(
-    (post) => (post.node.categories?.edges?.filter((category) => category.node.name === target)).length !== 0
-  );
-
-const filterByWord = (posts: Array<Node>, word: string): Array<Node> => {
-  const reg = new RegExp(word);
-  return posts.filter(
-    (post) => reg.test(post.node['title']) || reg.test(post.node['excerpt']) || reg.test(post.node['content'])
-  );
 };

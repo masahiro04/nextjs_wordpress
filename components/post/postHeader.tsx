@@ -7,6 +7,7 @@ type Props = {
   date: string;
   authorName: string;
 };
+
 export const PostHeader: React.FC<Props> = (props): JSX.Element => {
   const { title, date, authorName } = props;
   return (

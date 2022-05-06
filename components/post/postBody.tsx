@@ -7,14 +7,14 @@ type Props = {
   content: string;
 };
 
-export const PostBody: React.FC<Props> = (props): JSX.Element => {
+export const PostBody: React.FC<Props> = (props) => {
   const { content } = props;
   useEffect(() => {
     Prism.highlightAll();
   }, []);
 
   return (
-    <div className='mx-auto'>
+    <div className='mx-auto break-words'>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   );

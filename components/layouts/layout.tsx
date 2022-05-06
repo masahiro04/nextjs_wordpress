@@ -10,9 +10,6 @@ type Props = {
   description?: string;
   keywords?: string;
   imageSrc?: string;
-  word: string;
-  setWord: (word: string) => void;
-  handleSearch: (word: string) => void;
 };
 
 export const Layout: React.FC<Props> = (props) => {
@@ -21,10 +18,7 @@ export const Layout: React.FC<Props> = (props) => {
     title = '',
     description = '名古屋のフルスタックエンジニア。SaaSやマッチングサービス、AR/VR等の開発を経て現在は独立して名古屋で開発やITコンサルしています。サービス開発の所感や、ハマった際の解決方法を記載しております。',
     keywords = '名古屋, エンジニア, Ruby, Python, ITコンサル, IT顧問, システム開発',
-    imageSrc = `${process.env.HOST_URL}/static/images/kyuri.png`,
-    word = '',
-    setWord,
-    handleSearch
+    imageSrc = `${process.env.HOST_URL}/static/images/kyuri.png`
   } = props;
   return (
     <div>
@@ -34,7 +28,7 @@ export const Layout: React.FC<Props> = (props) => {
         keywords={keywords}
         imageSrc={imageSrc}
       />
-      <Header word={word} setWord={setWord} handleSearch={handleSearch} />
+      <Header />
       <Breadcrumbs title={title} />
       {children}
       <Footer />

@@ -1,7 +1,8 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
+import { AboutMeSection } from '../components/common/aboutMeSection';
 import { Layout } from '../components/layouts/layout';
 import { PostBody } from '../components/post/postBody';
 import { PostHeader } from '../components/post/postHeader';
@@ -16,25 +17,19 @@ type Props = {
 const Post: NextPage<Props> = (props: Props) => {
   const { page } = props;
   const router = useRouter();
-  const [word, setWord] = useState<string>('');
-
-  const handleSearch = () => router.replace(`/?word=${word}`, undefined, { shallow: true });
 
   if (!router.isFallback && !page?.slug) {
     return <ErrorPage statusCode={404} />;
   }
 
   return (
-    <Layout title={page.title} description={page.content} word='' setWord={setWord} handleSearch={handleSearch}>
+    <Layout title={page.title} description={page.content}>
       <div className='px-8 mx-auto sm:px-10 sm:max-w-screen-md md:max-w-3xl lg:max-w-3xl'>
-        {router.isFallback ? (
-          <>Loading…</>
-        ) : (
-          <div className='px-5 my-10'>
-            <PostHeader title={page.title} date={page.date} authorName={page.author?.node?.name} />
-            <PostBody content={page.content} />
-          </div>
-        )}
+        <div className='px-5 my-10'>
+          <PostHeader title={page.title} date={page.date} authorName={page.author?.node?.name} />
+          <PostBody content={page.content} />
+          <AboutMeSection />
+        </div>
       </div>
     </Layout>
   );
@@ -45,9 +40,7 @@ export default Post;
 export const getStaticProps: GetStaticProps = async (context) => {
   const { pageBy } = await getPage(context.params.slug.toString());
   return {
-    props: {
-      page: pageBy
-    }
+    props: { page: pageBy }
   };
 };
 

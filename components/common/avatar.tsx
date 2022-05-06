@@ -1,2 +1,10 @@
 import React from 'react';
-export const Avatar: React.FC<{ name: string }> = ({ name }) => <div className='text-gray-500'>{name}</div>;
+
+type Props = {
+  name: string;
+};
+
+export const Avatar: React.FC<Props> = (props) => {
+  const { name } = props;
+  return <div className='text-gray-500'>{name}</div>;
+};
