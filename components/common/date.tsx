@@ -4,7 +4,7 @@ import React from 'react';
 type Props = {
   dateString: string;
 };
-export const Date: React.FC<Props> = (props): JSX.Element => {
+export const Date: React.FC<Props> = (props) => {
   const { dateString } = props;
   return (
     <time dateTime={dateString} className='text-gray-500'>

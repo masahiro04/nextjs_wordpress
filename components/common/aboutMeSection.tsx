@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export const AboutMeSection = (): JSX.Element => {
+export const AboutMeSection: React.FC = () => {
   useEffect(() => {
     const tweet = document.createElement("script");
     tweet.setAttribute("src", "https://platform.twitter.com/widgets.js");

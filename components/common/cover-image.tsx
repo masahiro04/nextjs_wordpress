@@ -8,7 +8,7 @@ type Props = {
   slug: string
 }
 
-export const CoverImage: React.FC<Props> = (props): JSX.Element => {
+export const CoverImage: React.FC<Props> = (props) => {
   const { title, url, slug } = props
   const image = (
     <Image
