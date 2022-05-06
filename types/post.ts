@@ -13,6 +13,9 @@ export interface PostsResponse {
 export interface PostResponse {
   post: Post;
 }
+export interface PageResponse {
+  pageBy: Page;
+}
 
 export interface Post {
   title: string;
@@ -43,6 +46,37 @@ export interface Post {
     }>;
   };
 }
+
+export interface Page {
+  title: string;
+  excerpt: string;
+  content: string;
+  slug: string;
+  date: string;
+  featuredImage: {
+    node: {
+      sourceUrl: string;
+    };
+  };
+  author: {
+    node: {
+      name: string;
+      firstName: string;
+      lastName: string;
+      avatar: {
+        url: string;
+      };
+    };
+  };
+  categories: {
+    edges: Array<{
+      node: {
+        name: string;
+      };
+    }>;
+  };
+}
+
 
 // TODO(okubo): hasNextPageの対応まだなので、この辺り必須
 export interface Node {

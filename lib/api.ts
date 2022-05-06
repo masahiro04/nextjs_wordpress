@@ -1,6 +1,6 @@
 // queryは別ファイルで管理
 import { allPosts, page, post, relatedPosts } from '../schemas/post';
-import { Post, PostResponse, PostsResponse } from '../types/post';
+import { PageResponse, Post, PostResponse, PostsResponse } from '../types/post';
 
 const fetchAPI = async <T>(
   query: string,
@@ -34,4 +34,4 @@ export const getAllPosts = async (first: number, after = '', categoryName = ''):
 export const getPost = async (slug: string): Promise<PostResponse> =>
   await fetchAPI<PostResponse>(post(), { variables: { id: slug, idType: 'SLUG' } });
 
-export const getPage = async (url: string): Promise<unknown> => await fetchAPI(page(url));
+export const getPage = async (url: string): Promise<PageResponse> => await fetchAPI<PageResponse>(page(url));

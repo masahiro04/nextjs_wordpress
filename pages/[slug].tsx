@@ -6,13 +6,16 @@ import { PostHeader } from "../components/post/post-header";
 import { Layout } from "../components/layouts/layout";
 import { getPage } from "../lib/api";
 import { PAGES } from "../lib/constants";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useState } from "react";
+import {Page} from '../types/post';
 
 type Props = {
-  page: number;
+  page: Page;
 }
-const Post: React.FC<Props> = ({ page }) => {
+
+const Post: NextPage<Props> = (props: Props) => {
+  const { page } = props;
   const router = useRouter();
   const [word, setWord] = useState<string>("");
 
@@ -27,6 +30,7 @@ const Post: React.FC<Props> = ({ page }) => {
     <Layout
       title={page.title}
       description={page.content}
+      word=''
       setWord={setWord}
       handleSearch={handleSearch}
     >
@@ -51,10 +55,10 @@ const Post: React.FC<Props> = ({ page }) => {
 export default Post;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const data: any = await getPage(context.params.slug);
+  const { pageBy } = await getPage(context.params.slug.toString());
   return {
     props: {
-      page: data.pageBy,
+      page: pageBy,
     },
   };
 };
