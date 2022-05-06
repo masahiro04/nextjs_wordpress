@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Pagination } from '../components/common/pagination';
 import { Layout } from '../components/layouts/layout';
-import { PostPreview } from '../components/post/post-preview';
+import { PostPreview } from '../components/post/postPreview';
 import { getAllPosts } from '../lib/api';
 import { PER_PAGE } from '../lib/constants';
 import { Node, PostsResponse } from '../types/post';
@@ -92,14 +92,9 @@ const filterByCategory = (posts: Array<Node>, target: string): Array<Node> =>
     (post) => (post.node.categories?.edges?.filter((category) => category.node.name === target)).length !== 0
   );
 
-const filterByWord = (
-  posts: Array<Node>, word: string,
-): Array<Node> => {
+const filterByWord = (posts: Array<Node>, word: string): Array<Node> => {
   const reg = new RegExp(word);
   return posts.filter(
-    (post) => reg.test(post.node['title'])
-      || reg.test(post.node['excerpt'])
-        || reg.test(post.node['content']));
-
-}
-
+    (post) => reg.test(post.node['title']) || reg.test(post.node['excerpt']) || reg.test(post.node['content'])
+  );
+};

@@ -6,5 +6,5 @@ export const PER_PAGE = 12;
 export const PAGES = [
   { url: 'about', title: 'プロフィール' },
   { url: 'mvp-programing-document', title: 'MVP教室' },
-  { url: 'contact', title: 'Contact' },
+  { url: 'contact', title: 'Contact' }
 ];

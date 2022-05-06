@@ -1,6 +1,6 @@
 // queryは別ファイルで管理
 import { allPosts, page, post, relatedPosts } from '../schemas/post';
-import { PageResponse, Post, PostResponse, PostsResponse } from '../types/post';
+import { PageResponse, PostResponse, PostsResponse } from '../types/post';
 
 const fetchAPI = async <T>(
   query: string,

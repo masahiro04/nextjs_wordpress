@@ -6,10 +6,10 @@ import { AboutMeSection } from '../../components/common/aboutMeSection';
 import { SectionSeparator } from '../../components/common/separator';
 import { Layout } from '../../components/layouts/layout';
 import { Categories } from '../../components/post/categories';
-import { ModePostPreview } from '../../components/post/more-post-preview';
-import { PostBody } from '../../components/post/post-body';
-import { PostHeader } from '../../components/post/post-header';
-import { PostHeaderImg } from '../../components/post/post-header-img';
+import { ModePostPreview } from '../../components/post/morePostPreview';
+import { PostBody } from '../../components/post/postBody';
+import { PostHeader } from '../../components/post/postHeader';
+import { PostHeaderImg } from '../../components/post/postHeaderImg';
 import { getAllPosts, getPost, getRelatedPosts } from '../../lib/api';
 import { Node, Post, PostsResponse } from '../../types/post';
 import { isDevelopment } from '../../utils/helpers';
@@ -48,13 +48,9 @@ const PostPage: NextPage<Props> = (props: Props) => {
           <>Loading…</>
         ) : (
           <div className='px-5 my-10'>
-            <PostHeader title={post?.title} date={post?.date} author={post?.author?.node} />
-            <PostHeaderImg
-              title={post?.title}
-              coverImage={post?.featuredImage?.node?.sourceUrl}
-              slug={post?.slug}
-            />
-            <Categories categories={post?.categories} />
+            <PostHeader title={post?.title} date={post?.date} authorName={post?.author?.node.name} />
+            <PostHeaderImg title={post?.title} coverImage={post?.featuredImage?.node?.sourceUrl} slug={post?.slug} />
+            <Categories categories={post?.categories.edges} />
             <PostBody content={post?.content} />
             <AboutMeSection />
             <SectionSeparator />

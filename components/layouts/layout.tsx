@@ -13,7 +13,7 @@ type Props = {
   imageSrc?: string;
   word: string;
   setWord: (word: string) => void;
-  handleSearch: (word: string) =>void;
+  handleSearch: (word: string) => void;
 };
 
 export const Layout: React.FC<Props> = (props) => {
