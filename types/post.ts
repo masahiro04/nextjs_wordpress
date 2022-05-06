@@ -79,7 +79,6 @@ export interface Page {
   };
 }
 
-// TODO(okubo): hasNextPageの対応まだなので、この辺り必須
 export interface Node {
   node: Post;
 }

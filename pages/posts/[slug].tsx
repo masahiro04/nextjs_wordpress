@@ -49,7 +49,7 @@ const PostPage: NextPage<Props> = (props: Props) => {
         ) : (
           <div className='px-5 my-10'>
             <PostHeader title={post?.title} date={post?.date} authorName={post?.author?.node.name} />
-            <PostHeaderImg title={post?.title} coverImage={post?.featuredImage?.node?.sourceUrl} slug={post?.slug} />
+            <PostHeaderImg title={post?.title} coverImage={post?.featuredImage?.node?.sourceUrl} />
             <Categories categories={post?.categories.edges} />
             <PostBody content={post?.content} />
             <AboutMeSection />
