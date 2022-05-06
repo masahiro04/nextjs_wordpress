@@ -7,7 +7,7 @@ type Props = {
   content: string;
 };
 
-export const PostBody: React.FC<Props> = (props): JSX.Element => {
+export const PostBody: React.FC<Props> = (props) => {
   const { content } = props;
   useEffect(() => {
     Prism.highlightAll();

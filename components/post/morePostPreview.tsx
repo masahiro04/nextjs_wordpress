@@ -8,7 +8,8 @@ type Props = {
   coverImage: string;
   slug: string;
 };
-export const ModePostPreview: React.FC<Props> = (props): JSX.Element => {
+
+export const ModePostPreview: React.FC<Props> = (props) => {
   const { title, coverImage = `${process.env.HOST_URL}/static/images/not_found.png`, slug } = props;
 
   return (

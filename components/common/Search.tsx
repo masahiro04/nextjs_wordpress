@@ -8,6 +8,7 @@ type Props = {
 
 export const Search: React.FC<Props> = (props) => {
   const { word = '', setWord, handleSearch } = props;
+
   return (
     <div className='relative text-sky-100 focus-within:text-gray-400 border rounded-lg'>
       <div className='flex items-center justify-center'>

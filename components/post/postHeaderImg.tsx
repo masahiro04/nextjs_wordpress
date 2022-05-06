@@ -1,5 +1,5 @@
 import React from 'react';
-import { CoverImage } from '../common/cover-image';
+import { CoverImage } from '../common/coverImage';
 
 type Props = {
   title: string;

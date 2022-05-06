@@ -9,7 +9,7 @@ type Props = {
   excerpt: string;
   slug: string;
 };
-export const PostPreview: React.FC<Props> = (props): JSX.Element => {
+export const PostPreview: React.FC<Props> = (props) => {
   const { title, coverImage = `${process.env.HOST_URL}/static/images/not_found.png`, excerpt, slug } = props;
   return (
     <Link as={`/posts/${slug}`} href={`/posts/${slug}`}>

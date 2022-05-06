@@ -90,22 +90,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // NOTE: pathをあらかじめ全部準備しておかないと404 error出るので対処してる
-  // TODO: 全部APIにまとめたい
-  let nodes: Array<Node> = [];
-  const postsBeforeFirstGet: PostsResponse = await getAllPosts(100, '');
-  nodes = nodes.concat(postsBeforeFirstGet.posts.edges);
-  let next = postsBeforeFirstGet.posts.pageInfo.hasNextPage;
-  let offset = postsBeforeFirstGet.posts.pageInfo.endCursor;
-
-  if (!isDevelopment()) {
-    while (next) {
-      const postsAfterFirstGet: PostsResponse = await getAllPosts(100, offset);
-      Array.prototype.push.apply(nodes, postsAfterFirstGet.posts.edges);
-      next = postsAfterFirstGet.posts.pageInfo.hasNextPage;
-      offset = postsAfterFirstGet.posts.pageInfo.endCursor;
+  const getPostsWithOffset = async (
+    posts: Array<Node>,
+    _offset: string
+  ): Promise<{ nodes: Array<Node>; hasNextPage: boolean; offset: string }> => {
+    const res: PostsResponse = await getAllPosts(100, _offset);
+    if (!res.posts.pageInfo.hasNextPage || isDevelopment()) {
+      return {
+        nodes: [...posts, ...res.posts.edges],
+        hasNextPage: res.posts.pageInfo.hasNextPage,
+        offset: res.posts.pageInfo.endCursor
+      };
     }
-  }
+    return getPostsWithOffset([...posts, ...res.posts.edges], res.posts.pageInfo.endCursor);
+  };
+  const { nodes } = await getPostsWithOffset([], '');
 
   return {
     paths: nodes.map(({ node }) => `/posts/${node.slug}`) || [],

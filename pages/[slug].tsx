@@ -27,14 +27,10 @@ const Post: NextPage<Props> = (props: Props) => {
   return (
     <Layout title={page.title} description={page.content} word='' setWord={setWord} handleSearch={handleSearch}>
       <div className='px-8 mx-auto sm:px-10 sm:max-w-screen-md md:max-w-3xl lg:max-w-3xl'>
-        {router.isFallback ? (
-          <>Loading…</>
-        ) : (
-          <div className='px-5 my-10'>
-            <PostHeader title={page.title} date={page.date} authorName={page.author?.node?.name} />
-            <PostBody content={page.content} />
-          </div>
-        )}
+        <div className='px-5 my-10'>
+          <PostHeader title={page.title} date={page.date} authorName={page.author?.node?.name} />
+          <PostBody content={page.content} />
+        </div>
       </div>
     </Layout>
   );
@@ -45,9 +41,7 @@ export default Post;
 export const getStaticProps: GetStaticProps = async (context) => {
   const { pageBy } = await getPage(context.params.slug.toString());
   return {
-    props: {
-      page: pageBy
-    }
+    props: { page: pageBy }
   };
 };
 
