@@ -47,6 +47,12 @@ export interface Post {
   };
 }
 
+export interface Category {
+  node: {
+    name: string;
+  };
+}
+
 export interface Page {
   title: string;
   excerpt: string;
@@ -69,14 +75,9 @@ export interface Page {
     };
   };
   categories: {
-    edges: Array<{
-      node: {
-        name: string;
-      };
-    }>;
+    edges: Array<Category>;
   };
 }
-
 
 // TODO(okubo): hasNextPageの対応まだなので、この辺り必須
 export interface Node {

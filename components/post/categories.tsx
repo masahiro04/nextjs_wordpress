@@ -1,16 +1,17 @@
 import Link from 'next/link';
 import React from 'react';
+import {Node, Category} from '../../types/post';
 
 type Props = {
-  categories: any;
+  categories: Array<Category>;
 };
 
 export const Categories: React.FC<Props> = (props): JSX.Element => {
   const { categories } = props;
   return (
     <span className='ml-1'>
-      {categories.edges.length > 0 ? (
-        categories.edges.map((category) => (
+      {categories.length > 0 ? (
+        categories.map((category: Category) => (
           <Link key={category.node.name} href={`/?categoryName=${category.node.name}`}>
             <a href='#'>
               <button

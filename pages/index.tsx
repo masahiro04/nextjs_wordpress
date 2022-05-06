@@ -92,7 +92,14 @@ const filterByCategory = (posts: Array<Node>, target: string): Array<Node> =>
     (post) => (post.node.categories?.edges?.filter((category) => category.node.name === target)).length !== 0
   );
 
-const filterByWord = (posts: Array<Node>, word: string): Array<Node> => {
+const filterByWord = (
+  posts: Array<Node>, word: string,
+): Array<Node> => {
   const reg = new RegExp(word);
   return posts.filter(
-    (post) => reg.test(post.node['title']) || reg.test(post.node['excerpt']) || reg.test(post.node['content'])
+    (post) => reg.test(post.node['title'])
+      || reg.test(post.node['excerpt'])
+        || reg.test(post.node['content']));
+
+}
+
