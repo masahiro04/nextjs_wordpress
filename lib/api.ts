@@ -1,7 +1,8 @@
 // queryは別ファイルで管理
 import { allPosts, page, post, relatedPosts } from '../schemas/post';
+import { PostsResponse } from '../types/post';
 
-const fetchAPI = async (query: string, { variables } = {} as any): Promise<any> => {
+const fetchAPI = async <T>(query: string, variables?: Record<string, unknown>): Promise<T> => {
   const res = await fetch(process.env.WORDPRESS_API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -15,14 +16,12 @@ const fetchAPI = async (query: string, { variables } = {} as any): Promise<any> 
   return json.data;
 };
 
-export const getRelatedPosts = async (categoryName = ''): Promise<unknown> => {
-  const data = await fetchAPI(relatedPosts(categoryName));
-  return data?.posts;
+export const getRelatedPosts = async (categoryName = ''): Promise<PostsResponse> => {
+  return await fetchAPI<PostsResponse>(relatedPosts(categoryName));
 };
 
-export const getAllPosts = async (first: string, after = '', categoryName = ''): Promise<unknown> => {
-  const data = await fetchAPI(allPosts(first, after, categoryName));
-  return data?.posts;
+export const getAllPosts = async (first: number, after = '', categoryName = ''): Promise<PostsResponse> => {
+  return await fetchAPI<PostsResponse>(allPosts(first.toString(), after, categoryName));
 };
 
 export const getPost = async (slug: string): Promise<unknown> =>

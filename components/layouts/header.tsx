@@ -8,7 +8,7 @@ import { Search } from '../common/Search';
 type Props = {
   word: string;
   setWord: (word: string) => void;
-  handleSearch: () => void;
+  handleSearch: (word: string) => void;
 };
 
 export const Header: React.FC<Props> = (props) => {

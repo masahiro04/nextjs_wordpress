@@ -3,7 +3,7 @@ import React from 'react';
 type Props = {
   word: string;
   setWord: (word: string) => void;
-  handleSearch: () => void;
+  handleSearch: (word: string) => void;
 };
 
 export const Search: React.FC<Props> = (props) => {
@@ -19,7 +19,7 @@ export const Search: React.FC<Props> = (props) => {
             onChange={(e) => setWord(e.target.value)}
             value={word === '' ? undefined : word}
           />
-          <button className='flex items-center justify-center px-4 border-l' onClick={handleSearch}>
+          <button className='flex items-center justify-center px-4 border-l' onClick={() => handleSearch(word)}>
             <svg
               className='w-6 h-6 text-gray-600'
               fill='currentColor'
