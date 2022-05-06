@@ -96,5 +96,3 @@ const filterByWord = (posts: Array<Node>, word: string): Array<Node> => {
   const reg = new RegExp(word);
   return posts.filter(
     (post) => reg.test(post.node['title']) || reg.test(post.node['excerpt']) || reg.test(post.node['content'])
-  );
-};

@@ -5,7 +5,8 @@ import { CustomHead } from './head';
 import { Header } from './header';
 
 type Props = {
-  children: Array<JSX.Element>;
+  // children: React.ReactNode;
+  children: React.ReactNode;
   title?: string;
   description?: string;
   keywords?: string;
