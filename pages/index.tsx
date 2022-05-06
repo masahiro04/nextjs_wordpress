@@ -78,6 +78,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
   const allPosts = { edges };
   generateRSSFeed(edges); // feedの生成
+  console.log('allposts',allPosts );
   return { props: { allPosts } }
 }
 
