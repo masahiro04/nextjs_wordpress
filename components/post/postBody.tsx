@@ -14,7 +14,7 @@ export const PostBody: React.FC<Props> = (props) => {
   }, []);
 
   return (
-    <div className='mx-auto'>
+    <div className='mx-auto break-words'>
       <div className={styles.content} dangerouslySetInnerHTML={{ __html: content }} />
     </div>
   );

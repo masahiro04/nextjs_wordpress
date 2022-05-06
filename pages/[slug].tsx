@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { AboutMeSection } from '../components/common/aboutMeSection';
 import { Layout } from '../components/layouts/layout';
 import { PostBody } from '../components/post/postBody';
 import { PostHeader } from '../components/post/postHeader';
@@ -27,6 +28,7 @@ const Post: NextPage<Props> = (props: Props) => {
         <div className='px-5 my-10'>
           <PostHeader title={page.title} date={page.date} authorName={page.author?.node?.name} />
           <PostBody content={page.content} />
+          <AboutMeSection />
         </div>
       </div>
     </Layout>

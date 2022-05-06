@@ -44,25 +44,25 @@ export const Breadcrumbs: React.FC<Props> = (props): JSX.Element => {
       {breadcrumbs && (
         <div className='bg-gray-100 py-4'>
           <div className='px-6 mx-auto sm:px-10 sm:max-w-screen-md lg:max-w-screen-lg'>
-            <ol className='flex max-w-7xl mx-auto px-4 sm:px-6 mb-0 text-indigo-700 font-medium'>
-              <li>
+            <div className='flex max-w-7xl mx-auto px-4 sm:px-6 mb-0 text-indigo-700 font-medium'>
+              <div>
                 <Link href='/'>
                   <a href='/' className='bread-effect'>
                     HOME
                   </a>
                 </Link>
-              </li>
+              </div>
               {breadcrumbs.map((breadcrumb) => (
-                <li key={breadcrumb.href}>
+                <div key={breadcrumb.href}>
                   &nbsp;&nbsp; / &nbsp;&nbsp;
                   <Link href={breadcrumb.href}>
                     <a href={breadcrumb.href} className='bread-effect'>
                       {convertBreadcrumb(breadcrumb.title)}
                     </a>
                   </Link>
-                </li>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
         </div>
       )}
