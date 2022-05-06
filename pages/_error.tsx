@@ -1,22 +1,10 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import { Layout } from '../components/layouts/layout';
 
-const Custom404 = (): JSX.Element => {
-  const router = useRouter();
-  const [word, setWord] = useState<string>('');
-
-  const handleSearch = () => router.replace(`/?word=${word}`, undefined, { shallow: true });
-
+const Custom404: React.FC = () => {
   return (
-    <Layout
-      title='Not found'
-      description='ページが見つかりません'
-      word=''
-      setWord={setWord}
-      handleSearch={handleSearch}
-    >
+    <Layout title='Not found' description='ページが見つかりません'>
       <div className='py-5 flex flex-col bg-white'>
         <main className='flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8'>
           <div className='py-16'>

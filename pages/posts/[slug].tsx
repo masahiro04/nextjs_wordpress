@@ -29,11 +29,7 @@ const PostPage: NextPage<Props> = (props: Props) => {
   }
 
   return (
-    <Layout
-      title={post?.title}
-      description={post?.excerpt}
-      imageSrc={post?.featuredImage?.node?.sourceUrl}
-    >
+    <Layout title={post?.title} description={post?.excerpt} imageSrc={post?.featuredImage?.node?.sourceUrl}>
       <div className='px-8 mx-auto sm:px-10 sm:max-w-screen-md md:max-w-3xl lg:max-w-3xl'>
         <div className='px-5 my-10'>
           <PostHeader title={post?.title} date={post?.date} authorName={post?.author?.node.name} />

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-export const Search: React.FC = () => {
+export const SearchInput: React.FC = () => {
   const router = useRouter();
   const word = router.query.word ? router.query.word.toString() : '';
   const handleSearch = async (newWord: string) => {

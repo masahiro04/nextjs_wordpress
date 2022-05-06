@@ -3,7 +3,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
 import { PAGES } from '../../lib/constants';
-import { Search } from '../common/search';
+import { SearchInput } from '../common/searchInput';
 
 export const Header: React.FC = () => {
   return (
@@ -43,9 +43,9 @@ export const Header: React.FC = () => {
             </Popover.Group>
             <div className='hidden md:flex items-center justify-end md:flex-1 lg:w-0'>
               <div className='flex'>
-                  <div className='my-auto'>
-                    <Search />
-                  </div>
+                <div className='my-auto'>
+                  <SearchInput />
+                </div>
               </div>
             </div>
           </div>
