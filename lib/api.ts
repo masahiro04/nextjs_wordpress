@@ -8,7 +8,6 @@ const fetchAPI = async <T>(
   { variables }: { variables: any } = {} as any
 ): Promise<T> => {
   // console.log('fetchAPI path is', query);
-  console.log('variables is ', variables);
   const res = await fetch(process.env.WORDPRESS_API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

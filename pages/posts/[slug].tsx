@@ -28,8 +28,6 @@ const PostPage: NextPage<Props> = (props: Props) => {
 
   const handleSearch = () => router.replace(`/?word=${word}`, undefined, { shallow: true });
 
-  console.log('hogehoge', post);
-
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
@@ -78,12 +76,10 @@ export default PostPage;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { post } = await getPost(params.slug.toString());
-  // console.log('page is', post.date);
   const categoryName = post.categories?.edges?.map((category) => category.node)[0]['name'];
   // とりあえず最初のカテゴリだけで検索
   // TODO: 理想は全部のカテゴリだけで抽出したい
   const relatedPosts: PostsResponse = await getRelatedPosts(categoryName);
-  // console.log('relatedPosts', relatedPosts.posts.edges);
 
   return {
     props: {
@@ -98,7 +94,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // TODO: 全部APIにまとめたい
   let nodes: Array<Node> = [];
   const postsBeforeFirstGet: PostsResponse = await getAllPosts(100, '');
-  // console.log('response is ', postsBeforeFirstGet.posts.edges);
   nodes = nodes.concat(postsBeforeFirstGet.posts.edges);
   let next = postsBeforeFirstGet.posts.pageInfo.hasNextPage;
   let offset = postsBeforeFirstGet.posts.pageInfo.endCursor;

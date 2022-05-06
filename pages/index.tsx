@@ -69,7 +69,6 @@ export default Index;
 export const getStaticProps: GetStaticProps = async () => {
   let nodes: Array<Node> = [];
   const postsBeforeFirstGet: PostsResponse = await getAllPosts(100, '');
-  // console.log('response is ', postsBeforeFirstGet.posts.edges);
   nodes = nodes.concat(postsBeforeFirstGet.posts.edges);
   let next = postsBeforeFirstGet.posts.pageInfo.hasNextPage;
   let offset = postsBeforeFirstGet.posts.pageInfo.endCursor;
