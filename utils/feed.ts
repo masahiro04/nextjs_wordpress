@@ -5,7 +5,6 @@ import { Node } from '../types/post';
 export const generateRSSFeed = (nodes: Array<Node>): void => {
   const baseUrl = process.env.HOST_URL;
 
-  // Construct a new Feed object
   const feed = new Feed({
     title: "Masahiro's tech note",
     description: "This is my blog's feed.",

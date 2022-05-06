@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
+// NOTE(okubo): wordpressでエラー出る文字列くる時あるので、ここで除外
 const convertBreadcrumb = (str: string): string =>
   str.replace(/-/g, ' ').replace(/oe/g, 'ö').replace(/ae/g, 'ä').replace(/ue/g, 'ü').toUpperCase();
 

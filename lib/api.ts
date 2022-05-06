@@ -2,12 +2,7 @@
 import { allPosts, page, post, relatedPosts } from '../schemas/post';
 import { PageResponse, PostResponse, PostsResponse } from '../types/post';
 
-const fetchAPI = async <T>(
-  query: string,
-  // variables?: Record<string, unknown>,
-  { variables }: { variables: any } = {} as any
-): Promise<T> => {
-  // console.log('fetchAPI path is', query);
+const fetchAPI = async <T>(query: string, { variables }: { variables?: Record<string, unknown> } = {}): Promise<T> => {
   const res = await fetch(process.env.WORDPRESS_API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import { AboutMeSection } from '../../components/common/aboutMeSection';
 import { SectionSeparator } from '../../components/common/separator';
 import { Layout } from '../../components/layouts/layout';
@@ -24,10 +24,6 @@ const PostPage: NextPage<Props> = (props: Props) => {
   const router = useRouter();
   const morePosts = relatedPosts;
 
-  const [word, setWord] = useState<string>('');
-
-  const handleSearch = () => router.replace(`/?word=${word}`, undefined, { shallow: true });
-
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
@@ -37,36 +33,29 @@ const PostPage: NextPage<Props> = (props: Props) => {
       title={post?.title}
       description={post?.excerpt}
       imageSrc={post?.featuredImage?.node?.sourceUrl}
-      setWord={setWord}
-      word=''
-      handleSearch={handleSearch}
     >
       <div className='px-8 mx-auto sm:px-10 sm:max-w-screen-md md:max-w-3xl lg:max-w-3xl'>
-        {router.isFallback ? (
-          <>Loading…</>
-        ) : (
-          <div className='px-5 my-10'>
-            <PostHeader title={post?.title} date={post?.date} authorName={post?.author?.node.name} />
-            <PostHeaderImg title={post?.title} coverImage={post?.featuredImage?.node?.sourceUrl} />
-            <Categories categories={post?.categories.edges} />
-            <PostBody content={post?.content} />
-            <AboutMeSection />
-            <SectionSeparator />
-            <h2 className='text-center'>関連記事</h2>
-            <div className='my-3'>
-              <div className='mx-auto'>
-                {morePosts?.map(({ node }) => (
-                  <ModePostPreview
-                    key={node.slug}
-                    title={node.title}
-                    coverImage={node.featuredImage?.node?.sourceUrl}
-                    slug={node.slug}
-                  />
-                ))}
-              </div>
+        <div className='px-5 my-10'>
+          <PostHeader title={post?.title} date={post?.date} authorName={post?.author?.node.name} />
+          <PostHeaderImg title={post?.title} coverImage={post?.featuredImage?.node?.sourceUrl} />
+          <Categories categories={post?.categories.edges} />
+          <PostBody content={post?.content} />
+          <AboutMeSection />
+          <SectionSeparator />
+          <h2 className='text-center'>関連記事</h2>
+          <div className='my-3'>
+            <div className='mx-auto'>
+              {morePosts?.map(({ node }) => (
+                <ModePostPreview
+                  key={node.slug}
+                  title={node.title}
+                  coverImage={node.featuredImage?.node?.sourceUrl}
+                  slug={node.slug}
+                />
+              ))}
             </div>
           </div>
-        )}
+        </div>
       </div>
     </Layout>
   );
@@ -76,10 +65,9 @@ export default PostPage;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { post } = await getPost(params.slug.toString());
-  const categoryName = post.categories?.edges?.map((category) => category.node)[0]['name'];
-  // とりあえず最初のカテゴリだけで検索
-  // TODO: 理想は全部のカテゴリだけで抽出したい
-  const relatedPosts: PostsResponse = await getRelatedPosts(categoryName);
+  const categoryNames = post.categories?.edges?.map((category) => category.node.name).join(', ');
+  // NOTE(okubo): コンマで区切れば複数のカテゴリーを検索できる
+  const relatedPosts: PostsResponse = await getRelatedPosts(categoryNames);
 
   return {
     props: {

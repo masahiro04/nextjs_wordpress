@@ -1,6 +1,6 @@
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React from 'react';
 import { Pagination } from '../components/common/pagination';
 import { Layout } from '../components/layouts/layout';
 import { PostPreview } from '../components/post/postPreview';
@@ -17,26 +17,16 @@ type Props = {
 const Index: NextPage<Props> = (props: Props) => {
   const { nodes } = props;
   const router = useRouter();
-  const [word, setWord] = useState<string>(router.query.word ? router.query.word.toString() : '');
-
+  const word = router.query.word ? router.query.word.toString() : '';
   const category = router.query.categoryName?.toString();
-
   const filteredPosts =
     category === undefined ? filterByWord(nodes, word) : filterByWord(filterByCategory(nodes, category), word);
-
   const pageNumber = Number(router.query.page) || 1;
-
   const start = pageNumber === 1 ? 0 : pageNumber * PER_PAGE;
-
   const posts = filteredPosts.slice(start, start + PER_PAGE);
 
-  const handleSearch = async (newWord: string) => {
-    await router.replace('/', undefined, { shallow: true });
-    setWord(newWord);
-  };
-
   return (
-    <Layout handleSearch={handleSearch} setWord={setWord} word={word}>
+    <Layout>
       <div className='mt-3 mt-md-5'>
         <div className='mx-auto text-center my-2'>
           <h1 className='font-bold text-gray-700 break-all text-4xl border-indigo-800'>
