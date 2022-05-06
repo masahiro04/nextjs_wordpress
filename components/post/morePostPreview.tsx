@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const ModePostPreview: React.FC<Props> = (props) => {
-  const { title, coverImage = `${process.env.HOST_URL}/static/images/not_found.png`, slug } = props;
+  const { title, coverImage = '/static/images/not_found.png', slug } = props;
 
   return (
     <Link as={`/posts/${slug}`} href={`/posts/${slug}`}>

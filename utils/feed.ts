@@ -3,21 +3,20 @@ import fs from 'fs';
 import { Node } from '../types/post';
 
 export const generateRSSFeed = (nodes: Array<Node>): void => {
-  const baseUrl = process.env.HOST_URL;
 
   const feed = new Feed({
     title: "Masahiro's tech note",
     description: "This is my blog's feed.",
-    id: baseUrl,
-    link: baseUrl,
+    id: 'https://masahiro.me',
+    link: 'https://masahiro.me',
     language: 'ja',
-    image: `${baseUrl}/static/images/kyuri.png`,
-    favicon: `${baseUrl}/favicon.ico`,
+    image: '/static/images/kyuri.png',
+    favicon: '/favicon.ico',
     copyright: `copyright¬© 2016-${new Date().getFullYear()} Masahiro Okubo`,
     // updated: new Date(), // optional, default = today
     // generator: "awesome", // optional, default = 'Feed for Node.js'
     feedLinks: {
-      rss2: `${baseUrl}/rss.xml`
+      rss2: 'https://masahiro.me/rss.xml'
     }
   });
 
@@ -30,7 +29,7 @@ export const generateRSSFeed = (nodes: Array<Node>): void => {
       // content,
       date
     } = node;
-    const url = `${baseUrl}/posts/${slug}`;
+    const url = `https://masahiro.me/posts/${slug}`;
 
     // TODO: contentとexcerptはparse不可な文字が入っているらしく、正常に生成できない。不要な箇所は削除や別の対応が必要
     feed.addItem({
