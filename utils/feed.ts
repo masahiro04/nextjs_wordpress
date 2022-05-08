@@ -3,6 +3,7 @@ import fs from 'fs';
 import { Node } from '../types/post';
 
 export const generateRSSFeed = (nodes: Array<Node>): void => {
+  // TODO(okubo): baseUrl入れてそこからroute取得
 
   const feed = new Feed({
     title: "Masahiro's tech note",
