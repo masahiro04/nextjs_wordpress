@@ -22,7 +22,7 @@ export const Breadcrumbs: React.FC<Props> = (props) => {
     // NOTE(okubo): wordpressでエラー出る文字列くる時あるので、ここで除外
     const makeTitle = (elm: string): string => {
       const removeUnsupportedStr = (str: string): string =>
-        str.replace(/-/g, ' ').replace(/oe/g, 'ö').replace(/ae/g, 'ä').replace(/ue/g, 'ü').toUpperCase();
+        str.replace(/-/g, ' ').replace(/oe/g, 'ö').replace(/ae/g, 'ä').replace(/ue/g, 'ü');
       return strArr.lastIndexOf(elm) ? removeUnsupportedStr(title) : removeUnsupportedStr(elm);
     };
 
@@ -48,7 +48,7 @@ export const Breadcrumbs: React.FC<Props> = (props) => {
           <div className='flex max-w-7xl mx-auto px-4 sm:px-6 mb-0 text-indigo-700 font-medium'>
             <div className='space-x-4'>
               <Link href='/'>
-                <a href='/'>HOME</a>
+                <a href='/'>home</a>
               </Link>
             </div>
             {breadcrumbs.map((breadcrumb) => (
