@@ -41,6 +41,7 @@ const Index: NextPage<Props> = (props: Props) => {
             coverImage={node.featuredImage?.node.sourceUrl}
             slug={node.slug}
             excerpt={node.excerpt}
+            date={node?.date}
           />
         ))}
       </div>

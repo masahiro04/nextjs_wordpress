@@ -11,12 +11,12 @@ export const Header: React.FC = () => {
       <Popover className='relative bg-white'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6'>
           <div className='flex justify-between items-center py-3 md:justify-start md:space-x-10'>
-            <div className='flex justify-start lg:w-0 lg:flex-1'>
+            <div className=''>
               <Link href='/'>
                 <h3 className='text-2xl'>
                   <Link href='/'>
                     <a href='/' className='text-indigo-700 font-bold'>
-                      {"Masahiro's tech note"}
+                      Masahiro&apos;s tech note
                     </a>
                   </Link>
                 </h3>
