@@ -6,7 +6,7 @@ updates:
     interval: weekly
     time: "11:00"
     timezone: Asia/Tokyo
-  open-pull-requests-limit: 40
-  target-branch: develop
+  open-pull-requests-limit: 25
+  target-branch: main
   reviewers:
   - masahiro04

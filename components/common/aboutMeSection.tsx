@@ -13,13 +13,13 @@ export const AboutMeSection: React.FC = () => {
       <div className='mt-5'>
         <div className='flex justify-center space-x-12'>
           <a href='https://github.com/masahiro04' target='_blank' rel='noreferrer'>
-            <img src={`${process.env.HOST_URL}/static/images/github.svg`} className='' width={50} alt='' />
+            <img src='/static/images/github.svg' className='' width={50} alt='' />
           </a>
           <a href='https://menta.work/user/20351' target='_blank' rel='noreferrer'>
-            <img src={`${process.env.HOST_URL}/static/images/menta.svg`} className='' width={50} alt='' />
+            <img src='/static/images/menta.svg' className='' width={50} alt='' />
           </a>
           <a href='https://twitter.com/masa_okubo' target='_blank' rel='noreferrer'>
-            <img src={`${process.env.HOST_URL}/static/images/twitter.svg`} className='' width={50} alt='' />
+            <img src='/static/images/twitter.svg' className='' width={50} alt='' />
           </a>
         </div>
         <a href='https://twitter.com/masa_okubo' className='text-white' target='_blank' rel='noreferrer'>
