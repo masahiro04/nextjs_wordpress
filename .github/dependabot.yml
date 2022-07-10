@@ -1,0 +1,12 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "11:00"
+    timezone: Asia/Tokyo
+  open-pull-requests-limit: 40
+  target-branch: develop
+  reviewers:
+  - masahiro04
