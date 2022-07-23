@@ -5,7 +5,7 @@ export const SearchInput: React.FC = () => {
   const router = useRouter();
   const word = router.query.word ? router.query.word.toString() : '';
   const handleSearch = async (newWord: string) => {
-    await router.replace(`/?word=${newWord}`, undefined, { shallow: true });
+    await router.replace(`/posts/?word=${newWord}`, undefined, { shallow: true });
   };
 
   return (

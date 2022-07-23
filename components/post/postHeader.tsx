@@ -22,7 +22,7 @@ export const PostHeader: React.FC<Props> = (props): JSX.Element => {
           </small>
         </div>
       </div>
-      <h1>{title}</h1>
+      <h1 className='font-bold my-4 text-gray-700 break-all text-4xl'>{title}</h1>
     </>
   );
 };

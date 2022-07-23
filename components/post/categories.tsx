@@ -14,7 +14,7 @@ export const Categories: React.FC<Props> = (props) => {
   return (
     <span className='ml-1'>
       {categories.map((category: Category) => (
-        <Link key={category.node.name} href={`/?categoryName=${category.node.name}`}>
+        <Link key={category.node.name} href={`/posts/?categoryName=${category.node.name}`}>
           <a href='#'>
             <button
               type='button'

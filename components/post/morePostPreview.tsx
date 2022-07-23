@@ -15,7 +15,7 @@ export const ModePostPreview: React.FC<Props> = (props) => {
   return (
     <Link as={`/posts/${slug}`} href={`/posts/${slug}`}>
       <a href={`/posts/${slug}`}>
-        <div className='grid grid-cols-5 gap-4 my-1'>
+        <div className='grid grid-cols-5 gap-4 lg:my-1 my-3'>
           <div className='col-span-3 m-auto'>
             <p
               className='text-left text-gray-600 text-xl font-bold break-all my-auto'
