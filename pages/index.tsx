@@ -1,11 +1,9 @@
 import React from 'react';
 import { NextPage } from 'next';
 import { Layout } from '../components/layouts/layout';
-import {AboutMeSection} from '../components/common/aboutMeSection';
-
+import { AboutMeSection } from '../components/common/aboutMeSection';
 
 const Index: NextPage = () => {
-
   return (
     <Layout>
       <div className='px-6 mx-auto sm:px-10 sm:max-w-screen-md lg:max-w-screen-lg'>
@@ -27,7 +25,7 @@ const Index: NextPage = () => {
             Interests
           </h2>
           <div className=' my-4 text-gray-500 break-all'>
-            Dart / Swift / Nim / Rust
+            Dart / Swift / Nim / Rust / WebAssembly
           </div>
           <AboutMeSection />
         </div>
