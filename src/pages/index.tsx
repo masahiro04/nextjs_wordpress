@@ -1,7 +1,7 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { Layout } from '../components/layouts/layout';
 import { AboutMeSection } from '../components/common/aboutMeSection';
+import { Layout } from '../components/layouts/layout';
 
 const Index: NextPage = () => {
   return (
@@ -18,7 +18,7 @@ const Index: NextPage = () => {
           <h2 className='font-bold my-4 text-gray-700 break-all text-4xl'>
             Languages
           </h2>
-          <div className=' my-4 text-gray-500 break-all'>
+          <div className='my-4 text-gray-500 break-all'>
             Go / TypeScript / Dart / Ruby
           </div>
           <h2 className='font-bold my-4 text-gray-700 break-all text-4xl'>
