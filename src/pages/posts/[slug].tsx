@@ -2,14 +2,8 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { AboutMeSection } from '../../components/common/aboutMeSection';
-import { SectionSeparator } from '../../components/common/separator';
-import { Layout } from '../../components/layouts/layout';
-import { Categories } from '../../components/post/categories';
-import { ModePostPreview } from '../../components/post/morePostPreview';
-import { PostBody } from '../../components/post/postBody';
-import { PostHeader } from '../../components/post/postHeader';
-import { PostHeaderImg } from '../../components/post/postHeaderImg';
+import { AboutMeSection, SectionSeparator, Layout, Categories, ModePostPreview, PostBody, PostHeader, PostHeaderImg,
+} from '@/components';
 import { getAllPosts, getPost, getRelatedPosts } from '../../lib/api';
 import { Node, Post, PostsResponse } from '../../types/post';
 import { isDevelopment } from '../../utils/helpers';

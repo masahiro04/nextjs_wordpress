@@ -1,9 +1,7 @@
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Pagination } from '../../components/common/pagination';
-import { Layout } from '../../components/layouts/layout';
-import { PostPreview } from '../../components/post/postPreview';
+import { Pagination, Layout, PostPreview } from '@/components';
 import { getAllPosts } from '../../lib/api';
 import { PER_PAGE } from '../../lib/constants';
 import { Node, PostsResponse } from '../../types/post';
