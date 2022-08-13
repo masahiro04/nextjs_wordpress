@@ -65,20 +65,24 @@ export interface Node {
 }
 
 export interface PostsResponse {
-  posts: {
-    pageInfo: {
-      hasNextPage: boolean;
-      hasPreviousPage: boolean;
-      startCursor: string;
-      endCursor: string;
-    };
-    edges: Array<Node>;
-  };
-}
+  data: {
+    posts: {
+      pageInfo: {
+        hasNextPage: boolean;
+        hasPreviousPage: boolean;
+        startCursor: string;
+        endCursor: string;
+      };
+      edges: Array<Node>;
+    }
+  }
+};
 
 export interface PostResponse {
-  post: Post;
-}
+  data: {
+    post: Post
+  } };
+
 export interface PageResponse {
   pageBy: Page;
 }

@@ -4,8 +4,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { AboutMeSection, SectionSeparator, Layout, Categories, ModePostPreview, PostBody, PostHeader, PostHeaderImg,
 } from '@/presentation';
-import { getAllPosts, getPost, getRelatedPosts } from '@/infrastructure';
-import { Node, Post, PostsResponse } from '@/domain';
+import { Node, Post, PostsResponse, getAllPosts, getPost, getRelatedPosts } from '@/domain';
 import { isDevelopment } from '@/extensions';
 
 type Props = {
@@ -54,7 +53,11 @@ const PostPage: NextPage<Props> = (props: Props) => {
 export default PostPage;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { post } = await getPost(params.slug.toString());
+  const response = await getPost(params.slug.toString());
+  const post = response.data.post;
+  console.log('--------aaa-------');
+  console.log(post);
+  console.log('--------aaa-------');
   const categoryNames = post.categories?.edges?.map((category) => category.node.name).join(', ');
   // NOTE(okubo): コンマで区切れば複数のカテゴリーを検索できる
   const relatedPosts: PostsResponse = await getRelatedPosts(categoryNames);
@@ -62,7 +65,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post,
-      relatedPosts: relatedPosts.posts.edges
+      relatedPosts: relatedPosts.data.posts.edges
     }
   };
 };
@@ -73,14 +76,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
     _offset: string
   ): Promise<{ nodes: Array<Node>; hasNextPage: boolean; offset: string }> => {
     const res: PostsResponse = await getAllPosts(100, _offset);
-    if (!res.posts.pageInfo.hasNextPage || isDevelopment()) {
+    if (!res.data.posts.pageInfo.hasNextPage || isDevelopment()) {
       return {
-        nodes: [...posts, ...res.posts.edges],
-        hasNextPage: res.posts.pageInfo.hasNextPage,
-        offset: res.posts.pageInfo.endCursor
+        nodes: [...posts, ...res.data.posts.edges],
+        hasNextPage: res.data.posts.pageInfo.hasNextPage,
+        offset: res.data.posts.pageInfo.endCursor
       };
     }
-    return getPostsWithOffset([...posts, ...res.posts.edges], res.posts.pageInfo.endCursor);
+    return getPostsWithOffset([...posts, ...res.data.posts.edges], res.data.posts.pageInfo.endCursor);
   };
   const { nodes } = await getPostsWithOffset([], '');
 
