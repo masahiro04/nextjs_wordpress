@@ -1,10 +1,9 @@
+import { PER_PAGE } from '@/constants';
+import { getAllPosts, Node, PostsResponse } from '@/domain';
+import { filterByCategory, filterByWord, isDevelopment } from '@/extensions';
+import { Layout, Pagination, PostPreview } from '@/presentation';
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React from 'react';
-import { Pagination, Layout, PostPreview } from '@/presentation';
-import { Node, PostsResponse, getAllPosts } from '@/domain';
-import { filterByCategory, filterByWord, isDevelopment } from '@/extensions';
-import { PER_PAGE } from '@/constants';
 
 type Props = {
   nodes: Array<Node>;

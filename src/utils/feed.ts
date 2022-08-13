@@ -1,6 +1,6 @@
+import { Node } from '@/domain';
 import { Feed } from 'feed';
 import fs from 'fs';
-import { Node } from '@/domain';
 
 export const generateRSSFeed = (nodes: Array<Node>): void => {
   // TODO(okubo): baseUrl入れてそこからroute取得

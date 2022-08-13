@@ -1,7 +1,7 @@
+import { reistrictCharacters } from '@/extensions';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { reistrictCharacters } from '@/extensions';
 
 type Props = {
   title: string;

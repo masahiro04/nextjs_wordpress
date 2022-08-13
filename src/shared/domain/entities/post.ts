@@ -74,14 +74,15 @@ export interface PostsResponse {
         endCursor: string;
       };
       edges: Array<Node>;
-    }
-  }
-};
+    };
+  };
+}
 
 export interface PostResponse {
   data: {
-    post: Post
-  } };
+    post: Post;
+  };
+}
 
 export interface PageResponse {
   pageBy: Page;

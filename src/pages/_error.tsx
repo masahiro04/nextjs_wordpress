@@ -1,6 +1,6 @@
+import { Layout } from '@/presentation';
 import Link from 'next/link';
 import React from 'react';
-import { Layout } from '@/presentation';
 
 const Custom404: React.FC = () => {
   return (

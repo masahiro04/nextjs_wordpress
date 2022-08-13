@@ -1,6 +1,6 @@
+import { Category } from '@/domain';
 import Link from 'next/link';
 import React from 'react';
-import { Category } from '@/domain';
 
 type Props = {
   categories: Array<Category>;

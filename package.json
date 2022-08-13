@@ -4,7 +4,7 @@
     "dev": "next",
     "build": "next build && next-sitemap --config sitemap.config.js",
     "start": "next start",
-    "lint:fix": "eslint --fix './{lib,components,pages,utils}/**/*.{ts,tsx}' && prettier --write './{lib,components,pages,utils}/**/*.{ts,tsx}'"
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}' && prettier --write './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",

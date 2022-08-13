@@ -1,5 +1,5 @@
 // 詳細ページの関連記事
-export const relatedPosts = (categoryName: string): string =>  `
+export const relatedPosts = (categoryName: string): string => `
   query RelatedPosts {
     posts(first: 5, where: { categoryName: "${categoryName}" }) {
       edges {
@@ -78,7 +78,7 @@ export const post = (): string => `
       }
     }
   }
-`
+`;
 
 // 一覧ページで全記事取得
 export const allPosts = (first: string, after: string, categoryName: string): string => `
@@ -139,4 +139,4 @@ export const page = (url: string): string => `
         }
       }
     }
-  }`
+  }`;

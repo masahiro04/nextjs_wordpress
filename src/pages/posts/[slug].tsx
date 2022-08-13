@@ -1,11 +1,18 @@
+import { getAllPosts, getPost, getRelatedPosts, Node, Post, PostsResponse } from '@/domain';
+import { isDevelopment } from '@/extensions';
+import {
+  AboutMeSection,
+  Categories,
+  Layout,
+  ModePostPreview,
+  PostBody,
+  PostHeader,
+  PostHeaderImg,
+  SectionSeparator
+} from '@/presentation';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
-import React from 'react';
-import { AboutMeSection, SectionSeparator, Layout, Categories, ModePostPreview, PostBody, PostHeader, PostHeaderImg,
-} from '@/presentation';
-import { Node, Post, PostsResponse, getAllPosts, getPost, getRelatedPosts } from '@/domain';
-import { isDevelopment } from '@/extensions';
 
 type Props = {
   post: Post;
@@ -55,9 +62,6 @@ export default PostPage;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const response = await getPost(params.slug.toString());
   const post = response.data.post;
-  console.log('--------aaa-------');
-  console.log(post);
-  console.log('--------aaa-------');
   const categoryNames = post.categories?.edges?.map((category) => category.node.name).join(', ');
   // NOTE(okubo): コンマで区切れば複数のカテゴリーを検索できる
   const relatedPosts: PostsResponse = await getRelatedPosts(categoryNames);
