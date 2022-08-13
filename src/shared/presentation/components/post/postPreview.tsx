@@ -1,4 +1,4 @@
-import { reistrictCharacters } from '@/extensions';
+import { reistrictCharacters } from '@/extension';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';

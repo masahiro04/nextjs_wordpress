@@ -1,5 +1,4 @@
-import { getAllPosts, getPost, getRelatedPosts, Node, Post, PostsResponse } from '@/domain';
-import { isDevelopment } from '@/extensions';
+import { fetchAllPosts, fetchPost, fetchRelatedPosts, Node, Post, PostsResponse } from '@/domain';
 import {
   AboutMeSection,
   Categories,
@@ -14,11 +13,34 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const response = await fetchPost(params.slug.toString());
+  const post = response.data.post;
+  const categoryNames = post.categories?.edges?.map((category) => category.node.name).join(', ');
+
+  // NOTE(okubo): コンマで区切れば複数のカテゴリーを検索できる
+  const relatedPosts: PostsResponse = await fetchRelatedPosts(categoryNames);
+
+  return {
+    props: {
+      post,
+      relatedPosts: relatedPosts.data.posts.edges
+    }
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { nodes } = await fetchAllPosts([], '');
+  return {
+    paths: nodes.map(({ node }) => `/posts/${node.slug}`) || [],
+    fallback: false
+  };
+};
+
 type Props = {
   post: Post;
   relatedPosts: Array<Node>;
 };
-
 const PostPage: NextPage<Props> = (props: Props) => {
   const { post, relatedPosts } = props;
   const router = useRouter();
@@ -58,41 +80,3 @@ const PostPage: NextPage<Props> = (props: Props) => {
 };
 
 export default PostPage;
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const response = await getPost(params.slug.toString());
-  const post = response.data.post;
-  const categoryNames = post.categories?.edges?.map((category) => category.node.name).join(', ');
-  // NOTE(okubo): コンマで区切れば複数のカテゴリーを検索できる
-  const relatedPosts: PostsResponse = await getRelatedPosts(categoryNames);
-
-  return {
-    props: {
-      post,
-      relatedPosts: relatedPosts.data.posts.edges
-    }
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const getPostsWithOffset = async (
-    posts: Array<Node>,
-    _offset: string
-  ): Promise<{ nodes: Array<Node>; hasNextPage: boolean; offset: string }> => {
-    const res: PostsResponse = await getAllPosts(100, _offset);
-    if (!res.data.posts.pageInfo.hasNextPage || isDevelopment()) {
-      return {
-        nodes: [...posts, ...res.data.posts.edges],
-        hasNextPage: res.data.posts.pageInfo.hasNextPage,
-        offset: res.data.posts.pageInfo.endCursor
-      };
-    }
-    return getPostsWithOffset([...posts, ...res.data.posts.edges], res.data.posts.pageInfo.endCursor);
-  };
-  const { nodes } = await getPostsWithOffset([], '');
-
-  return {
-    paths: nodes.map(({ node }) => `/posts/${node.slug}`) || [],
-    fallback: false
-  };
-};

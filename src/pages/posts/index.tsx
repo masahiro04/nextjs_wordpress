@@ -1,9 +1,14 @@
 import { PER_PAGE } from '@/constants';
-import { getAllPosts, Node, PostsResponse } from '@/domain';
-import { filterByCategory, filterByWord, isDevelopment } from '@/extensions';
+import { fetchAllPosts, Node } from '@/domain';
+import { filterByCategory, filterByWord } from '@/extension';
 import { Layout, Pagination, PostPreview } from '@/presentation';
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { nodes } = await fetchAllPosts([], '');
+  return { props: { nodes } };
+};
 
 type Props = {
   nodes: Array<Node>;
@@ -49,25 +54,3 @@ const Index: NextPage<Props> = (props: Props) => {
 };
 
 export default Index;
-
-export const getStaticProps: GetStaticProps = async () => {
-  const getPostsWithOffset = async (
-    posts: Array<Node>,
-    _offset: string
-  ): Promise<{ nodes: Array<Node>; hasNextPage: boolean; offset: string }> => {
-    const res: PostsResponse = await getAllPosts(100, _offset);
-    console.log('ohgehoge----------');
-    console.log(res);
-    console.log('ohgehoge----------');
-    if (!res.data.posts.pageInfo.hasNextPage || isDevelopment()) {
-      return {
-        nodes: [...posts, ...res.data.posts.edges],
-        hasNextPage: res.data.posts.pageInfo.hasNextPage,
-        offset: res.data.posts.pageInfo.endCursor
-      };
-    }
-    return getPostsWithOffset([...posts, ...res.data.posts.edges], res.data.posts.pageInfo.endCursor);
-  };
-  const { nodes } = await getPostsWithOffset([], '');
-  return { props: { nodes } };
-};
