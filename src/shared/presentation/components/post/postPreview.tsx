@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { reistrictCharacters } from '../../utils/helpers';
+import { reistrictCharacters } from '@/extensions';
 import {Date} from '../common/date';
 
 type Props = {

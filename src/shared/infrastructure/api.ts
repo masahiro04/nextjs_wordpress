@@ -1,6 +1,6 @@
 // queryは別ファイルで管理
-import { allPosts, page, post, relatedPosts } from '../schemas/post';
-import { PageResponse, PostResponse, PostsResponse } from '../types/post';
+import { PageResponse, PostResponse, PostsResponse } from '@/domain';
+import { allPosts, page, post, relatedPosts } from './post';
 
 const fetchAPI = async <T>(query: string, { variables }: { variables?: Record<string, unknown> } = {}): Promise<T> => {
   const res = await fetch(process.env.WORDPRESS_API_URL, {

@@ -1,11 +1,11 @@
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Pagination, Layout, PostPreview } from '@/components';
+import { Pagination, Layout, PostPreview } from '@/presentation';
 import { getAllPosts } from '../../lib/api';
-import { PER_PAGE } from '../../lib/constants';
-import { Node, PostsResponse } from '../../types/post';
-import { filterByCategory, filterByWord, isDevelopment } from '../../utils/helpers';
+import { PER_PAGE } from '@/constants';
+import { Node, PostsResponse } from '@/domain';
+import { filterByCategory, filterByWord, isDevelopment } from '@/extensions';
 
 type Props = {
   nodes: Array<Node>;

@@ -1,4 +1,4 @@
-import { Node } from '../types/post';
+import { Node } from '@/domain';
 
 export const reistrictCharacters = (chars: string, limit: number): string => chars.slice(0, limit);
 

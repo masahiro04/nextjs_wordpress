@@ -3,10 +3,10 @@ import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { AboutMeSection, SectionSeparator, Layout, Categories, ModePostPreview, PostBody, PostHeader, PostHeaderImg,
-} from '@/components';
-import { getAllPosts, getPost, getRelatedPosts } from '../../lib/api';
-import { Node, Post, PostsResponse } from '../../types/post';
-import { isDevelopment } from '../../utils/helpers';
+} from '@/presentation';
+import { getAllPosts, getPost, getRelatedPosts } from '@/infrastructure';
+import { Node, Post, PostsResponse } from '@/domain';
+import { isDevelopment } from '@/extensions';
 
 type Props = {
   post: Post;

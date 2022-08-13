@@ -24,7 +24,8 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      // "@/*": ["./src/*"],
+      "@/*": ["./src/shared/*"],
     }
   },
   "exclude": [

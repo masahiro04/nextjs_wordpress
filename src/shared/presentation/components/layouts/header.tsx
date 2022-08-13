@@ -2,7 +2,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import React, { Fragment } from 'react';
-import { PAGES } from '../../lib/constants';
+import { PAGES } from '@/constants';
 import { SearchInput } from '../common/searchInput';
 
 export const Header: React.FC = () => {

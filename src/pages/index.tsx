@@ -1,6 +1,6 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { AboutMeSection, Layout } from '@/components';
+import { AboutMeSection, Layout } from '@/presentation';
 
 const Index: NextPage = () => {
   return (
