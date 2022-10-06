@@ -12,7 +12,7 @@
     "axios": "^0.27.2",
     "babel-plugin-prismjs": "^2.1.0",
     "camelcase-keys": "^8.0.2",
-    "date-fns": "2.29.1",
+    "date-fns": "2.29.3",
     "feed": "^4.2.2",
     "next": "^12.2.5",
     "node-sass": "^7.0.3",
