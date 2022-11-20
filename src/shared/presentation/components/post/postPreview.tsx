@@ -11,20 +11,21 @@ type Props = {
   slug: string;
   date: string;
 };
+
 export const PostPreview: React.FC<Props> = (props) => {
   const { title, coverImage = '/static/images/not_found.png', excerpt, slug, date } = props;
   return (
     <Link as={`/posts/${slug}`} href={`/posts/${slug}`} className='z-0'>
       <div className='m-4'>
-        <Image
-          className='rounded h-48 w-full -z-10'
-          src={coverImage}
-          alt={slug}
-          loading='lazy'
-          width={500}
-          objectFit={'contain'}
-          height={300}
-        />
+        <div className='h-44 w-64 relative'>
+          <Image
+            src={coverImage}
+            alt={slug}
+            layout='fill'
+            objectFit='contain'
+            className='rounded'
+          />
+        </div>
         <h3
           className='mt-4 font-bold break-all text-gray-700 text-xl'
           dangerouslySetInnerHTML={{ __html: reistrictCharacters(title, 30) }}

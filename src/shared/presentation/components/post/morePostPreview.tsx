@@ -23,11 +23,11 @@ export const ModePostPreview: React.FC<Props> = (props) => {
         </div>
         <div className='col-span-2 m-auto'>
           <Image
-            className='rounded object-contain w-full'
+            className='rounded object-contain'
             src={coverImage}
             alt={slug}
             loading='lazy'
-            width={200}
+            width={100}
             height={120}
           />
         </div>
