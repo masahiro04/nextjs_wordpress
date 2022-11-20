@@ -11,17 +11,11 @@ export const Header: React.FC = () => {
       <Popover className='relative bg-white'>
         <div className='max-w-7xl mx-auto px-4 sm:px-6'>
           <div className='flex justify-between items-center py-3 md:justify-start md:space-x-10'>
-            <div className=''>
-              <Link href='/'>
-                <h3 className='text-2xl'>
-                  <Link href='/'>
-                    <a href='/' className='text-indigo-700 font-bold'>
-                      Masahiro&apos;s tech note
-                    </a>
-                  </Link>
-                </h3>
+            <h3 className='text-2xl'>
+              <Link href='/' className='text-indigo-700 font-bold'>
+                Masahiro&apos;s tech note
               </Link>
-            </div>
+            </h3>
             <div className='-mr-2 -my-2 md:hidden'>
               <Popover.Button className='bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'>
                 <span className='sr-only'>Open menu</span>
@@ -30,14 +24,12 @@ export const Header: React.FC = () => {
             </div>
             <Popover.Group as='nav' className='hidden md:flex space-x-10'>
               {PAGES.map((page) => (
-                <Link href={`/${page.url}`} key={page.url.toString()}>
-                  <a
-                    key={page.url.toString()}
-                    href='#'
-                    className='text-base font-medium text-gray-500 hover:text-gray-900'
-                  >
-                    {page.title}
-                  </a>
+                <Link
+                  href={`/${page.url}`}
+                  key={page.url.toString()}
+                  className='text-base font-medium text-gray-500 hover:text-gray-900'
+                >
+                  {page.title}
                 </Link>
               ))}
             </Popover.Group>

@@ -1,11 +1,13 @@
+import { useSearchWord } from '@/providers';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 export const SearchInput: React.FC = () => {
   const router = useRouter();
-  const word = router.query.word ? router.query.word.toString() : '';
+  const { word, setWord } = useSearchWord();
   const handleSearch = async (newWord: string) => {
-    await router.replace(`/posts/?word=${newWord}`, undefined, { shallow: true });
+    setWord(newWord);
+    await router.replace(`/posts`, undefined, { shallow: true });
   };
 
   return (
@@ -17,7 +19,7 @@ export const SearchInput: React.FC = () => {
             className='px-4 py-2'
             placeholder='Search...'
             onChange={(e) => handleSearch(e.target.value)}
-            value={word === '' ? undefined : word}
+            value={word}
           />
         </div>
       </div>
