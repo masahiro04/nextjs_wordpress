@@ -15,7 +15,7 @@ export const PostPreview: React.FC<Props> = (props) => {
   const { title, coverImage = '/static/images/not_found.png', excerpt, slug, date } = props;
   return (
     <Link as={`/posts/${slug}`} href={`/posts/${slug}`} className='z-0'>
-      <a className='m-4' href={`/posts/${slug}`}>
+      <div className='m-4'>
         <Image
           className='rounded h-48 w-full -z-10'
           src={coverImage}
@@ -36,7 +36,7 @@ export const PostPreview: React.FC<Props> = (props) => {
         <div className='mt-2'>
           <Date dateString={date} />
         </div>
-      </a>
+      </div>
     </Link>
   );
 };
