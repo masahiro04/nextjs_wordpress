@@ -17,7 +17,7 @@ export const PostPreview: React.FC<Props> = (props) => {
   return (
     <Link as={`/posts/${slug}`} href={`/posts/${slug}`} className='z-0'>
       <div className='m-4'>
-        <div className='h-44 w-64 relative'>
+        <div className='md:h-44 h-20 md:w-64 w-32 relative'>
           <Image
             src={coverImage}
             alt={slug}
