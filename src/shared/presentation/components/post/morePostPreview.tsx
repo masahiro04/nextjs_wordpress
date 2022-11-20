@@ -1,4 +1,4 @@
-import { reistrictCharacters } from '@/extension';
+import { truncate } from '@/extension';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -18,7 +18,7 @@ export const ModePostPreview: React.FC<Props> = (props) => {
         <div className='col-span-3 m-auto'>
           <div
             className='text-left text-gray-600 text-xl font-bold break-all my-auto'
-            dangerouslySetInnerHTML={{ __html: reistrictCharacters(title, 80) }}
+            dangerouslySetInnerHTML={{ __html: truncate(title, 80) }}
           />
         </div>
         <div className='col-span-2 m-auto'>

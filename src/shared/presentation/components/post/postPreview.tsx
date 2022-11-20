@@ -1,4 +1,4 @@
-import { reistrictCharacters } from '@/extension';
+import { truncate } from '@/extension';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -28,11 +28,11 @@ export const PostPreview: React.FC<Props> = (props) => {
         </div>
         <h3
           className='mt-4 font-bold break-all text-gray-700 text-xl'
-          dangerouslySetInnerHTML={{ __html: reistrictCharacters(title, 30) }}
+          dangerouslySetInnerHTML={{ __html: truncate(title, 30) }}
         />
         <div
           className='break-all text-gray-500'
-          dangerouslySetInnerHTML={{ __html: reistrictCharacters(excerpt, 100) }}
+          dangerouslySetInnerHTML={{ __html: truncate(excerpt, 100) }}
         />
         <div className='mt-2'>
           <Date dateString={date} />

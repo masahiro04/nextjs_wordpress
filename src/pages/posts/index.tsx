@@ -2,6 +2,7 @@ import { PER_PAGE } from '@/constants';
 import { fetchAllPosts, Node } from '@/domain';
 import { filterByCategory, filterByWord } from '@/extension';
 import { Layout, Pagination, PostPreview } from '@/presentation';
+import { useSearchWord } from '@/providers';
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
@@ -17,13 +18,14 @@ type Props = {
 const Index: NextPage<Props> = (props: Props) => {
   const { nodes } = props;
   const router = useRouter();
-  const word = router.query.word ? router.query.word.toString() : '';
+  const { word } = useSearchWord();
   const category = router.query.categoryName?.toString();
   const filteredPosts =
     category === undefined ? filterByWord(nodes, word) : filterByWord(filterByCategory(nodes, category), word);
   const pageNumber = Number(router.query.page) || 1;
   const start = pageNumber === 1 ? 0 : pageNumber * PER_PAGE;
   const posts = filteredPosts.slice(start, start + PER_PAGE);
+
 
   return (
     <Layout>
