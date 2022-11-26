@@ -9,7 +9,7 @@ type Props = {
 export const Categories: React.FC<Props> = (props) => {
   const { categories } = props;
 
-  if (categories.length === 0) return;
+  if (categories.length === 0) return <></>;
 
   return (
     <div className='ml-1'>

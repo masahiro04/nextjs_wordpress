@@ -6,7 +6,7 @@ type Props = {
 };
 export const Date: React.FC<Props> = (props) => {
   const { dateString } = props;
-  if (dateString === undefined) return;
+  if (dateString === undefined) return <></>;
   return (
     <time dateTime={dateString} className='text-gray-500'>
       {format(parseISO(dateString), 'yyyy年MM月dd日')}

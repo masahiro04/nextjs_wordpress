@@ -6,12 +6,10 @@ export class Api {
     query: string,
     { variables }: { variables?: Record<string, unknown> } = {}
   ): Promise<AxiosResponse<T>> {
-    try {
-      const response = await axios.post<T>(process.env.WORDPRESS_API_URL, { query, variables });
-      return { ...response, data: camelcaseKeys(response.data, { deep: true }) } as AxiosResponse<T>;
-    } catch (e) {
-      console.log('haitta!', e);
-      throw e;
-    }
+    const response = await axios.post<T>(process.env.WORDPRESS_API_URL ?? '', { query, variables });
+    return {
+      ...response,
+      data: camelcaseKeys(response.data as Record<string, unknown>, { deep: true })
+    } as AxiosResponse<T>;
   }
 }

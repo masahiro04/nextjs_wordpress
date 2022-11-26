@@ -7,7 +7,7 @@ interface SearchWordContextProps {
 
 export const SearchWordContext = createContext<SearchWordContextProps>({
   word: '',
-  setWord: undefined
+  setWord: () => ({})
 });
 
 export const SearchWordContextProvider: React.FC<{ children?: React.ReactNode }> = ({ children }) => {

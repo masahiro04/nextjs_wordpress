@@ -14,7 +14,7 @@ import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const response = await fetchPost(params.slug.toString());
+  const response = await fetchPost((params?.slug ?? '').toString());
   const post = response.data.post;
   const categoryNames = post.categories?.edges?.map((category) => category.node.name).join(', ');
 
