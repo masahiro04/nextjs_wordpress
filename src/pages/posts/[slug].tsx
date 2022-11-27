@@ -14,10 +14,8 @@ import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // const response = await fetchPost((params?.slug ?? '').toString());
   const post: Post = await fetchPostUseCase((params?.slug ?? '').toString());
   const categoryNames: string = post.categories.map((category) => category.name).join(', ');
-  // NOTE(okubo): コンマで区切れば複数のカテゴリーを検索できる
   const relatedPosts: Post[] = await fetchRelatedPostsUseCase(categoryNames);
 
   return {
@@ -29,7 +27,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const { nodes } = await fetchAllPosts([], '');
   const posts = await fetchPostsUseCase();
   return {
     paths: posts.map((post) => `/posts/${post.slug}`),
@@ -55,11 +52,11 @@ const PostPage: NextPage<Props> = (props: Props) => {
   }
 
   return (
-    <Layout title={post.title} description={post.excerpt} imageSrc={post.featuredImageUrl}>
+    <Layout title={post.title} description={post.excerpt} imageSrc={post.featuredImageUrl.url}>
       <div className='px-8 mx-auto sm:px-10 sm:max-w-screen-md md:max-w-3xl lg:max-w-3xl'>
         <div className='px-5 my-10'>
           <PostHeader title={post.title} date={post.date} authorName={post.author.name} />
-          <PostHeaderImg title={post.title} coverImage={post.featuredImageUrl} />
+          <PostHeaderImg title={post.title} coverImage={post.featuredImageUrl.url} />
           <Categories categories={post.categories} />
           <PostBody content={post.content} />
           <AboutMeSection />

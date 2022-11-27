@@ -11,6 +11,7 @@ export const relatedPosts = (categoryName: string): string => `
           date
           featuredImage {
             node {
+              altText
               sourceUrl
             }
           }
@@ -53,6 +54,7 @@ export const post = (): string => `
     date
     featuredImage {
       node {
+        altText
         sourceUrl
       }
     }
@@ -110,6 +112,7 @@ export const allPosts = (first: string, after: string, categoryName: string): st
           date
           featuredImage {
             node {
+              altText
               sourceUrl
             }
           }

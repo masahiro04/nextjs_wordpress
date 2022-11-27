@@ -1,35 +1,6 @@
-// export class FeaturedImage {
-//   public constructor(private readonly _url: string) {}
-//   get url(): string {
-//     return this._url;
-//   }
-// }
-export interface FeaturedImage {
-  url: string;
-}
-
-// export class Author {
-//   public constructor(private readonly _name: string) {}
-//
-//   get name(): string {
-//     return this._name;
-//   }
-// }
-export interface Author {
-  name: string;
-}
-
-// export class Category {
-//   public constructor(private readonly _name: string) {}
-//
-//   get name(): string {
-//     return this._name;
-//   }
-// }
-
-export interface Category {
-  name: string;
-}
+import { Author } from './author';
+import { Category } from './category';
+import { FeaturedImage } from './featuredImage';
 
 export interface Post {
   slug: string;
@@ -37,7 +8,7 @@ export interface Post {
   excerpt: string;
   content: string;
   date: string;
-  featuredImageUrl: string;
+  featuredImageUrl: FeaturedImage;
   author: Author;
   categories: Category[];
 }

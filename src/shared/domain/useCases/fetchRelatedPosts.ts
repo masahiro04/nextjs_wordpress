@@ -1,11 +1,6 @@
 import { Author, Category, IPostRepository, Post } from '@/domain';
 import { PostRepository } from '@/infrastructure/post';
 
-// export const fetchRelatedPosts = async (): Promise<PostsResponse> => {
-//   const response = await getRelatedPosts(categoryName);
-//   return response;
-// };
-
 export class FetchRelatedPostsUseCase {
   private readonly postRepository: IPostRepository;
 
@@ -27,7 +22,10 @@ export class FetchRelatedPostsUseCase {
         excerpt: post.excerpt,
         content: post.content,
         date: post.date,
-        featuredImageUrl: post.featuredImage.node.sourceUrl ?? '/static/images/not_found.png',
+        featuredImageUrl: {
+          url: post.featuredImage.node.sourceUrl ?? '/static/images/not_found.png',
+          alt: post.featuredImage.node.altText
+        },
         author,
         categories
       };

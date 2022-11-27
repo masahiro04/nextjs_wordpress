@@ -6,6 +6,7 @@ export interface PostDto {
   date: string;
   featuredImage: {
     node: {
+      altText: string;
       sourceUrl: string;
     };
   };
@@ -42,6 +43,7 @@ export interface PageDto {
   date: string;
   featuredImage: {
     node: {
+      altText: string;
       sourceUrl: string;
     };
   };

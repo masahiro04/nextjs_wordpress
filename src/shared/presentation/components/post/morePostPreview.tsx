@@ -23,8 +23,8 @@ export const ModePostPreview: React.FC<Props> = (props) => {
         <div className='col-span-2 m-auto'>
           <Image
             className='rounded object-contain'
-            src={post.featuredImageUrl}
-            alt={post.slug}
+            src={post.featuredImageUrl.url}
+            alt={post.featuredImageUrl.alt}
             loading='lazy'
             width={100}
             height={120}

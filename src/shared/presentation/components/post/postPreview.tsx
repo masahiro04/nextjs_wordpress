@@ -10,15 +10,15 @@ type Props = {
 };
 
 export const PostPreview: React.FC<Props> = (props) => {
-  // const { title, coverImage = '/static/images/not_found.png', excerpt, slug, date } = props;
   const { post } = props;
+
   return (
     <Link as={`/posts/${post.slug}`} href={`/posts/${post.slug}`} className='z-0'>
       <div className='m-4'>
         <div className='md:h-44 h-20 md:w-64 w-32 relative'>
           <Image
-            src={post.featuredImageUrl ?? '/static/images/not_found.png'}
-            alt={post.slug}
+            src={post.featuredImageUrl.url}
+            alt={post.featuredImageUrl.alt}
             layout='fill'
             objectFit='contain'
             className='rounded'
