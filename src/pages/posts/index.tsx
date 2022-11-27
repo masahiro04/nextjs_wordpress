@@ -1,5 +1,5 @@
 import { PER_PAGE } from '@/constants';
-import { Author, Category, fetchPostsUseCase, Post } from '@/domain';
+import { fetchPostsUseCase, Post } from '@/domain';
 import { filterByCategory, filterByWord } from '@/extension';
 import { Layout, Pagination, PostPreview } from '@/presentation';
 import { useSearchWord } from '@/providers';
@@ -8,42 +8,21 @@ import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await fetchPostsUseCase();
-  return { props: { postsStr: JSON.stringify(posts.map((post) => post.toJson())) } };
+  return { props: { posts } };
 };
 
 type Props = {
-  postsStr: string;
+  posts: Post[];
 };
 
-const Index: NextPage<Props> = ({ postsStr }: Props) => {
-  // TODO(okubo): 仕方ない実装
-  const posts = (): Post[] => {
-    const postObjects = JSON.parse(postsStr);
-    return postObjects.map((post: Record<string, any>) => {
-      const author = new Author(post['author']['name'] ?? '');
-      const categories: Category[] = post['categories'].map((category: any) => new Category(category.name));
-      return new Post(
-        post['slug'],
-        post['title'],
-        post['excerpt'],
-        post['content'],
-        post['date'],
-        post['featuredImageUrl'],
-        author,
-        categories
-      );
-    });
-  };
-  // const { posts } = props;
-  // const posts = posts;
-  console.log({ posts: posts() });
+const Index: NextPage<Props> = ({ posts }: Props) => {
   const router = useRouter();
   const { word } = useSearchWord();
   const category = router.query.categoryName?.toString();
   const pageNumber = Number(router.query.page) || 1;
   const start = pageNumber === 1 ? 0 : pageNumber * PER_PAGE;
   const filteredPosts = (
-    category === undefined ? filterByWord(posts(), word) : filterByWord(filterByCategory(posts(), category), word)
+    category === undefined ? filterByWord(posts, word) : filterByWord(filterByCategory(posts, category), word)
   ).slice(start, start + PER_PAGE);
 
   if (router.isFallback) {

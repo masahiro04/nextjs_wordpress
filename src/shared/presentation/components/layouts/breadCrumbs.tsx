@@ -42,7 +42,7 @@ export const Breadcrumbs: React.FC<Props> = (props) => {
   }, [router]);
 
   return (
-    <>
+    <div>
       <div className='bg-gray-100 py-4'>
         <div className='px-6 mx-auto sm:px-10 sm:max-w-screen-md lg:max-w-screen-lg'>
           <div className='flex max-w-7xl mx-auto px-4 sm:px-6 mb-0 text-indigo-700 font-medium'>
@@ -50,16 +50,16 @@ export const Breadcrumbs: React.FC<Props> = (props) => {
               <Link href='/'>home</Link>
             </div>
             {breadcrumbs.map((breadcrumb) => (
-              <>
+              <div key={breadcrumb.title}>
                 <div className='space-x-4'>&nbsp;&nbsp; / &nbsp;&nbsp;</div>
                 <div key={breadcrumb.title} className='space-x-4'>
                   <Link href={breadcrumb.href}>{breadcrumb.title}</Link>
                 </div>
-              </>
+              </div>
             ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

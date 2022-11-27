@@ -6,11 +6,22 @@ export const relatedPosts = (categoryName: string): string => `
         node {
           title
           excerpt
+          content
           slug
           date
           featuredImage {
             node {
               sourceUrl
+            }
+          }
+          author {
+            node {
+              name
+              firstName
+              lastName
+              avatar {
+                url
+              }
             }
           }
           categories {

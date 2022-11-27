@@ -1,4 +1,4 @@
-import { fetchAllPosts, fetchPost, fetchRelatedPosts, Node, Post, PostsResponse } from '@/domain';
+import { fetchPostsUseCase, fetchPostUseCase, fetchRelatedPostsUseCase, Post } from '@/domain';
 import {
   AboutMeSection,
   Categories,
@@ -14,62 +14,61 @@ import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const response = await fetchPost((params?.slug ?? '').toString());
-  const post = response.data.post;
-  const categoryNames = post.categories?.edges?.map((category) => category.node.name).join(', ');
-
+  // const response = await fetchPost((params?.slug ?? '').toString());
+  const post: Post = await fetchPostUseCase((params?.slug ?? '').toString());
+  const categoryNames: string = post.categories.map((category) => category.name).join(', ');
   // NOTE(okubo): コンマで区切れば複数のカテゴリーを検索できる
-  const relatedPosts: PostsResponse = await fetchRelatedPosts(categoryNames);
+  const relatedPosts: Post[] = await fetchRelatedPostsUseCase(categoryNames);
 
   return {
     props: {
       post,
-      relatedPosts: relatedPosts.data.posts.edges
+      relatedPosts
     }
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { nodes } = await fetchAllPosts([], '');
+  // const { nodes } = await fetchAllPosts([], '');
+  const posts = await fetchPostsUseCase();
   return {
-    paths: nodes.map(({ node }) => `/posts/${node.slug}`) || [],
+    paths: posts.map((post) => `/posts/${post.slug}`),
     fallback: false
   };
 };
 
 type Props = {
   post: Post;
-  relatedPosts: Array<Node>;
+  relatedPosts: Post[];
 };
+
 const PostPage: NextPage<Props> = (props: Props) => {
   const { post, relatedPosts } = props;
   const router = useRouter();
-  const morePosts = relatedPosts;
 
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
 
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <Layout title={post?.title} description={post?.excerpt} imageSrc={post?.featuredImage?.node?.sourceUrl}>
+    <Layout title={post.title} description={post.excerpt} imageSrc={post.featuredImageUrl}>
       <div className='px-8 mx-auto sm:px-10 sm:max-w-screen-md md:max-w-3xl lg:max-w-3xl'>
         <div className='px-5 my-10'>
-          <PostHeader title={post?.title} date={post?.date} authorName={post?.author?.node.name} />
-          <PostHeaderImg title={post?.title} coverImage={post?.featuredImage?.node?.sourceUrl} />
-          <Categories categories={post?.categories.edges} />
-          <PostBody content={post?.content} />
+          <PostHeader title={post.title} date={post.date} authorName={post.author.name} />
+          <PostHeaderImg title={post.title} coverImage={post.featuredImageUrl} />
+          <Categories categories={post.categories} />
+          <PostBody content={post.content} />
           <AboutMeSection />
           <SectionSeparator />
           <h2 className='text-center'>関連記事</h2>
           <div className='my-3'>
             <div className='mx-auto'>
-              {morePosts?.map(({ node }) => (
-                <ModePostPreview
-                  key={node.slug}
-                  title={node.title}
-                  coverImage={node.featuredImage?.node?.sourceUrl}
-                  slug={node.slug}
-                />
+              {relatedPosts.map((post) => (
+                <ModePostPreview key={post.slug} post={post} />
               ))}
             </div>
           </div>

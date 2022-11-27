@@ -1,171 +1,96 @@
-export class FeaturedImage {
-  public constructor(
-    private readonly _url: string
-  ){}
-  get url(): string {
-    return this._url;
-  }
+// export class FeaturedImage {
+//   public constructor(private readonly _url: string) {}
+//   get url(): string {
+//     return this._url;
+//   }
+// }
+export interface FeaturedImage {
+  url: string;
 }
 
-export class Author {
-  public constructor(
-    private readonly _name: string,
-  ){}
-
-  get name(): string {
-    return this._name;
-  }
+// export class Author {
+//   public constructor(private readonly _name: string) {}
+//
+//   get name(): string {
+//     return this._name;
+//   }
+// }
+export interface Author {
+  name: string;
 }
 
-export class Category {
-  public constructor(
-    private readonly _name: string,
-  ){}
+// export class Category {
+//   public constructor(private readonly _name: string) {}
+//
+//   get name(): string {
+//     return this._name;
+//   }
+// }
 
-  get name(): string {
-    return this._name;
-  }
+export interface Category {
+  name: string;
 }
 
-export class Post {
-  constructor(
-    private readonly _slug: string,
-    private readonly _title: string,
-    private readonly _excerpt: string,
-    private readonly _content: string,
-    private readonly _date: string,
-    private readonly _featuredImageUrl: string,
-    private readonly _author: Author,
-    private readonly _categories: Category[],
-  ) {}
-
-  get title(): string {
-    return this._title;
-  }
-  get slug(): string {
-    return this._slug;
-  }
-  get excerpt(): string {
-    return this._excerpt;
-  }
-  get content(): string {
-    return this._content;
-  }
-  get date(): string {
-    return this._date;
-  }
-  get featuredImageUrl(): string {
-    return this._featuredImageUrl;
-  }
-  get author(): Author {
-    return this._author;
-  }
-  get categories(): Category[] {
-    return this._categories;
-  }
-
-  public toJson(): Record<string, unknown> {
-    return (
-      {
-        title: this._title,
-        slug: this._slug,
-        excerpt: this._excerpt,
-        content: this._content,
-        date: this._date,
-        featuredImageUrl: this._featuredImageUrl,
-        author: this._author,
-        categories: this._categories,
-      }
-    )
-  }
+export interface Post {
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  date: string;
+  featuredImageUrl: string;
+  author: Author;
+  categories: Category[];
 }
 
-// export interface Post {
-//   title: string;
-//   excerpt: string;
-//   content: string;
-//   slug: string;
-//   date: string;
-//   featuredImage: {
-//     node: {
-//       sourceUrl: string;
-//     };
-//   };
-//   author: {
-//     node: {
-//       name: string;
-//       firstName: string;
-//       lastName: string;
-//       avatar: {
-//         url: string;
-//       };
-//     };
-//   };
-//   categories: {
-//     edges: Array<{
-//       node: {
-//         name: string;
-//       };
-//     }>;
-//   };
-// }
-
-// export interface Category {
-//   node: {
-//     name: string;
-//   };
-// }
+// TODO(okubo): DDD的に実装するのであれば下記だが、getStaticPropsでstringfyしたデータでの
+// 静的生成となるため、interfaceで型のみ定義
+// export class Post {
+//   constructor(
+//     private readonly _slug: string,
+//     private readonly _title: string,
+//     private readonly _excerpt: string,
+//     private readonly _content: string,
+//     private readonly _date: string,
+//     private readonly _featuredImageUrl: string,
+//     private readonly _author: Author,
+//     private readonly _categories: Category[]
+//   ) {}
 //
-// export interface Page {
-//   title: string;
-//   excerpt: string;
-//   content: string;
-//   slug: string;
-//   date: string;
-//   featuredImage: {
-//     node: {
-//       sourceUrl: string;
+//   get title(): string {
+//     return this._title;
+//   }
+//   get slug(): string {
+//     return this._slug;
+//   }
+//   get excerpt(): string {
+//     return this._excerpt;
+//   }
+//   get content(): string {
+//     return this._content;
+//   }
+//   get date(): string {
+//     return this._date;
+//   }
+//   get featuredImageUrl(): string {
+//     return this._featuredImageUrl;
+//   }
+//   get author(): Author {
+//     return this._author;
+//   }
+//   get categories(): Category[] {
+//     return this._categories;
+//   }
+//
+//   public toJson(): Record<string, unknown> {
+//     return {
+//       title: this._title,
+//       slug: this._slug,
+//       excerpt: this._excerpt,
+//       content: this._content,
+//       date: this._date,
+//       featuredImageUrl: this._featuredImageUrl,
+//       author: this._author,
+//       categories: this._categories
 //     };
-//   };
-//   author: {
-//     node: {
-//       name: string;
-//       firstName: string;
-//       lastName: string;
-//       avatar: {
-//         url: string;
-//       };
-//     };
-//   };
-//   categories: {
-//     edges: Array<Category>;
-//   };
-// }
-//
-// export interface Node {
-//   node: Post;
-// }
-//
-// export interface PostsResponse {
-//   data: {
-//     posts: {
-//       pageInfo: {
-//         hasNextPage: boolean;
-//         hasPreviousPage: boolean;
-//         startCursor: string;
-//         endCursor: string;
-//       };
-//       edges: Array<Node>;
-//     };
-//   };
-// }
-//
-// export interface PostResponse {
-//   data: {
-//     post: Post;
-//   };
-// }
-//
-// export interface PageResponse {
-//   pageBy: Page;
+//   }
 // }

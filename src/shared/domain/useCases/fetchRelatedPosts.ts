@@ -18,18 +18,19 @@ export class FetchRelatedPostsUseCase {
     const { posts } = response.data;
     return posts.edges.map(({ node }) => {
       const post = node;
-      const author = new Author(post.author.node.name);
-      const categories: Category[] = post.categories.edges.map((category) => new Category(category.node.name));
-      return new Post(
-        post.slug,
-        post.title,
-        post.excerpt,
-        post.content,
-        post.date,
-        post.featuredImage.node.sourceUrl,
+      console.log({ post });
+      const author: Author = { name: post.author.node.name };
+      const categories: Category[] = post.categories.edges.map((category) => ({ name: category.node.name }));
+      return {
+        slug: post.slug,
+        title: post.title,
+        excerpt: post.excerpt,
+        content: post.content,
+        date: post.date,
+        featuredImageUrl: post.featuredImage.node.sourceUrl ?? '/static/images/not_found.png',
         author,
         categories
-      );
+      };
     });
   }
 }
