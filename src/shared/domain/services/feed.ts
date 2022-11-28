@@ -1,7 +1,7 @@
 import { Node } from '@/infrastructure/types';
 import { Feed } from 'feed';
 import fs from 'fs';
-//
+
 export const generateRSSFeed = (nodes: Node[]): void => {
   // TODO(okubo): baseUrl入れてそこからroute取得
   const feed = new Feed({
@@ -20,7 +20,7 @@ export const generateRSSFeed = (nodes: Node[]): void => {
     }
   });
 
-  // // Add each article to the feed
+  // Add each article to the feed
   nodes.forEach(({ node }) => {
     const {
       slug,
