@@ -21,7 +21,7 @@ const Index: NextPage<Props> = ({ posts }: Props) => {
   const category = router.query.categoryName?.toString();
   const pageNumber = Number(router.query.page) || 1;
   const start = pageNumber === 1 ? 0 : pageNumber * PER_PAGE;
-  const filteredPosts = (
+  const postsToShow = (
     category === undefined ? filterByWord(posts, word) : filterByWord(filterByCategory(posts, category), word)
   ).slice(start, start + PER_PAGE);
 
@@ -38,12 +38,12 @@ const Index: NextPage<Props> = ({ posts }: Props) => {
         </div>
       </div>
       <div className='px-6 pb-8 mx-auto grid grid-cols-2 gap-y-5 gap-x-4 sm:px-10 sm:pb-14 sm:max-w-screen-md lg:max-w-screen-lg lg:grid-cols-3 lg:gap-y-12 lg:gap-x-8 lg:pt-6'>
-        {filteredPosts.map((post) => (
+        {postsToShow.map((post) => (
           <PostPreview key={post.slug} post={post} />
         ))}
       </div>
       <div className='px-6 mx-auto sm:px-10 sm:max-w-screen-md lg:max-w-screen-lg'>
-        <Pagination count={filteredPosts.length} />
+        <Pagination count={posts.length} />
       </div>
     </Layout>
   );
