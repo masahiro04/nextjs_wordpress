@@ -23,7 +23,6 @@
     "isolatedModules": true,
     "incremental": true,
     "baseUrl": ".",
-    "useUnknownInCatchVariables": false,
     "paths": {
       // "@/*": ["./src/*"],
       "@/*": ["./src/shared/*"],

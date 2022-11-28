@@ -40,7 +40,7 @@ export class FetchPostsUseCase {
         date: post.date,
         featuredImageUrl: {
           url: post.featuredImage.node.sourceUrl ?? '/static/images/not_found.png',
-          alt: post.featuredImage.node.altText
+          alt: post.featuredImage.node.altText ?? ''
         },
         author,
         categories
