@@ -50,11 +50,8 @@ export const Breadcrumbs: React.FC<Props> = (props) => {
               <Link href='/'>home</Link>
             </div>
             {breadcrumbs.map((breadcrumb) => (
-              <div key={breadcrumb.title}>
-                <div className='space-x-4'>&nbsp;&nbsp; / &nbsp;&nbsp;</div>
-                <div key={breadcrumb.title} className='space-x-4'>
-                  <Link href={breadcrumb.href}>{breadcrumb.title}</Link>
-                </div>
+              <div key={breadcrumb.title} className='space-x-4'>
+                <Link href={breadcrumb.href}>&nbsp;/&nbsp;{breadcrumb.title}</Link>
               </div>
             ))}
           </div>
