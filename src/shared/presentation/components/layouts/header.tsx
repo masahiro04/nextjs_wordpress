@@ -66,14 +66,12 @@ export const Header: React.FC = () => {
                 <div className='mt-6'>
                   <nav className='grid gap-y-8'>
                     {PAGES.map((page) => (
-                      <Link href={`/${page.url}`} key={page.url.toString()}>
-                        <a
-                          key={page.url.toString()}
-                          href='#'
-                          className='-m-3 p-3 flex items-center rounded-md hover:bg-gray-50'
-                        >
-                          <span className='ml-3 text-base font-medium text-gray-900'>{page.title}</span>
-                        </a>
+                      <Link
+                        key={page.url.toString()}
+                        href={`/${page.url}`}
+                        className='-m-3 p-3 flex items-center rounded-md hover:bg-gray-50'
+                      >
+                        <span className='ml-3 text-base font-medium text-gray-900'>{page.title}</span>
                       </Link>
                     ))}
                   </nav>
