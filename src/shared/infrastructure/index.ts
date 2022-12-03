@@ -1,2 +1,2 @@
 export * from './api';
-export * from './postSchema';
+export * from './types';

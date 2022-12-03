@@ -1,15 +1,11 @@
-import { Node } from '@/domain';
+import { Post } from '@/domain';
 
 // TODO(okubo): ロジックなので責務分けたい
-export const filterByCategory = (posts: Array<Node>, categoryName: string): Array<Node> =>
-  posts.filter(
-    (post) => (post.node.categories?.edges?.filter((category) => category.node.name === categoryName)).length !== 0
-  );
+export const filterByCategory = (posts: Post[], categoryName: string): Post[] =>
+  posts.filter((post) => post.categories.filter((category) => category.name === categoryName).length !== 0);
 
 // TODO(okubo): ロジックなので責務分けたい
-export const filterByWord = (posts: Array<Node>, word: string): Array<Node> => {
+export const filterByWord = (posts: Post[], word: string): Post[] => {
   const reg = new RegExp(word);
-  return posts.filter(
-    (post) => reg.test(post.node['title']) || reg.test(post.node['excerpt']) || reg.test(post.node['content'])
-  );
+  return posts.filter((post) => reg.test(post.title) || reg.test(post.excerpt) || reg.test(post.content));
 };
