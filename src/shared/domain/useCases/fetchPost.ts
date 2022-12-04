@@ -1,5 +1,5 @@
 import { Author, Category, IPostRepository, Post } from '@/domain';
-import { PostRepository } from '@/infrastructure/post';
+import { PostRepository } from '@/infrastructure';
 
 export class FetchPostUseCase {
   private readonly postRepository: IPostRepository;
@@ -23,7 +23,7 @@ export class FetchPostUseCase {
       date: post.date,
       featuredImageUrl: {
         url: post.featuredImage.node.sourceUrl ?? '/static/images/not_found.png',
-        alt: post.featuredImage.node.altText
+        alt: post.featuredImage.node.altText ?? ''
       },
       author,
       categories

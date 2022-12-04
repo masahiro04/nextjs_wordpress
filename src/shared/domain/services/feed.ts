@@ -1,8 +1,8 @@
-import { Node } from '@/infrastructure/types';
+import { Node, TPost } from '@/infrastructure/types';
 import { Feed } from 'feed';
 import fs from 'fs';
 
-export const generateRSSFeed = (nodes: Node[]): void => {
+export const generateRSSFeed = (nodes: Node<TPost>[]): void => {
   // TODO(okubo): baseUrl入れてそこからroute取得
   const feed = new Feed({
     title: "Masahiro's tech note",
