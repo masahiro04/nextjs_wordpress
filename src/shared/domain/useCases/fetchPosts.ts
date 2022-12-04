@@ -1,7 +1,6 @@
 import { Author, Category, IPostRepository, Post } from '@/domain';
 import { isDevelopment } from '@/extension';
-import { PostRepository } from '@/infrastructure/post';
-import { Node, PostsResponse } from '@/infrastructure/types';
+import { Node, PostRepository, PostsResponse, TPost } from '@/infrastructure';
 
 export class FetchPostsUseCase {
   private readonly postRepository: IPostRepository;
@@ -11,9 +10,9 @@ export class FetchPostsUseCase {
   }
 
   private async makePosts(
-    posts: Node[],
+    posts: Node<TPost>[],
     _offset: string
-  ): Promise<{ nodes: Array<Node>; hasNextPage: boolean; offset: string }> {
+  ): Promise<{ nodes: Array<Node<TPost>>; hasNextPage: boolean; offset: string }> {
     const res: PostsResponse = await this.postRepository.getAllPosts(100, _offset);
     if (!res.data.posts.pageInfo.hasNextPage || isDevelopment()) {
       return {
