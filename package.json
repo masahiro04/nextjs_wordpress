@@ -27,7 +27,7 @@
     "@types/node": "^18.11.9",
     "@types/prettier": "^2.7.1",
     "@types/prismjs": "^1.26.0",
-    "@types/react": "^18.0.25",
+    "@types/react": "^18.0.26",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "autoprefixer": "10.4.13",
