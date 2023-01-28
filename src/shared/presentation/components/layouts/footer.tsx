@@ -14,7 +14,7 @@ export const Footer: React.FC = () => (
             fillRule='evenodd'
           ></path>
         </svg>
-        <a className='absolute inset-0' href='https://twitter.com/masa_okubo' target='_blank' rel='noreferrer'></a>
+        <a className='absolute inset-0' href='https://github.com/masahiro04' target='_blank' rel='noreferrer'></a>
       </div>
       <div className='relative'>
         <svg className='w-6 h-6' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 250 200'>
@@ -27,7 +27,7 @@ export const Footer: React.FC = () => (
             ></path>
           </g>
         </svg>
-        <a className='absolute inset-0' href='https://github.com/masahiro04' target='_blank' rel='noreferrer'></a>
+        <a className='absolute inset-0' href='https://twitter.com/masa_okubo' target='_blank' rel='noreferrer'></a>
       </div>
       <div className='relative'>
         <svg className='w-6 h-6' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'>

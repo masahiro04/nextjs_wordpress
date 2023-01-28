@@ -1,6 +1,25 @@
 import { Layout } from '@/presentation';
 import { NextPage } from 'next';
 
+type Props = {
+  name: string;
+  description: string;
+  url: string;
+};
+const Item: React.FC<Props> = (props: Props) => {
+  const { name, description, url } = props;
+  return (
+    <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
+      <a href={url} target='_blank' rel='noreferrer'>
+        <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
+          <div className='font-semibold text-gray-600 text-sm sm:text-base'>{name}</div>
+          <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>{description}</div>
+        </div>
+      </a>
+    </div>
+  );
+};
+
 const Projects: NextPage = () => {
   return (
     <Layout>
@@ -784,105 +803,37 @@ const Projects: NextPage = () => {
           </div>
         </a>
       </div>
+
       <div className='space-y-16'>
         <div>
-          <div className='mb-3 font-semibold text-gray-700 text-lg sm:text-xl'>OSS</div>
+          <div className='mb-3 font-semibold text-gray-700 text-lg sm:text-xl'>Currently working on</div>
           <div className='gap-8 gap-x-10 justify-center sm:columns-2'>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Gimejob</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  実務経��型プログラミングスクール。未経験エンジニア専用の教育サービス「ギミジョブ」自社開発案件・リリース準備中の企業案件
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Cloud Stadium</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  クラウドスタジアムはサッカークラブ向け個人スポンサー・パートナーシップのオンライン決済プラットフォーム、スポンサー・パートナー募集、オンライン決済、ブログ投稿やweb会員証の発行なども可能
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Yakuji</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  薬事チェックを外注する発注システム
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Benten</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  Bentenは化粧品ビジネスのあらゆる悩みを投稿するだけで解決するBtoBのマッチングサービス
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Uramen</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  化粧品、健康食品原料データベースで、個別閲覧や直接取引ができるマッチングサイト化粧品、健康食品原料データベースで、個別閲覧や直接取引ができるマッチングサイト
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
+            <Item
+              name='Seibii'
+              description='A service where a mechanic will come to your home to perform maintenance simply by submitting a maintenance request via the web.'
+              url='https://seibii.co.jp/'
+            />
+
+            <Item
+              name='Doctormate'
+              description='A service that allows nursing homes to easily provide medical consultation for residents to physicians and nurses.'
+              url='https://doctormate.co.jp/'
+            />
           </div>
         </div>
         <div>
-          <div className='mb-3 font-semibold text-gray-700 text-lg sm:text-xl'>Currently Working On</div>
+          <div className='mb-3 font-semibold text-gray-700 text-lg sm:text-xl'>Advisors</div>
           <div className='gap-8 gap-x-10 justify-center sm:columns-2'>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Gimejob</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  実務経験型プログラミングスクール。未経験エンジニア専用の教育サービス「ギミジョブ」自社開発案件・リリース準備中の企業案件
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Cloud Stadium</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  クラウドスタジアムはサッカークラブ向け個人スポンサー・パートナーシップのオンライン決済プラットフォーム、スポンサー・パートナー募集、オンライン決済、ブログ投稿やweb会員証の発行なども可能
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Yakuji</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  薬事チェックを外注する発注システム
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Benten</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  Bentenは化粧品ビジネスのあらゆる悩みを投稿するだけで解決するBtoBのマッチングサービス
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
-            <div className='relative w-full group cursor-pointer mb-2 sm:mb-8'>
-              <div className='break-inside-avoid-column py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 shadow-sm duration-500 group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
-                <div className='font-semibold text-gray-600 text-sm sm:text-base'>Uramen</div>
-                <div className='text-gray-500 font-thin text-sm duration-500 group-hover:text-gray-600'>
-                  化粧品、健康食品原料データベースで、個別閲覧や直接取引ができるマッチングサイト化粧品、健康食品原料データベースで、個別閲覧や直接取引ができるマッチングサイト
-                </div>
-              </div>
-              <a className='absolute inset-0' href='#'></a>
-            </div>
+            <Item
+              name='Benten'
+              description='A service that allows users to easily request cosmetics orders on a platform.'
+              url='https://bentenmarket.com/'
+            />
+            <Item
+              name='Everyplus'
+              description='A service that matches nursing homes with recreation providers.'
+              url='https://recreation.everyplus.jp/'
+            />
           </div>
         </div>
       </div>
