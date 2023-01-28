@@ -13,7 +13,7 @@ const About: NextPage = () => {
           <div className='mt-3 space-y-2'>
             <h3 className='text-xl font-semibold text-center text-gray-800'>Masahiro Okubo</h3>
             <p className='mx-auto text-center text-gray-800'>
-              I'm a software engineer living in Japan, Nagoya. Currently building a car mechanic version of Uber.
+              I&apos;m a software engineer living in Japan, Nagoya. Currently building a car mechanic version of Uber.
               Previously, I worked on a XR startup and built multiple applications.
             </p>
           </div>
@@ -56,6 +56,7 @@ const About: NextPage = () => {
                   className='absolute inset-0'
                   href='https://docs.google.com/forms/d/e/1FAIpQLSfXjYNmZf_Db_KqWrM3YPqkBORiVX_FY_mSv7jXhJ6FRz3iJA/viewform?embedded=true'
                   target='_blank'
+                  rel='noreferrer'
                 ></a>
               </div>
             </div>

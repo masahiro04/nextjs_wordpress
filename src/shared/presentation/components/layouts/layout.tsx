@@ -1,5 +1,6 @@
 import React from 'react';
 import { Footer } from './footer';
+import { CustomHead } from './head';
 import { Header } from './header';
 
 type Props = {
@@ -38,9 +39,6 @@ export const Layout: React.FC<Props> = (props) => {
     /*     imageSrc={imageSrc} */
   }
   {
-    /*   /> */
-  }
-  {
     /*   <Header /> */
   }
   {
@@ -57,6 +55,12 @@ export const Layout: React.FC<Props> = (props) => {
   }
   return (
     <div className='flex flex-col min-h-screen w-full p-5 mx-auto sm:max-w-4xl sm:py-12'>
+      <CustomHead
+        title={title.length >= 1 ? `${title}|Masahiro's tech note` : "Masahiro's tech note"}
+        description={description}
+        keywords={keywords}
+        imageSrc={imageSrc}
+      />
       <div className='flex-grow'>
         <main>
           <Header />
