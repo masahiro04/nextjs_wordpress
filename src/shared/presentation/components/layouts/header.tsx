@@ -118,10 +118,10 @@ export const Header: React.FC = () => {
         <Link href='/projects' className='tracking-wider text-gray-700 text-sm text-center'>
           Projects
         </Link>
-        <Link href='/projects' className='tracking-wider text-gray-700 text-sm text-center'>
+        <Link href='/posts' className='tracking-wider text-gray-700 text-sm text-center'>
           Posts
         </Link>
-        <Link href='/projects' className='tracking-wider text-gray-700 text-sm text-center'>
+        <Link href='/about' className='tracking-wider text-gray-700 text-sm text-center'>
           About
         </Link>
       </div>
