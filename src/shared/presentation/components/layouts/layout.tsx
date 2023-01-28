@@ -1,7 +1,5 @@
 import React from 'react';
-import { Breadcrumbs } from './breadCrumbs';
 import { Footer } from './footer';
-import { CustomHead } from './head';
 import { Header } from './header';
 
 type Props = {
@@ -20,16 +18,51 @@ export const Layout: React.FC<Props> = (props) => {
     keywords = '名古屋, エンジニア, Ruby, Python, ITコンサル, IT顧問, システム開発',
     imageSrc = '/static/images/kyuri.png'
   } = props;
+
+  {
+    /* <div> */
+  }
+  {
+    /*   <CustomHead */
+  }
+  {
+    /*     title={title.length >= 1 ? `${title}|Masahiro's tech note` : "Masahiro's tech note"} */
+  }
+  {
+    /*     description={description} */
+  }
+  {
+    /*     keywords={keywords} */
+  }
+  {
+    /*     imageSrc={imageSrc} */
+  }
+  {
+    /*   /> */
+  }
+  {
+    /*   <Header /> */
+  }
+  {
+    /*   <Breadcrumbs title={title} /> */
+  }
+  {
+    /*   {children} */
+  }
+  {
+    /*   <Footer /> */
+  }
+  {
+    /* </div> */
+  }
   return (
-    <div>
-      <CustomHead
-        title={title.length >= 1 ? `${title}|Masahiro's tech note` : "Masahiro's tech note"}
-        description={description}
-        keywords={keywords}
-        imageSrc={imageSrc}
-      />
-      <Header />
-      <Breadcrumbs title={title} />
+    <div className='flex flex-col min-h-screen w-full p-5 mx-auto sm:max-w-4xl sm:py-12'>
+      <div className='flex-grow'>
+        <main>
+          <Header />
+        </main>
+      </div>
+      <hr className='border-t border-white my-12' />
       {children}
       <Footer />
     </div>
