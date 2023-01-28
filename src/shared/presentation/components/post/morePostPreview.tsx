@@ -1,8 +1,7 @@
 import { Post } from '@/domain';
-import { truncate } from '@/extension';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { Date } from '../common';
 
 type Props = {
   post: Post;
@@ -12,25 +11,28 @@ export const ModePostPreview: React.FC<Props> = (props) => {
   const { post } = props;
 
   return (
-    <Link as={`/posts/${post.slug}`} href={`/posts/${post.slug}`}>
-      <div className='grid grid-cols-5 gap-4 lg:my-1 my-3'>
-        <div className='col-span-3 m-auto'>
-          <div
-            className='text-left text-gray-600 text-xl font-bold break-all my-auto'
-            dangerouslySetInnerHTML={{ __html: truncate(post.title, 80) }}
-          />
+    <div className='relative w-full group cursor-pointer'>
+      <Link as={`/posts/${post.slug}`} href={`/posts/${post.slug}`}>
+        <div className='py-3 bg-white rounded-md max-w-full bg-opacity-60 font-semibold text-gray-600 truncate shadow-sm duration-500 px-3 sm:px-6 text-sm sm:text-base group-hover:shadow-lg group-hover:scale-[1.01] group-hover:bg-opacity-90'>
+          {post.title}
+          Vimプラグイン自作の方法
+          <div className='flex text-gray-400 font-thin text-sm'>
+            <Date dateString={post.date} />
+            <div className='flex space-x-2 items-center overflow-x-auto ml-2 pl-1'>
+              {post.categories.map((category, key) => (
+                <div key={key} className='relative group flex'>
+                  <div className='w-3 h-3 rotate-45 left-0 bg-main-300 rounded-sm mt-0.5' />
+                  <div className='bg-main-300 rounded-r-sm text-xs tracking-wide text-gray-500 -translate-x-1.5 pl-1.5 pr-1.5'>
+                    {category.name}
+                  </div>
+                  <div className='absolute rounded-full bg-white bg-opacity-80 w-1 h-1 top-1.5 left-1' />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className='col-span-2 m-auto'>
-          <Image
-            className='rounded object-contain'
-            src={post.featuredImageUrl.url}
-            alt={post.featuredImageUrl.alt}
-            loading='lazy'
-            width={100}
-            height={120}
-          />
-        </div>
-      </div>
-    </Link>
+        <a className='absolute inset-0' href='#'></a>
+      </Link>
+    </div>
   );
 };

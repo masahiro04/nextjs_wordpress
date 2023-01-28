@@ -2,6 +2,7 @@ import { Post } from '@/domain';
 import Link from 'next/link';
 import React from 'react';
 import { Date } from '../common/date';
+import { Categories } from './categories';
 
 type Props = {
   post: Post;
@@ -17,17 +18,7 @@ export const PostPreview: React.FC<Props> = (props) => {
           {post.title}
           <div className='flex text-gray-400 font-thin text-sm'>
             <Date dateString={post.date} />
-            <div className='flex space-x-2 items-center overflow-x-auto ml-2 pl-1'>
-              {post.categories.map((category, key) => (
-                <div key={key} className='relative group flex'>
-                  <div className='w-3 h-3 rotate-45 left-0 bg-main-300 rounded-sm mt-0.5' />
-                  <div className='bg-main-300 rounded-r-sm text-xs tracking-wide text-gray-500 -translate-x-1.5 pl-1.5 pr-1.5'>
-                    {category.name}
-                  </div>
-                  <div className='absolute rounded-full bg-white bg-opacity-80 w-1 h-1 top-1.5 left-1' />
-                </div>
-              ))}
-            </div>
+            <Categories categories={post.categories} />
           </div>
         </div>
       </Link>

@@ -35,7 +35,7 @@ export const Pagination: React.FC<Props> = (props) => {
             </svg>
             <span className='ml-1 flex'>
               <span className='hidden sm:block'>Page {currentPage - 1}</span>
-              <span className='whitespace-nowrap sm:hidden'>P. 2</span>
+              <span className='whitespace-nowrap sm:hidden'>P. {currentPage - 1}</span>
             </span>
           </div>
         </Link>
