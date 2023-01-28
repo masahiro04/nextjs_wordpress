@@ -1,4 +1,5 @@
-import { Api, IPostRepository } from '..';
+import { IPostRepository } from '..';
+import { Api } from './api';
 import { postSchema, postsSchema, relatedPostsSchema } from './schema';
 import { PostResponse, PostsResponse } from './types';
 

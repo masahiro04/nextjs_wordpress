@@ -9,7 +9,7 @@ export const Date: React.FC<Props> = (props) => {
   if (dateString === undefined) return <></>;
   return (
     <time dateTime={dateString} className='text-gray-500'>
-      {format(parseISO(dateString), 'yyyy年MM月dd日')}
+      {format(parseISO(dateString), 'yyyy/MM/dd')}
     </time>
   );
 };

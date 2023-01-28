@@ -30,14 +30,7 @@ const Index: NextPage<Props> = ({ posts }: Props) => {
   }
   return (
     <Layout>
-      <div className='mt-3 mt-md-5'>
-        <div className='mx-auto text-center my-2'>
-          <h1 className='font-bold text-gray-700 break-all text-4xl border-indigo-800'>
-            {category === undefined ? 'All posts' : `タグ：${category}`}
-          </h1>
-        </div>
-      </div>
-      <div className='px-6 pb-8 mx-auto grid grid-cols-2 gap-y-5 gap-x-4 sm:px-10 sm:pb-14 sm:max-w-screen-md lg:max-w-screen-lg lg:grid-cols-3 lg:gap-y-12 lg:gap-x-8 lg:pt-6'>
+      <div className='space-y-2 sm:space-y-3'>
         {postsToShow.map((post) => (
           <PostPreview key={post.slug} post={post} />
         ))}

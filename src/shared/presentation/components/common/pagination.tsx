@@ -22,35 +22,41 @@ export const Pagination: React.FC<Props> = (props) => {
   };
 
   return (
-    <nav
-      className='bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6'
-      aria-label='Pagination'
-    >
-      <div className='hidden sm:block'>
-        <div className='text-sm text-gray-700'>
-          <span className='font-medium'>Pages: </span>
-          <span className='font-medium'>{currentPage}</span> {' / '}
-          <span className='font-medium'>{pages}</span>
-        </div>
-      </div>
-      <div className='flex-1 flex justify-between sm:justify-end'>
-        {currentPage !== 1 && (
-          <Link
-            href={`?page=${currentPage - 1}${categoryRoutename()}`}
-            className='relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50'
-          >
-            Previous
-          </Link>
-        )}
-        {pages !== currentPage && (
-          <Link
-            href={`?page=${currentPage + 1}${categoryRoutename()}`}
-            className='ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50'
-          >
-            Next
-          </Link>
-        )}
-      </div>
-    </nav>
+    <div className='flex items-center justify-center space-x-4 mt-8'>
+      {currentPage !== 1 && (
+        <Link href={`?page=${currentPage - 1}${categoryRoutename()}`}>
+          <div className='relative cursor-pointer duration-500 py-2 bg-white rounded-md shadow-sm px-2 bg-opacity-60 flex items-center w-24 justify-center text-gray-600 text-sm sm:text-base sm:px-4 sm:w-32 hover:shadow-md'>
+            <svg className='w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
+              <path
+                fill-rule='evenodd'
+                d='M7.28 7.72a.75.75 0 010 1.06l-2.47 2.47H21a.75.75 0 010 1.5H4.81l2.47 2.47a.75.75 0 11-1.06 1.06l-3.75-3.75a.75.75 0 010-1.06l3.75-3.75a.75.75 0 011.06 0z'
+                clip-rule='evenodd'
+              ></path>
+            </svg>
+            <span className='ml-1 flex'>
+              <a className='hidden sm:block'>Page {currentPage - 1}</a>
+              <a className='whitespace-nowrap sm:hidden'>P. 2</a>
+            </span>
+            <a className='absolute inset-0' href='#'></a>
+          </div>
+        </Link>
+      )}
+
+      {pages !== currentPage && (
+        <Link href={`?page=${currentPage + 1}${categoryRoutename()}`}>
+          <div className='relative cursor-pointer duration-500 py-2 bg-white rounded-md shadow-sm px-2 bg-opacity-60 flex items-center w-24 justify-center text-gray-600 text-sm sm:text-base sm:px-4 sm:w-32 hover:shadow-md'>
+            <span className='mr-1'>Next</span>
+            <svg className='w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
+              <path
+                fill-rule='evenodd'
+                d='M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z'
+                clip-rule='evenodd'
+              ></path>
+            </svg>
+            <a className='absolute inset-0' href='#'></a>
+          </div>
+        </Link>
+      )}
+    </div>
   );
 };
