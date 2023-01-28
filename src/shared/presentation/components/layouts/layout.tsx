@@ -60,10 +60,10 @@ export const Layout: React.FC<Props> = (props) => {
       <div className='flex-grow'>
         <main>
           <Header />
+          {children}
         </main>
       </div>
       <hr className='border-t border-white my-12' />
-      {children}
       <Footer />
     </div>
   );

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 // export const Header: React.FC = () => {
@@ -84,21 +85,19 @@ export const Header: React.FC = () => {
   return (
     <nav className='py-3 bg-white rounded-md shadow-lg px-7 bg-opacity-60 mb-5 sm:mb-16'>
       <div className='flex items-center justify-between'>
-        <a className='block' href='/'>
-          <div className='text-2xl font-semibold tracking-wide text-gray-700 whitespace-nowrap'>
-            Masahiro&apos;s tech note
-          </div>
-        </a>
+        <Link href='/' className='text-2xl font-semibold tracking-wide text-gray-700 whitespace-nowrap'>
+          Masahiro&apos;s tech note
+        </Link>
         <div className='items-center hidden sm:flex sm:space-x-8 md:space-x-12'>
-          <a className='tracking-wider text-gray-700 text-base' href='/projects'>
+          <Link href='/projects' className='tracking-wider text-gray-700 text-base'>
             Projects
-          </a>
-          <a className='tracking-wider text-gray-700 text-base' href='/posts'>
+          </Link>
+          <Link href='/posts' className='tracking-wider text-gray-700 text-base'>
             Posts
-          </a>
-          <a className='tracking-wider text-gray-700 text-base' href='/about'>
+          </Link>
+          <Link href='/about' className='tracking-wider text-gray-700 text-base'>
             About
-          </a>
+          </Link>
         </div>
         <div className='relative'>
           <svg className='w-6 h-6 flex-none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32.579 31.775'>
@@ -116,15 +115,15 @@ export const Header: React.FC = () => {
       </div>
       {/* mobile */}
       <div className='grid grid-cols-3 divide-x divide-gray-300 mt-3 sm:hidden'>
-        <a className='tracking-wider text-gray-700 text-sm text-center' href='/projects'>
+        <Link href='/projects' className='tracking-wider text-gray-700 text-sm text-center'>
           Projects
-        </a>
-        <a className='tracking-wider text-gray-700 text-sm text-center' href='/posts'>
+        </Link>
+        <Link href='/projects' className='tracking-wider text-gray-700 text-sm text-center'>
           Posts
-        </a>
-        <a className='tracking-wider text-gray-700 text-sm text-center' href='/about'>
+        </Link>
+        <Link href='/projects' className='tracking-wider text-gray-700 text-sm text-center'>
           About
-        </a>
+        </Link>
       </div>
       {/* end mobile */}
     </nav>
