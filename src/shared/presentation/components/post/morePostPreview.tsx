@@ -31,7 +31,6 @@ export const ModePostPreview: React.FC<Props> = (props) => {
             </div>
           </div>
         </div>
-        <a className='absolute inset-0' href='#'></a>
       </Link>
     </div>
   );

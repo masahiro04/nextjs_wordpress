@@ -74,12 +74,6 @@ const PostPage: NextPage<Props> = (props: Props) => {
             </h1>
           </div>
           <div className='prose prose-base prose-cyan mx-auto text-gray-600 sm:prose-lg'>
-            {/*excerpt*/}
-            {/* <p className='mt-8 text-gray-600 mb-6'> */}
-            {/*   {post.excerpt} */}
-            {/* </p> */}
-            {/*body*/}
-
             <PostBody content={post.content} />
           </div>
         </div>
