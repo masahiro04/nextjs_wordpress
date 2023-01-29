@@ -18,7 +18,9 @@ export const PostPreview: React.FC<Props> = (props) => {
           {post.title}
           <div className='flex text-gray-400 font-thin text-sm'>
             <Date dateString={post.date} />
-            <Categories categories={post.categories} />
+            <div className='ml-2'>
+              <Categories categories={post.categories} isLink={false} />
+            </div>
           </div>
         </div>
       </Link>

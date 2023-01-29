@@ -64,8 +64,8 @@ const PostPage: NextPage<Props> = (props: Props) => {
 
       <div className='relative overflow-hidden py-8 bg-white bg-opacity-50 rounded-md shadow-md sm:py-16'>
         <div className='relative px-4 sm:px-6.lg:px-8'>
-          <Categories categories={post.categories} />
           <div className='mx-auto max-w-prose text-lg'>
+            <Categories categories={post.categories} />
             {/*title*/}
             <h1 className='mb-8'>
               <span className='mt-2 block text-center text-2xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl'>

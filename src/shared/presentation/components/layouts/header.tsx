@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 // export const Header: React.FC = () => {
@@ -82,6 +83,11 @@ import React from 'react';
 // };
 
 export const Header: React.FC = () => {
+  const router = useRouter();
+  const isCurrentPath = (path: 'posts' | 'projects' | 'about'): boolean => {
+    const splitedRoute = router.asPath.split('/');
+    return splitedRoute.includes(path);
+  };
   return (
     <nav className='py-3 bg-white rounded-md shadow-lg px-7 bg-opacity-60 mb-5 sm:mb-16'>
       <div className='flex items-center justify-between'>
@@ -89,13 +95,28 @@ export const Header: React.FC = () => {
           Masahiro&apos;s tech note
         </Link>
         <div className='items-center hidden sm:flex sm:space-x-8 md:space-x-12'>
-          <Link href='/projects' className='tracking-wider text-gray-700 text-base'>
-            Projects
-          </Link>
-          <Link href='/posts' className='tracking-wider text-gray-700 text-base'>
+          <Link
+            href='/posts'
+            className={`tracking-wider text-gray-700 text-base ${
+              isCurrentPath('posts') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+            }`}
+          >
             Posts
           </Link>
-          <Link href='/about' className='tracking-wider text-gray-700 text-base'>
+          <Link
+            href='/projects'
+            className={`tracking-wider text-gray-700 text-base ${
+              isCurrentPath('projects') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+            }`}
+          >
+            Projects
+          </Link>
+          <Link
+            href='/about'
+            className={`tracking-wider text-gray-700 text-base ${
+              isCurrentPath('about') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+            }`}
+          >
             About
           </Link>
         </div>
@@ -115,13 +136,28 @@ export const Header: React.FC = () => {
       </div>
       {/* mobile */}
       <div className='grid grid-cols-3 divide-x divide-gray-300 mt-3 sm:hidden'>
-        <Link href='/projects' className='tracking-wider text-gray-700 text-sm text-center'>
-          Projects
-        </Link>
-        <Link href='/posts' className='tracking-wider text-gray-700 text-sm text-center'>
+        <Link
+          href='/posts'
+          className={`tracking-wider text-gray-700 text-sm text-center ${
+            isCurrentPath('posts') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+          }`}
+        >
           Posts
         </Link>
-        <Link href='/about' className='tracking-wider text-gray-700 text-sm text-center'>
+        <Link
+          href='/projects'
+          className={`tracking-wider text-gray-700 text-sm text-center ${
+            isCurrentPath('projects') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+          }`}
+        >
+          Projects
+        </Link>
+        <Link
+          href='/about'
+          className={`tracking-wider text-gray-700 text-sm text-center ${
+            isCurrentPath('about') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+          }`}
+        >
           About
         </Link>
       </div>
