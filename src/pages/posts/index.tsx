@@ -1,7 +1,7 @@
 import { PER_PAGE } from '@/constants';
 import { fetchPostsUseCase, Post } from '@/domain';
 import { filterByCategory, filterByWord } from '@/extension';
-import { Layout, Pagination, PostPreview } from '@/presentation';
+import { Card, Layout, Pagination } from '@/presentation';
 import { useSearchWord } from '@/providers';
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
@@ -32,7 +32,7 @@ const Index: NextPage<Props> = ({ posts }: Props) => {
     <Layout>
       <div className='space-y-2 sm:space-y-3'>
         {postsToShow.map((post) => (
-          <PostPreview key={post.slug} post={post} />
+          <Card key={post.slug} post={post} />
         ))}
       </div>
       <div className='px-6 mx-auto sm:px-10 sm:max-w-screen-md lg:max-w-screen-lg'>

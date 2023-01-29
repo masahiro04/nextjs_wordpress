@@ -25,8 +25,8 @@ export const Categories: React.FC<Props> = ({ categories, isLink = true }) => {
     <div className='flex space-x-2 items-center overflow-x-auto pl-1'>
       {categories.map((category, key) =>
         isLink ? (
-          <Link href={`/posts?categoryName=${category.name}`}>
-            <CategoryItem key={key} name={category.name} />
+          <Link key={key} href={`/posts?categoryName=${category.name}`}>
+            <CategoryItem name={category.name} />
           </Link>
         ) : (
           <CategoryItem key={key} name={category.name} />

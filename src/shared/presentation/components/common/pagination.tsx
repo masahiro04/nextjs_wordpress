@@ -7,8 +7,7 @@ type Props = {
   count: number;
 };
 
-export const Pagination: React.FC<Props> = (props) => {
-  const { count } = props;
+export const Pagination: React.FC<Props> = ({ count }) => {
   const router = useRouter();
   const pages = count < PER_PAGE ? 1 : Math.floor(count / PER_PAGE);
   const currentPage = router.query?.page === undefined ? 1 : Number(router.query?.page);

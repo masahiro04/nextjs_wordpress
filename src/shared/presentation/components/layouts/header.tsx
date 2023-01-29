@@ -98,7 +98,7 @@ export const Header: React.FC = () => {
           <Link
             href='/posts'
             className={`tracking-wider text-gray-700 text-base ${
-              isCurrentPath('posts') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+              isCurrentPath('projects') ? 'underline underline-offset-2 decoration-gray-700 decoration-2' : ''
             }`}
           >
             Posts
@@ -106,7 +106,7 @@ export const Header: React.FC = () => {
           <Link
             href='/projects'
             className={`tracking-wider text-gray-700 text-base ${
-              isCurrentPath('projects') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+              isCurrentPath('projects') ? 'underline underline-offset-2 decoration-gray-700 decoration-2' : ''
             }`}
           >
             Projects
@@ -114,7 +114,7 @@ export const Header: React.FC = () => {
           <Link
             href='/about'
             className={`tracking-wider text-gray-700 text-base ${
-              isCurrentPath('about') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+              isCurrentPath('projects') ? 'underline underline-offset-2 decoration-gray-700 decoration-2' : ''
             }`}
           >
             About
@@ -139,7 +139,7 @@ export const Header: React.FC = () => {
         <Link
           href='/posts'
           className={`tracking-wider text-gray-700 text-sm text-center ${
-            isCurrentPath('posts') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+            isCurrentPath('projects') ? 'underline underline-offset-2 decoration-gray-700 decoration-2' : ''
           }`}
         >
           Posts
@@ -147,7 +147,7 @@ export const Header: React.FC = () => {
         <Link
           href='/projects'
           className={`tracking-wider text-gray-700 text-sm text-center ${
-            isCurrentPath('projects') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+            isCurrentPath('projects') ? 'underline underline-offset-2 decoration-gray-700 decoration-2' : ''
           }`}
         >
           Projects
@@ -155,7 +155,7 @@ export const Header: React.FC = () => {
         <Link
           href='/about'
           className={`tracking-wider text-gray-700 text-sm text-center ${
-            isCurrentPath('about') && 'underline underline-offset-2 decoration-gray-700 decoration-2'
+            isCurrentPath('projects') ? 'underline underline-offset-2 decoration-gray-700 decoration-2' : ''
           }`}
         >
           About

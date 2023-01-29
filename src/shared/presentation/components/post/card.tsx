@@ -8,9 +8,7 @@ type Props = {
   post: Post;
 };
 
-export const PostPreview: React.FC<Props> = (props) => {
-  const { post } = props;
-
+export const Card: React.FC<Props> = ({ post }) => {
   return (
     <div className='relative w-full group cursor-pointer'>
       <Link as={`/posts/${post.slug}`} href={`/posts/${post.slug}`}>

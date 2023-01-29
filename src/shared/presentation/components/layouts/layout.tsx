@@ -20,39 +20,6 @@ export const Layout: React.FC<Props> = (props) => {
     imageSrc = '/static/images/kyuri.png'
   } = props;
 
-  {
-    /* <div> */
-  }
-  {
-    /*   <CustomHead */
-  }
-  {
-    /*     title={title.length >= 1 ? `${title}|Masahiro's tech note` : "Masahiro's tech note"} */
-  }
-  {
-    /*     description={description} */
-  }
-  {
-    /*     keywords={keywords} */
-  }
-  {
-    /*     imageSrc={imageSrc} */
-  }
-  {
-    /*   <Header /> */
-  }
-  {
-    /*   <Breadcrumbs title={title} /> */
-  }
-  {
-    /*   {children} */
-  }
-  {
-    /*   <Footer /> */
-  }
-  {
-    /* </div> */
-  }
   return (
     <div className='flex flex-col min-h-screen w-full p-5 mx-auto sm:max-w-4xl sm:py-12'>
       <CustomHead
