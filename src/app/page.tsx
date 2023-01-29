@@ -1,34 +1,40 @@
+'use client';
 import { PER_PAGE } from '@/constants';
 import { fetchPostsUseCase, Post } from '@/domain';
 import { filterByCategory, filterByWord } from '@/extension';
 import { Layout, Pagination } from '@/presentation';
 import { Card } from '@/presentation/components/post';
 import { useSearchWord } from '@/providers';
-import { GetStaticProps, NextPage } from 'next';
-import { useRouter } from 'next/router';
+import { NextPage } from 'next';
+// import { useRouter } from 'next/router';
 
-export const getStaticProps: GetStaticProps = async () => {
+import { useSearchParams } from 'next/navigation';
+import { use } from 'react';
+
+const getData = async (): Promise<Post[]> => {
   const posts = await fetchPostsUseCase();
-  return { props: { posts } };
+  return posts;
 };
 
-type Props = {
-  posts: Post[];
-};
-
-const Index: NextPage<Props> = ({ posts }: Props) => {
-  const router = useRouter();
+const Index: NextPage = () => {
+  const posts = use(getData());
+  // const router = useRouter();
   const { word } = useSearchWord();
-  const category = router.query.categoryName?.toString();
-  const pageNumber = Number(router.query.page) || 1;
+  // const category = router.query.categoryName?.toString();
+
+  const searchParams = useSearchParams();
+  const categoryName = searchParams.get('categoryName') ?? '';
+  const page = searchParams.get('page') ?? 1;
+
+  const pageNumber = Number(page) || 1;
   const start = pageNumber === 1 ? 0 : pageNumber * PER_PAGE;
   const postsToShow = (
-    category === undefined ? filterByWord(posts, word) : filterByWord(filterByCategory(posts, category), word)
+    categoryName === undefined ? filterByWord(posts, word) : filterByWord(filterByCategory(posts, categoryName), word)
   ).slice(start, start + PER_PAGE);
 
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
+  // if (router.isFallback) {
+  //   return <div>Loading...</div>;
+  // }
   return (
     <Layout>
       <div className='space-y-2 sm:space-y-3'>

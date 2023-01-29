@@ -25,8 +25,15 @@
     "baseUrl": ".",
     "paths": {
       // "@/*": ["./src/*"],
-      "@/*": ["./src/shared/*"],
-    }
+      "@/*": [
+        "./src/shared/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "exclude": [
     "node_modules",
@@ -36,6 +43,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ]
 }

@@ -5,17 +5,20 @@ import { Card, Layout, Pagination } from '@/presentation';
 import { useSearchWord } from '@/providers';
 import { GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
+import { use } from 'react';
+
+const getData = async (): Promise<Post[]> => {
+  const posts = await fetchPostsUseCase();
+  return posts;
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const posts = await fetchPostsUseCase();
   return { props: { posts } };
 };
 
-type Props = {
-  posts: Post[];
-};
-
-const Index: NextPage<Props> = ({ posts }: Props) => {
+const Index: NextPage = () => {
+  const posts = use(getData());
   const router = useRouter();
   const { word } = useSearchWord();
   const category = router.query.categoryName?.toString();
@@ -25,9 +28,6 @@ const Index: NextPage<Props> = ({ posts }: Props) => {
     category === undefined ? filterByWord(posts, word) : filterByWord(filterByCategory(posts, category), word)
   ).slice(start, start + PER_PAGE);
 
-  if (router.isFallback) {
-    return <div>Loading...</div>;
-  }
   return (
     <Layout>
       <div className='space-y-2 sm:space-y-3'>

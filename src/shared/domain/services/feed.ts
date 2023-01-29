@@ -3,6 +3,9 @@ import { Feed } from 'feed';
 import fs from 'fs';
 
 export const generateRSSFeed = (nodes: Node<TPost>[]): void => {
+  if (process.env.NODE_ENV === 'development') return;
+  if (process.env.NODE_ENV === 'test') return;
+
   // TODO(okubo): baseUrl入れてそこからroute取得
   const feed = new Feed({
     title: "Masahiro's tech note",
