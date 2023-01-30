@@ -7,17 +7,17 @@ module.exports = {
     return [
       {
         source: '/pagination/1',
-        destination: '/pagination?page=1',
+        destination: '/posts?page=1',
         permanent: true
       },
       {
         source: '/pagination/2',
-        destination: '/pagination?page=2',
+        destination: '/posts?page=2',
         permanent: true
       },
       {
         source: '/pagination/3',
-        destination: '/pagination?page=3',
+        destination: '/posts?page=3',
         permanent: true
       }
     ];
