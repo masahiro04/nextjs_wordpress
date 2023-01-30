@@ -3,28 +3,28 @@ import { fetchPostsUseCase, Post } from '@/domain';
 import { filterByCategory, filterByWord } from '@/extension';
 import { Card, Layout, Pagination } from '@/presentation';
 import { useSearchWord } from '@/providers';
-import { GetStaticProps, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async () => {
+  // todo: params.pageでoffsetかけたい
   const posts = await fetchPostsUseCase();
   return { props: { posts } };
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   console.warn('hgoehoge------------------------1');
-//   const posts = await fetchPostsUseCase();
-//   console.warn('hgoehoge------------------------2');
-//   const count = posts.length;
-//   console.warn('hgoehoge------------------------3');
-//   const pages = count < PER_PAGE ? 1 : Math.floor(count / PER_PAGE);
-//   console.warn('hgoehoge------------------------4');
-//   const paths = [...Array<number>(pages)].map((i) => `/posts?page=${i}`);
-//   return {
-//     paths,
-//     fallback: false
-//   };
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  // offsetかけたい or cacheでデータ取得制限をかけて負荷を減らしrたい
+  const posts = await fetchPostsUseCase();
+  const count = posts.length;
+  const pages = count < PER_PAGE ? 1 : Math.floor(count / PER_PAGE);
+  console.warn('hgoehoge------------------------4');
+  const paths = [...Array<number>(pages)].map((_, i) => `/pagination/${i + 1}`);
+  console.log({ paths, pages });
+  return {
+    paths,
+    fallback: false
+  };
+};
 
 type Props = {
   posts: Post[];
