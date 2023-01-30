@@ -11,21 +11,6 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { posts } };
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   console.warn('hgoehoge------------------------1');
-//   const posts = await fetchPostsUseCase();
-//   console.warn('hgoehoge------------------------2');
-//   const count = posts.length;
-//   console.warn('hgoehoge------------------------3');
-//   const pages = count < PER_PAGE ? 1 : Math.floor(count / PER_PAGE);
-//   console.warn('hgoehoge------------------------4');
-//   const paths = [...Array<number>(pages)].map((i) => `/posts?page=${i}`);
-//   return {
-//     paths,
-//     fallback: false
-//   };
-// };
-
 type Props = {
   posts: Post[];
 };

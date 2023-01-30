@@ -26,6 +26,10 @@ export class FetchPostsUseCase {
 
   public async execute(): Promise<Post[]> {
     const response = await this.makePosts([], '');
+    // https://stackoverflow.com/questions/62628685/static-pagination-in-nextjs
+    // https://developer.wordpress.org/rest-api/using-the-rest-api/pagination/
+    // todo: https://mokubo.website//wp-json/wp/v2/posts?per_page=1&offset=0
+    // todo: 取得する内容的にjson apiで良さそう
     const nodes = response.nodes;
     return nodes.map(({ node }) => {
       const post = node;
