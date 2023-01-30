@@ -1,22 +1,43 @@
-import { AboutMeSection, Layout } from '@/presentation';
-import { NextPage } from 'next';
+import { PER_PAGE } from '@/constants';
+import { fetchPostsUseCase, Post } from '@/domain';
+import { filterByCategory, filterByWord } from '@/extension';
+import { Layout, Pagination } from '@/presentation';
+import { Card } from '@/presentation/components/post';
+import { useSearchWord } from '@/providers';
+import { GetStaticProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
 
-const Index: NextPage = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = await fetchPostsUseCase();
+  return { props: { posts } };
+};
+
+type Props = {
+  posts: Post[];
+};
+
+const Index: NextPage<Props> = ({ posts }: Props) => {
+  const router = useRouter();
+  const { word } = useSearchWord();
+  const category = router.query.categoryName?.toString();
+  const pageNumber = Number(router.query.page) || 1;
+  const start = pageNumber === 1 ? 0 : pageNumber * PER_PAGE;
+  const postsToShow = (
+    category === undefined ? filterByWord(posts, word) : filterByWord(filterByCategory(posts, category), word)
+  ).slice(start, start + PER_PAGE);
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
   return (
     <Layout>
+      <div className='space-y-2 sm:space-y-3'>
+        {postsToShow.map((post) => (
+          <Card key={post.slug} post={post} />
+        ))}
+      </div>
       <div className='px-6 mx-auto sm:px-10 sm:max-w-screen-md lg:max-w-screen-lg'>
-        <div className=' max-w-7xl mx-auto px-4 sm:px-6 mb-0 text-indigo-700 font-medium'>
-          <h1 className='font-bold my-4 text-gray-700 break-all text-4xl'>Masahiro Okubo</h1>
-          <div className=' my-4 text-gray-500 break-all'>
-            I&apos;m a software engineer living in Japan, Nagoya. Currently building a car mechanic version of Uber.
-            Previously, I worked on a XR startup and built multiple applications.
-          </div>
-          <h2 className='font-bold my-4 text-gray-700 break-all text-4xl'>Languages</h2>
-          <div className='my-4 text-gray-500 break-all'>Go / TypeScript / Dart / Ruby</div>
-          <h2 className='font-bold my-4 text-gray-700 break-all text-4xl'>Interests</h2>
-          <div className=' my-4 text-gray-500 break-all'>Dart / Swift / Nim / Rust / WebAssembly</div>
-          <AboutMeSection />
-        </div>
+        <Pagination count={posts.length} />
       </div>
     </Layout>
   );

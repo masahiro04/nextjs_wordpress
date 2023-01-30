@@ -1,5 +1,4 @@
 import React from 'react';
-import { Breadcrumbs } from './breadCrumbs';
 import { Footer } from './footer';
 import { CustomHead } from './head';
 import { Header } from './header';
@@ -20,17 +19,22 @@ export const Layout: React.FC<Props> = (props) => {
     keywords = '名古屋, エンジニア, Ruby, Python, ITコンサル, IT顧問, システム開発',
     imageSrc = '/static/images/kyuri.png'
   } = props;
+
   return (
-    <div>
+    <div className='flex flex-col min-h-screen w-full p-5 mx-auto sm:max-w-4xl sm:py-12'>
       <CustomHead
         title={title.length >= 1 ? `${title}|Masahiro's tech note` : "Masahiro's tech note"}
         description={description}
         keywords={keywords}
         imageSrc={imageSrc}
       />
-      <Header />
-      <Breadcrumbs title={title} />
-      {children}
+      <div className='flex-grow'>
+        <main>
+          <Header />
+          {children}
+        </main>
+      </div>
+      <hr className='border-t border-white my-12' />
       <Footer />
     </div>
   );

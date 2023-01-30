@@ -11,8 +11,7 @@ type BreadCrumb = {
   title: string;
 };
 
-export const Breadcrumbs: React.FC<Props> = (props) => {
-  const { title } = props;
+export const Breadcrumbs: React.FC<Props> = ({ title }) => {
   const router = useRouter();
   const [breadcrumbs, setBreadcrumbs] = useState<Array<BreadCrumb>>([]);
 
