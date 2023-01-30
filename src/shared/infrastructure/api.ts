@@ -1,15 +1,15 @@
-import axios, { AxiosResponse } from 'axios';
-import camelcaseKeys from 'camelcase-keys';
-
 export class Api {
-  static async post<T>(
-    query: string,
-    { variables }: { variables?: Record<string, unknown> } = {}
-  ): Promise<AxiosResponse<T>> {
-    const response = await axios.post<T>(process.env.WORDPRESS_API_URL ?? '', { query, variables });
-    return {
-      ...response,
-      data: camelcaseKeys(response.data as Record<string, unknown>, { deep: true })
-    } as AxiosResponse<T>;
+  static async post<T>(query: string, { variables }: { variables?: Record<string, unknown> } = {}): Promise<T> {
+    const headers = { 'Content-Type': 'application/json' };
+
+    // WPGraphQL Plugin must be enabled
+    return fetch(process.env.WORDPRESS_API_URL ?? '', {
+      headers,
+      method: 'POST',
+      body: JSON.stringify({
+        query,
+        variables
+      })
+    }).then<T>((response) => response.json());
   }
 }
