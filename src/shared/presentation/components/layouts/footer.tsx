@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 type FooterItem = {
@@ -12,7 +13,13 @@ type FooterItemProps = {
 const FooterItem: React.FC<FooterItemProps> = ({ item }) => {
   return (
     <div className='relative'>
-      <img className='w-6 h-6' src={`/static/images/${item.filename}.svg`} alt={`${item.filename}`} />
+      <Image
+        className='w-6 h-6'
+        src={`/static/images/${item.filename}.svg`}
+        alt={`${item.filename}`}
+        width='100'
+        height='100'
+      />
       <a className='absolute inset-0' href={item.url} target='_blank' rel='noreferrer'></a>
     </div>
   );

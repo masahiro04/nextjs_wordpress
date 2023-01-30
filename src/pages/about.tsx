@@ -1,14 +1,18 @@
 import { Layout } from '@/presentation';
 import { NextPage } from 'next';
+import Image from 'next/image';
 
 const About: NextPage = () => {
   return (
     <Layout>
       <div className='flex justify-center mx-auto mt-10 sm:w-2/3 sm:mt-0'>
         <div className='flex flex-col'>
-          <img
+          <Image
             className='object-cover rounded-full mx-auto w-24 h-24'
-            src='https://avatars.githubusercontent.com/u/23392138?v=4'
+            src='/static/images/kyuri.png'
+            alt=''
+            width='100'
+            height='100'
           />
           <div className='mt-3 space-y-2'>
             <h3 className='text-xl font-semibold text-center text-gray-800'>Masahiro Okubo</h3>
