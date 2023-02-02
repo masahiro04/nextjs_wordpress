@@ -6,18 +6,13 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: '/pagination/1',
-        destination: '/posts?page=1',
+        source: '/posts',
+        destination: '/pages/1',
         permanent: true
       },
       {
-        source: '/pagination/2',
-        destination: '/posts?page=2',
-        permanent: true
-      },
-      {
-        source: '/pagination/3',
-        destination: '/posts?page=3',
+        source: '/',
+        destination: '/pages/1',
         permanent: true
       }
     ];
@@ -27,9 +22,9 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/pagination',
+        source: '/pages',
         has: [{ type: 'query', key: 'page', value: '1' }],
-        destination: '/pagination/1'
+        destination: '/pages/1'
       },
       {
         source: '/pagination',

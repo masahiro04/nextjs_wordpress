@@ -1,20 +1,19 @@
 import { Post } from '../entities';
 import { FetchPostUseCase } from './fetchPost';
 import { FetchPostsUseCase } from './fetchPosts';
-import { FetchRelatedPostsUseCase } from './fetchRelatedPosts';
+import { FetchPostSlugsUseCase } from './fetchPostSlugs';
 
 export * from './fetchPost';
 export * from './fetchPosts';
-export * from './fetchRelatedPosts';
+export * from './fetchPostSlugs';
 
+export const fetchPostsUseCase = async (perPage: number, offset: number): Promise<Post[]> => {
+  return await new FetchPostsUseCase().execute(perPage, offset);
+};
 export const fetchPostUseCase = async (slug: string): Promise<Post> => {
   return await new FetchPostUseCase().execute(slug);
 };
 
-export const fetchPostsUseCase = async (): Promise<Post[]> => {
-  return await new FetchPostsUseCase().execute();
-};
-
-export const fetchRelatedPostsUseCase = async (categoryName: string): Promise<Post[]> => {
-  return await new FetchRelatedPostsUseCase().execute(categoryName);
+export const fetchPostSlugsUseCase = async (): Promise<string[]> => {
+  return await new FetchPostSlugsUseCase().execute();
 };

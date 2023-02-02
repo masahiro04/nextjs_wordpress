@@ -1,7 +1,3 @@
-import { TPost } from './post';
+import { Post } from '@/domain';
 
-export interface PostResponse {
-  data: {
-    post: TPost;
-  };
-}
+export type PostResponse = Omit<Post, 'categories'> & { categories: number[] };

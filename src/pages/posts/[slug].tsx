@@ -1,26 +1,24 @@
-import { fetchPostsUseCase, fetchPostUseCase, fetchRelatedPostsUseCase, Post } from '@/domain';
+import { fetchPostSlugsUseCase, fetchPostUseCase, Post } from '@/domain';
 import { BackButton, Card, Categories, Layout, PostBody } from '@/presentation';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import ErrorPage from 'next/error';
 import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post: Post = await fetchPostUseCase((params?.slug ?? '').toString());
-  const categoryNames: string = post.categories.map((category) => category.name).join(', ');
-  const relatedPosts: Post[] = await fetchRelatedPostsUseCase(categoryNames);
-
   return {
     props: {
       post,
-      relatedPosts
+      relatedPosts: []
     }
   };
 };
 
+// todo: id取得だけの機能を作る
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await fetchPostsUseCase();
+  // const posts = await fetchPostsUseCase();
+  const slugs = await fetchPostSlugsUseCase();
   return {
-    paths: posts.map((post) => `/posts/${post.slug}`),
+    paths: slugs.map((slug) => `/posts/${slug}`),
     fallback: false
   };
 };
@@ -34,17 +32,17 @@ const PostPage: NextPage<Props> = (props: Props) => {
   const { post, relatedPosts } = props;
   const router = useRouter();
 
-  if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />;
-  }
-
+  // if (!router.isFallback && !post?.slug) {
+  //   return <ErrorPage statusCode={404} />;
+  // }
+  //
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
-
+  //
   // todo: imageには[.w-full.rounded-lg] classを適用したい
   return (
-    <Layout title={post.title} description={post.excerpt} imageSrc={post.featuredImageUrl.url}>
+    <Layout title={post.title.rendered} description={post.excerpt.rendered}>
       <BackButton onClick={() => router.back()} />
       <div className='relative overflow-hidden py-8 bg-white bg-opacity-50 rounded-md shadow-md sm:py-16'>
         <div className='relative px-4 sm:px-6.lg:px-8'>
@@ -52,12 +50,12 @@ const PostPage: NextPage<Props> = (props: Props) => {
             <Categories categories={post.categories} isLink={true} />
             <h1 className='mb-8'>
               <span className='mt-2 block text-center text-2xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl'>
-                {post.title}
+                {post.title.rendered}
               </span>
             </h1>
           </div>
           <div className='prose prose-base prose-cyan mx-auto text-gray-600 sm:prose-lg'>
-            <PostBody content={post.content} />
+            <PostBody content={post.content.rendered} />
           </div>
         </div>
       </div>
