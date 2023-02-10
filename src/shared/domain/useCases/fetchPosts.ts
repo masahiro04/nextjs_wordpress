@@ -1,6 +1,5 @@
 import { Category, ICategoryRepository, IPostRepository, Post } from '@/domain';
-import { PostRepository } from '@/infrastructure';
-import { CategoryRepository } from '@/infrastructure/categoryRepository';
+import { CategoryRepository, PostRepository } from '@/infrastructure';
 
 export class FetchPostsUseCase {
   private readonly postRepository: IPostRepository;

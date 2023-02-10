@@ -1,6 +1,5 @@
 import { Category, ICategoryRepository, IPostRepository, Post } from '@/domain';
-import { PostRepository } from '@/infrastructure';
-import { CategoryRepository } from '@/infrastructure/categoryRepository';
+import { CategoryRepository, PostRepository } from '@/infrastructure';
 
 export class FetchPostUseCase {
   private readonly postRepository: IPostRepository;
@@ -12,7 +11,6 @@ export class FetchPostUseCase {
   }
 
   public async execute(slug: string): Promise<Post> {
-    console.log({ slugIs: slug });
     const post = await this.postRepository.getPost(slug);
     const categoriesResponse = await this.categoryRepository.getCategories();
     const categories = post.categories
