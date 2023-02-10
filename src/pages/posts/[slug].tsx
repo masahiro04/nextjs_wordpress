@@ -1,21 +1,21 @@
-import { fetchPostSlugsUseCase, fetchPostUseCase, Post } from '@/domain';
+import { fetchPostSlugsUseCase, fetchPostUseCase, fetchRelatedPostsUseCase, Post } from '@/domain';
 import { BackButton, Card, Categories, Layout, PostBody } from '@/presentation';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post: Post = await fetchPostUseCase((params?.slug ?? '').toString());
+  const post = await fetchPostUseCase((params?.slug ?? '').toString());
+  const relatedPosts = await fetchRelatedPostsUseCase(post.categories.map((category) => category.id));
   return {
     props: {
       post,
-      relatedPosts: []
+      relatedPosts
     }
   };
 };
 
 // todo: id取得だけの機能を作る
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const posts = await fetchPostsUseCase();
   const slugs = await fetchPostSlugsUseCase();
   return {
     paths: slugs.map((slug) => `/posts/${slug}`),
@@ -32,10 +32,6 @@ const PostPage: NextPage<Props> = (props: Props) => {
   const { post, relatedPosts } = props;
   const router = useRouter();
 
-  // if (!router.isFallback && !post?.slug) {
-  //   return <ErrorPage statusCode={404} />;
-  // }
-  //
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
