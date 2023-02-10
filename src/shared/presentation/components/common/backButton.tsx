@@ -1,10 +1,8 @@
-import React from 'react';
-
 type Props = {
   onClick: () => void;
 };
 
-export const BackButton: React.FC<Props> = ({ onClick }) => {
+export const BackButton: React.FC<Props> = ({ onClick }: Props) => {
   return (
     <div
       onClick={onClick}

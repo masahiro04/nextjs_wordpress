@@ -29,7 +29,7 @@ module.exports = {
     '@typescript-eslint/no-unsafe-return': 1,
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-floating-promises': 0,
-    'react/no-children-prop': 0,
+    // 'react/no-children-prop': 0,
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off'
   }

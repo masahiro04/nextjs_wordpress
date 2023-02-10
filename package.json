@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next -p 4200",
+    "dev": "next",
     "build": "next build && next-sitemap --config sitemap.config.js",
     "start": "next start",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}' && prettier --write './src/**/*.{ts,tsx}'"

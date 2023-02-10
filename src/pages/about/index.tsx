@@ -25,13 +25,11 @@ const About: NextPage = () => {
             <div>
               <div className='relative'>
                 <div className='flex justify-center py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 text-gray-400 shadow-sm space-x-1 text-sm sm:text-base sm:space-x-2'>
-                  <div className='text-gray-800 text-center'>Go</div>
-                  <div className='text-gray-600 text-center'>/</div>
                   <div className='text-gray-800 text-center'>Typescript</div>
                   <div className='text-gray-600 text-center'>/</div>
                   <div className='text-gray-800 text-center'>Dart</div>
                   <div className='text-gray-600 text-center'>/</div>
-                  <div className='text-gray-800 text-center'>Ruby</div>
+                  <div className='text-gray-800 text-center'>Go</div>
                 </div>
                 <div className='absolute inset-0 text-sm text-gray-500 -translate-y-6 sm:translate-y-0 sm:left-2 md:left-3 sm:top-0 md:top-1'>
                   Languages :
@@ -41,7 +39,7 @@ const About: NextPage = () => {
             <div>
               <div className='relative'>
                 <div className='flex justify-center space-x-2 py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 text-gray-400 shadow-sm text-sm'>
-                  <div className='text-gray-800 text-center'>Dart, Swift, Nim, Rust, WebAssembly</div>
+                  <div className='text-gray-800 text-center'>Edge computing, GCP, Rust, Web Assembly</div>
                 </div>
                 <div className='absolute inset-0 text-sm text-gray-500 -translate-y-6 sm:translate-y-0 sm:left-2 md:left-3 sm:top-0 md:top-1'>
                   Interests :

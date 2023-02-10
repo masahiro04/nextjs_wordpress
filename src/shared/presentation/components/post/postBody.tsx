@@ -1,11 +1,11 @@
 import Prism from 'prismjs';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 type Props = {
   content: string;
 };
 
-export const PostBody: React.FC<Props> = ({ content }) => {
+export const PostBody: React.FC<Props> = ({ content }: Props) => {
   useEffect(() => {
     Prism.highlightAll();
   }, []);

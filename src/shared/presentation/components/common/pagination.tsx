@@ -1,29 +1,15 @@
-import { PER_PAGE } from '@/constants';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React from 'react';
 
 type Props = {
-  count: number;
+  totalPage: number;
+  currentPage: number;
 };
 
-export const Pagination: React.FC<Props> = ({ count }) => {
-  const router = useRouter();
-  const pages = count < PER_PAGE ? 1 : Math.floor(count / PER_PAGE);
-  const currentPage = router.query?.page === undefined ? 1 : Number(router.query?.page);
-
-  const categoryRoutename = (): string => {
-    if (router.query.categoryName === '' || router.query.categoryName === undefined) {
-      return '';
-    } else {
-      return `&categoryName=${router.query.categoryName.toString()}`;
-    }
-  };
-
+export const Pagination: React.FC<Props> = ({ totalPage, currentPage }: Props) => {
   return (
     <div className='flex items-center justify-center space-x-4 mt-8'>
       {currentPage !== 1 && (
-        <Link href={`?page=${currentPage - 1}${categoryRoutename()}`}>
+        <Link href={`/pages/${currentPage - 1}`}>
           <div className='relative cursor-pointer duration-500 py-2 bg-white rounded-md shadow-sm px-2 bg-opacity-60 flex items-center w-24 justify-center text-gray-600 text-sm sm:text-base sm:px-4 sm:w-32 hover:shadow-md'>
             <svg className='w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
               <path
@@ -40,8 +26,8 @@ export const Pagination: React.FC<Props> = ({ count }) => {
         </Link>
       )}
 
-      {pages !== currentPage && (
-        <Link href={`?page=${currentPage + 1}${categoryRoutename()}`}>
+      {totalPage !== currentPage && (
+        <Link href={`/pages/${currentPage + 1}`}>
           <div className='relative cursor-pointer duration-500 py-2 bg-white rounded-md shadow-sm px-2 bg-opacity-60 flex items-center w-24 justify-center text-gray-600 text-sm sm:text-base sm:px-4 sm:w-32 hover:shadow-md'>
             <span className='mr-1'>Next</span>
             <svg className='w-5 h-5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>

@@ -1,32 +1,23 @@
-import { Author, Category, IPostRepository, Post } from '@/domain';
+import { Category, ICategoryRepository, IPostRepository, Post } from '@/domain';
 import { PostRepository } from '@/infrastructure';
+import { CategoryRepository } from '@/infrastructure/categoryRepository';
 
 export class FetchPostUseCase {
   private readonly postRepository: IPostRepository;
+  private readonly categoryRepository: ICategoryRepository;
 
   constructor() {
     this.postRepository = new PostRepository();
+    this.categoryRepository = new CategoryRepository();
   }
 
   public async execute(slug: string): Promise<Post> {
-    const response = await this.postRepository.getPost(slug);
-    const { post } = response.data;
-
-    const author: Author = { name: post.author.node.name };
-    const categories: Category[] = post.categories.edges.map((category) => ({ name: category.node.name }));
-
-    return {
-      slug: post.slug,
-      title: post.title,
-      excerpt: post.excerpt,
-      content: post.content,
-      date: post.date,
-      featuredImageUrl: {
-        url: post.featuredImage.node.sourceUrl ?? '/static/images/not_found.png',
-        alt: post.featuredImage.node.altText ?? ''
-      },
-      author,
-      categories
-    };
+    console.log({ slugIs: slug });
+    const post = await this.postRepository.getPost(slug);
+    const categoriesResponse = await this.categoryRepository.getCategories();
+    const categories = post.categories
+      .map((categoryId) => categoriesResponse.find((category) => category.id === categoryId))
+      .filter((category): category is Category => !!category);
+    return { ...post, categories };
   }
 }

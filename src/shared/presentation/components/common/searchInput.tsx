@@ -1,6 +1,5 @@
 import { useSearchWord } from '@/providers';
 import { useRouter } from 'next/router';
-import React from 'react';
 
 export const SearchInput: React.FC = () => {
   const router = useRouter();
