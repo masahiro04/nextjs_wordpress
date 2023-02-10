@@ -18,10 +18,7 @@ export class FetchRelatedPostsUseCase {
       const categories = post.categories
         .map((categoryId) => categoriesResponse.find((category) => category.id === categoryId))
         .filter((category): category is Category => !!category);
-      return {
-        ...post,
-        categories
-      };
+      return { ...post, categories };
     });
   }
 }
