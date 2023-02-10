@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 export const Header: React.FC = () => {
   const router = useRouter();
-  const isCurrentPath = (path: 'posts' | 'projects' | 'about'): boolean => {
+  const isCurrentPath = (path: 'pages' | 'posts' | 'projects' | 'about'): boolean => {
     const splitedRoute = router.asPath.split('/');
     return splitedRoute.includes(path);
   };
@@ -15,9 +15,11 @@ export const Header: React.FC = () => {
         </Link>
         <div className='items-center hidden sm:flex sm:space-x-8 md:space-x-12'>
           <Link
-            href='/posts'
+            href='/pages/1'
             className={`tracking-wider text-gray-700 text-base ${
-              isCurrentPath('posts') ? 'underline underline-offset-2 decoration-gray-700 decoration-2' : ''
+              isCurrentPath('pages') || isCurrentPath('posts')
+                ? 'underline underline-offset-2 decoration-gray-700 decoration-2'
+                : ''
             }`}
           >
             Posts
@@ -53,9 +55,11 @@ export const Header: React.FC = () => {
       {/* mobile */}
       <div className='grid grid-cols-3 divide-x divide-gray-300 mt-3 sm:hidden'>
         <Link
-          href='/posts'
+          href='/pages/1'
           className={`tracking-wider text-gray-700 text-sm text-center ${
-            isCurrentPath('posts') ? 'underline underline-offset-2 decoration-gray-700 decoration-2' : ''
+            isCurrentPath('pages') || isCurrentPath('posts')
+              ? 'underline underline-offset-2 decoration-gray-700 decoration-2'
+              : ''
           }`}
         >
           Posts

@@ -47,16 +47,6 @@ const About: NextPage = () => {
               </div>
             </div>
             <div>
-              <div className='relative'>
-                <div className='flex justify-center space-x-2 py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 text-gray-400 shadow-sm text-sm'>
-                  <div className='text-gray-800 text-center'>Edge computing, GCP, Rust, Web Assembly</div>
-                </div>
-                <div className='absolute inset-0 text-sm text-gray-500 -translate-y-6 sm:translate-y-0 sm:left-2 md:left-3 sm:top-0 md:top-1'>
-                  Interests :
-                </div>
-              </div>
-            </div>
-            <div>
               <div className='relative group cursor-pointer'>
                 <div className='flex justify-center space-x-2 py-3 bg-white rounded-md max-w-full px-6 bg-opacity-60 text-gray-400 shadow-sm duration-500 text-sm group-hover:shadow-md group-hover:scale-1 group-hover:bg-opacity-90'>
                   <div className='text-gray-800 text-center'>Contact me on Google Form</div>
