@@ -8,20 +8,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const relatedPosts = (await fetchRelatedPostsUseCase(post.categories.map((category) => category.id)))
     .filter((relatedPost) => relatedPost.id !== post.id)
     .slice(0, 3);
-  return {
-    props: {
-      post,
-      relatedPosts
-    }
-  };
+  return { props: { post, relatedPosts } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await fetchPostSlugsUseCase();
-  return {
-    paths: slugs.map((slug) => `/posts/${slug}`),
-    fallback: false
-  };
+  return { paths: slugs.map((slug) => `/posts/${slug}`), fallback: false };
 };
 
 type Props = {
@@ -36,7 +28,6 @@ const PostPage: NextPage<Props> = (props: Props) => {
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
-  //
   // todo: imageには[.w-full.rounded-lg] classを適用したい
   return (
     <Layout title={post.title.rendered} description={post.excerpt.rendered}>

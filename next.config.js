@@ -5,6 +5,11 @@ module.exports = {
   async redirects() {
     return [
       {
+        source: '/pages',
+        destination: '/pages/1',
+        permanent: true
+      },
+      {
         source: '/posts',
         destination: '/pages/1',
         permanent: true
@@ -13,16 +18,6 @@ module.exports = {
         source: '/',
         destination: '/pages/1',
         permanent: true
-      }
-    ];
-  },
-
-  async rewrites() {
-    return [
-      {
-        source: '/pages',
-        has: [{ type: 'query', key: 'page', value: '1' }],
-        destination: '/pages/1'
       }
     ];
   }
