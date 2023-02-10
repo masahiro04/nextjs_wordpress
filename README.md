@@ -1,4 +1,6 @@
 # Jamstack blog site with Next.js and WordPress
+{
+  "requires": true,
 Demo site: [https://masahiro.me/](https://masahiro.me/)
 ![New post](./docs/masahiro_site.png)
 
@@ -54,13 +56,13 @@ export const PAGES = [
 
 ## How to run
 ```bash
-yarn install
-yarn dev
+npm install
+npm run dev
 ```
 
 ## Lint
 ```
-yarn run lint:fix
+npm run lint:fix
 ```
 
 ## Deploy your own
