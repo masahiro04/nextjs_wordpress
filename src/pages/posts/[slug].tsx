@@ -5,7 +5,9 @@ import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = await fetchPostUseCase((params?.slug ?? '').toString());
-  const relatedPosts = await fetchRelatedPostsUseCase(post.categories.map((category) => category.id));
+  const relatedPosts = (await fetchRelatedPostsUseCase(post.categories.map((category) => category.id)))
+    .filter((relatedPost) => relatedPost.id !== post.id)
+    .slice(0, 3);
   return {
     props: {
       post,
@@ -14,7 +16,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-// todo: id取得だけの機能を作る
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await fetchPostSlugsUseCase();
   return {
@@ -56,14 +57,16 @@ const PostPage: NextPage<Props> = (props: Props) => {
         </div>
       </div>
 
-      <div className='mt-5 mx-auto space-y-2 sm:space-y-3 sm:mt-10'>
-        <div className='text-gray-700 text-xl font-semibold'>Featured</div>
-        <div className='justify-center space-y-2 sm:space-y-3'>
-          {relatedPosts.map((post) => (
-            <Card key={post.slug} post={post} />
-          ))}
+      {relatedPosts.length !== 0 && (
+        <div className='mt-5 mx-auto space-y-2 sm:space-y-3 sm:mt-10'>
+          <div className='text-gray-700 text-xl font-semibold'>Featured</div>
+          <div className='justify-center space-y-2 sm:space-y-3'>
+            {relatedPosts.map((post) => (
+              <Card key={post.slug} post={post} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </Layout>
   );
 };

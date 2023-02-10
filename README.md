@@ -54,13 +54,13 @@ export const PAGES = [
 
 ## How to run
 ```bash
-npm install
-npm run dev
+yarn install
+yarn dev
 ```
 
 ## Lint
 ```
-npm run lint:fix
+yarn run lint:fix
 ```
 
 ## Deploy your own
