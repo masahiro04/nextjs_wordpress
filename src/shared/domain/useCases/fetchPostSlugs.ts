@@ -11,7 +11,8 @@ export class FetchPostSlugsUseCase {
 
   private async makePosts(posts: PostResponse[]): Promise<PostResponse[]> {
     const response = await this.postRepository.getPosts(100, posts.length);
-    if (response.length === 100 || isDevelopment()) {
+    if (response.length < 100 || isDevelopment()) {
+      console.log('haittayo!!!!!!', posts.length);
       return [...posts, ...response];
     }
     return this.makePosts([...posts, ...response]);

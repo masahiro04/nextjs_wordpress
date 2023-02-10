@@ -6,9 +6,9 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const page = Number(params?.slug) ?? 1;
   const offset = page === 1 ? 0 : PER_PAGE * page;
-  console.log({ page, offset, PER_PAGE });
 
   const slugs = await fetchPostSlugsUseCase();
+  console.log({ slugLength: slugs.length });
   const totalPages = Math.round(slugs.length / PER_PAGE);
 
   // todo: params.pageでoffsetかけたい
