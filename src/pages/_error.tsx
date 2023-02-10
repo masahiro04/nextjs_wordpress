@@ -1,8 +1,8 @@
 import { BackButton, Layout } from '@/presentation';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React from 'react';
 
-const Custom404: React.FC = () => {
+const Custom404: NextPage = () => {
   const router = useRouter();
   return (
     <Layout title='Not found' description='ページが見つかりません'>

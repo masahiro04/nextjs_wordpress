@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import React from 'react';
 
 type Props = {
   totalPage: number;
   currentPage: number;
 };
 
-export const Pagination: React.FC<Props> = ({ totalPage, currentPage }) => {
+export const Pagination: React.FC<Props> = ({ totalPage, currentPage }: Props) => {
   return (
     <div className='flex items-center justify-center space-x-4 mt-8'>
       {currentPage !== 1 && (

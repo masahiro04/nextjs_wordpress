@@ -8,10 +8,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const offset = page === 1 ? 0 : PER_PAGE * page;
 
   const slugs = await fetchPostSlugsUseCase();
-  console.log({ slugLength: slugs.length });
   const totalPages = Math.round(slugs.length / PER_PAGE);
 
-  // todo: params.pageでoffsetかけたい
   const posts = await fetchPostsUseCase(PER_PAGE, offset);
   return { props: { posts, totalPages } };
 };

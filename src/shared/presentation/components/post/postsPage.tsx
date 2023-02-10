@@ -13,14 +13,11 @@ export const PostsPage: React.FC<Props> = ({ posts, totalPage }: Props) => {
   const router = useRouter();
   const splitedPath = router.asPath.split('/');
   const currentPage = Number(splitedPath[splitedPath.length - 1]) ?? 0;
-  console.log({ totalPage });
-
-  // const pageNumber = Number(router.query.page) || 1;
-  // const start = pageNumber === 1 ? 0 : pageNumber * PER_PAGE;
 
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
+
   return (
     <Layout>
       <div className='space-y-2 sm:space-y-3'>

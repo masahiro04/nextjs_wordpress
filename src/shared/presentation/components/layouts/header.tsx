@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+
 export const Header: React.FC = () => {
   const router = useRouter();
   const isCurrentPath = (path: 'posts' | 'projects' | 'about'): boolean => {

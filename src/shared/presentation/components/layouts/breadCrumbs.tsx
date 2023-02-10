@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Props = {
   title: string;
@@ -11,7 +11,7 @@ type BreadCrumb = {
   title: string;
 };
 
-export const Breadcrumbs: React.FC<Props> = ({ title }) => {
+export const Breadcrumbs: React.FC<Props> = ({ title }: Props) => {
   const router = useRouter();
   const [breadcrumbs, setBreadcrumbs] = useState<Array<BreadCrumb>>([]);
 

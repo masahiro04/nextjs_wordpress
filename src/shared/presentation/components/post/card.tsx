@@ -1,6 +1,5 @@
 import { Post } from '@/domain';
 import Link from 'next/link';
-import React from 'react';
 import { Date } from '../common/date';
 import { Categories } from './categories';
 
@@ -8,7 +7,7 @@ type Props = {
   post: Post;
 };
 
-export const Card: React.FC<Props> = ({ post }) => {
+export const Card: React.FC<Props> = ({ post }: Props) => {
   return (
     <div className='relative w-full group cursor-pointer'>
       <Link as={`/posts/${post.slug}`} href={`/posts/${post.slug}`}>

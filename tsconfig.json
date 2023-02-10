@@ -24,8 +24,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      // "@/*": ["./src/*"],
-      "@/*": ["./src/shared/*"],
+      "@/*": [
+        "./src/shared/*"
+      ]
     }
   },
   "exclude": [
@@ -35,7 +36,7 @@
   "compileOnSave": false,
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "src/**/*.tsx",
+    "src/**/*.ts"
   ]
 }

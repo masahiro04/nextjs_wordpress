@@ -1,13 +1,11 @@
 import { Category } from '@/domain';
 import Link from 'next/link';
-import React from 'react';
 
-type Props = {
-  categories: Category[];
-  isLink: boolean;
+type CategoryItemProps = {
+  name: string;
 };
 
-const CategoryItem: React.FC<{ name: string }> = ({ name }) => {
+const CategoryItem: React.FC<CategoryItemProps> = ({ name }: CategoryItemProps) => {
   return (
     <div className='relative group flex'>
       <div className='w-3 h-3 rotate-45 left-0 bg-main-300 rounded-sm mt-0.5' />
@@ -18,7 +16,11 @@ const CategoryItem: React.FC<{ name: string }> = ({ name }) => {
     </div>
   );
 };
-export const Categories: React.FC<Props> = ({ categories, isLink = true }) => {
+type CategoriesProps = {
+  categories: Category[];
+  isLink: boolean;
+};
+export const Categories: React.FC<CategoriesProps> = ({ categories, isLink = true }: CategoriesProps) => {
   if (categories.length === 0) return <></>;
 
   return (

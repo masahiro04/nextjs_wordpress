@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import React from 'react';
 
 type FooterItem = {
   filename: 'github' | 'twitter' | 'menta' | 'mail';
@@ -10,7 +9,7 @@ type FooterItemProps = {
   item: FooterItem;
 };
 
-const FooterItem: React.FC<FooterItemProps> = ({ item }) => {
+const FooterItem: React.FC<FooterItemProps> = ({ item }: FooterItemProps) => {
   return (
     <div className='relative'>
       <Image

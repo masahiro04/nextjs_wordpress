@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import React from 'react';
 
 type Props = {
   title: string;
@@ -8,8 +7,7 @@ type Props = {
   imageSrc: string;
 };
 
-export const CustomHead: React.FC<Props> = (props) => {
-  const { title, description, keywords, imageSrc } = props;
+export const CustomHead: React.FC<Props> = ({ title, description, keywords, imageSrc }: Props) => {
   return (
     <Head>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
