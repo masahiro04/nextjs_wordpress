@@ -2,7 +2,6 @@ module.exports = {
   images: {
     domains: ['mokubo.website', 'masahiro.me', 'secure.gravatar.com']
   },
-  // todo: 動的にしたい
   async redirects() {
     return [
       {
