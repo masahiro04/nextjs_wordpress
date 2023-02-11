@@ -1,6 +1,4 @@
-import { Author } from './author';
 import { Category } from './category';
-import { FeaturedImage } from './featuredImage';
 
 interface Rendered {
   rendered: string;
@@ -8,12 +6,10 @@ interface Rendered {
 
 export interface Post {
   id: number;
-  date: string;
-  slug: string;
   title: Rendered;
+  slug: string;
   excerpt: Rendered;
   content: Rendered;
-  featuredImageUrl: FeaturedImage;
-  author: Author;
   categories: Category[];
+  date: string;
 }
