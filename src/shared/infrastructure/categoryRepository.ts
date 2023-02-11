@@ -3,7 +3,10 @@ import { Api } from './api';
 
 export class CategoryRepository implements ICategoryRepository {
   public async getCategories(): Promise<CategoryResponse[]> {
-    const response = await Api.get<CategoryResponse[]>('https://mokubo.website//wp-json/wp/v2/categories?per_page=100');
-    return response;
+    const url = process.env.WORDPRESS_API_URL;
+    if (!url) {
+      throw new Error('WORDPRESS_API_URL not set');
+    }
+    return await Api.get<CategoryResponse[]>(`${url}/categories?per_page=100`);
   }
 }

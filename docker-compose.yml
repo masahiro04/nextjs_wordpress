@@ -6,7 +6,8 @@ services:
     ports:
       - 3000:3000
     environment:
-      PLAYWRIGHT_BROWSERS_PATH: /usr/lib/playwright
+      WORDPRESS_API_URL: 'https://mokubo.website/wp-json/wp/v2'
+      DOMAIN: 'masahiro.me'
     volumes:
       - ./:/app
       - /app/node_modules
