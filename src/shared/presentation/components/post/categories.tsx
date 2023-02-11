@@ -7,7 +7,7 @@ type CategoryItemProps = {
 
 const CategoryItem: React.FC<CategoryItemProps> = ({ name }: CategoryItemProps) => {
   return (
-    <div className='relative group flex'>
+    <div className='align-middle relative group flex'>
       <div className='w-3 h-3 rotate-45 left-0 bg-main-300 rounded-sm mt-0.5' />
       <div className='bg-main-300 rounded-r-sm text-xs tracking-wide text-gray-500 -translate-x-1.5 pl-1.5 pr-1.5'>
         {name}
@@ -16,15 +16,17 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ name }: CategoryItemProps) 
     </div>
   );
 };
+
 type CategoriesProps = {
   categories: Category[];
   isLink: boolean;
 };
+
 export const Categories: React.FC<CategoriesProps> = ({ categories, isLink = true }: CategoriesProps) => {
   if (categories.length === 0) return <></>;
 
   return (
-    <div className='flex space-x-2 items-center overflow-x-auto pl-1'>
+    <div className='flex space-x-2 items-center pl-1'>
       {categories.map((category, key) =>
         isLink ? (
           <Link key={key} href={`/posts?categoryName=${category.name}`}>

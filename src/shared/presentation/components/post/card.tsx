@@ -15,7 +15,7 @@ export const Card: React.FC<Props> = ({ post }: Props) => {
           {post.title.rendered}
           <div className='flex text-gray-400 font-thin text-sm'>
             <Date dateString={post.date} />
-            <div className='ml-2'>
+            <div className='ml-2 my-auto'>
               <Categories categories={post.categories} isLink={false} />
             </div>
           </div>
