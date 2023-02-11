@@ -1,8 +1,9 @@
-import { Node, TPost } from '@/infrastructure/types';
+// import { Node, TPost } from '@/infrastructure/types';
 import { Feed } from 'feed';
 import fs from 'fs';
+import { Post } from '../entities';
 
-export const generateRSSFeed = (nodes: Node<TPost>[]): void => {
+export const generateRSSFeed = (posts: Post[]): void => {
   // TODO(okubo): baseUrl入れてそこからroute取得
   const feed = new Feed({
     title: "Masahiro's tech note",
@@ -21,19 +22,19 @@ export const generateRSSFeed = (nodes: Node<TPost>[]): void => {
   });
 
   // Add each article to the feed
-  nodes.forEach(({ node }) => {
+  posts.forEach((post) => {
     const {
       slug,
       title,
       // excerpt,
       // content,
       date
-    } = node;
+    } = post;
     const url = `https://masahiro.me/posts/${slug}`;
 
     // TODO: contentとexcerptはparse不可な文字が入っているらしく、正常に生成できない。不要な箇所は削除や別の対応が必要
     feed.addItem({
-      title,
+      title: title.rendered,
       id: url,
       link: url,
       // description: excerpt,
