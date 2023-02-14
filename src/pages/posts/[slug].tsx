@@ -1,4 +1,4 @@
-import { fetchPostSlugsUseCase, fetchPostsUseCase, fetchPostUseCase, fetchRelatedPostsUseCase, Post } from '@/domain';
+import { fetchPostSlugsUseCase, fetchPostsUseCase, fetchPostUseCase, Post } from '@/domain';
 import { BackButton, Card, Categories, Layout, PostBody } from '@/presentation';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
