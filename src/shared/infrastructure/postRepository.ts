@@ -3,15 +3,23 @@ import { Api } from './api';
 import { PostResponse } from './types';
 
 export class PostRepository implements IPostRepository {
-  public async getPosts(perPage: number, offset: number): Promise<PostResponse[]> {
+  public async getPosts(
+    perPage: number,
+    offset: number,
+    options: Record<string, string>
+  ): Promise<Awaited<PostResponse[]>> {
     const url = process.env.WORDPRESS_API_URL;
     if (!url) {
       throw new Error('WORDPRESS_API_URL not set');
     }
+
+    const keys: string[] = options ? Object.keys(options) : [];
+    const optionsString = keys.map((key) => `${key}=${options[key]}`).join('&');
+    console.log({ keys, optionsString });
     return await Api.get<PostResponse[]>(`${url}/posts?per_page=${perPage}&offset=${offset}`);
   }
 
-  public async getPost(slug: string): Promise<PostResponse> {
+  public async getPost(slug: string): Promise<Awaited<PostResponse>> {
     const url = process.env.WORDPRESS_API_URL;
     if (!url) {
       throw new Error('WORDPRESS_API_URL not set');
@@ -21,7 +29,7 @@ export class PostRepository implements IPostRepository {
     return response[0];
   }
 
-  public async getRelatedPosts(categoryIds: number[]): Promise<PostResponse[]> {
+  public async getRelatedPosts(categoryIds: number[]): Promise<Awaited<PostResponse[]>> {
     const url = process.env.WORDPRESS_API_URL;
     if (!url) {
       throw new Error('WORDPRESS_API_URL not set');

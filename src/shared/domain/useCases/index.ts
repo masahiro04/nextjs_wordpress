@@ -5,8 +5,12 @@ import { FetchPostsUseCase } from './fetchPosts';
 import { FetchPostSlugsUseCase } from './fetchPostSlugs';
 import { FetchRelatedPostsUseCase } from './fetchRelatedPosts';
 
-export const fetchPostsUseCase = async (perPage: number, offset: number): Promise<Post[]> => {
-  return await new FetchPostsUseCase().execute(perPage, offset);
+export const fetchPostsUseCase = async (
+  perPage: number,
+  offset: number,
+  options?: Record<string, string>
+): Promise<Post[]> => {
+  return await new FetchPostsUseCase().execute(perPage, offset, options);
 };
 export const fetchPostUseCase = async (slug: string): Promise<Post> => {
   return await new FetchPostUseCase().execute(slug);
