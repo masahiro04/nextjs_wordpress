@@ -1,11 +1,15 @@
-import { fetchPostSlugsUseCase, fetchPostUseCase, fetchRelatedPostsUseCase, Post } from '@/domain';
+import { fetchPostSlugsUseCase, fetchPostsUseCase, fetchPostUseCase, fetchRelatedPostsUseCase, Post } from '@/domain';
 import { BackButton, Card, Categories, Layout, PostBody } from '@/presentation';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = await fetchPostUseCase((params?.slug ?? '').toString());
-  const relatedPosts = (await fetchRelatedPostsUseCase(post.categories.map((category) => category.id)))
+  const relatedPosts = (
+    await fetchPostsUseCase(100, 0, {
+      categories: post.categories.map((category) => category.id).join(',')
+    })
+  )
     .filter((relatedPost) => relatedPost.id !== post.id)
     .slice(0, 3);
   return { props: { post, relatedPosts } };
