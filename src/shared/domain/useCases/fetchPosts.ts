@@ -10,8 +10,8 @@ export class FetchPostsUseCase {
     this.categoryRepository = new CategoryRepository();
   }
 
-  public async execute(perPage: number, offset: number): Promise<Post[]> {
-    const posts = await this.postRepository.getPosts(perPage, offset);
+  public async execute(perPage: number, offset: number, options?: Record<string, string>): Promise<Post[]> {
+    const posts = await this.postRepository.getPosts(perPage, offset, options ?? {});
     const categoriesResponse = await this.categoryRepository.getCategories();
     return posts.map((post) => {
       const categories = post.categories

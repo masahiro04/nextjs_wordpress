@@ -12,8 +12,8 @@ export const CustomHead: React.FC<Props> = ({ title, description, keywords, imag
     <Head>
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <title>{title}</title>;
-      <meta name='description' content={description} />;
       <meta name='keywords' content={keywords} />;
+      <meta name='description' content={description} />;
       <meta name='twitter:title' content={title} />;
       <meta name='twitter:description' content={description} />;
       <meta name='twitter:card' content='summary_large_image' />;
@@ -29,7 +29,7 @@ export const CustomHead: React.FC<Props> = ({ title, description, keywords, imag
           gtag('config', 'UA-63213825-1');
         `
         }}
-      ></script>
+      />
       <link rel='shortcut icon' href='../static/images/favicon.ico' />
       <link rel='preconnect' href='https://fonts.gstatic.com' media='print' />
       <link

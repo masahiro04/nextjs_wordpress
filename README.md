@@ -15,6 +15,7 @@ url: [https://masahiro.me/](https://masahiro.me/)
 First, you need a WordPress site.
 
 ### Step 2. Set up environment variables
+
 Set your site domain and WordPress JSON API url to env section in `docker-compose.yml`.
 
 ```dockerfile
@@ -37,6 +38,7 @@ services:
 ```
 
 ## How to run
+
 ```bash
 docker compose build
 docker compose up -d
@@ -44,11 +46,17 @@ docker compose web yarn dev
 ```
 
 ## Lint
+
 ```
 docker compose web yarn lint:fix
 ```
 
 ## Deploy your own
+
 Once you have access to [the environment variables you'll need](#step-3-set-up-environment-variables), deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/masahiro04/nextjs_wordpress&env=WORDPRESS_API_URL&envDescription=Required%20to%20connect%20the%20app%20with%20WordPress&envLink=https://vercel.link/cms-wordpress-env)
+
+## Lisence
+
+MIT

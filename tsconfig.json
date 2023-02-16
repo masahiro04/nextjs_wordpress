@@ -22,6 +22,17 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
+    "removeComments": true,
+    "noImplicitAny": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [
