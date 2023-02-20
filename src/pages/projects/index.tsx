@@ -51,7 +51,7 @@ const Projects: NextPage = () => {
             </div>
             <div className='absolute w-full h-full flex justify-center top-0'>
               <div className='drop-shadow-lg flex-none self-center text-gray-800 w-[70%] h-[70%]'>
-                <Image className='mx-auto' src='/static/images/github.svg' alt='' width='120' height='120' />
+                <Image className='w-auto mx-auto' src='/static/images/github.svg' alt='' layout='fill' objectFit='contain' />
               </div>
             </div>
           </div>
