@@ -6,7 +6,7 @@ const About: NextPage = () => {
   return (
     <Layout>
       <div className='flex justify-center mx-auto mt-10 sm:w-2/3 sm:mt-0'>
-        <div className='flex flex-col'>
+        <div className='flex flex-col w-full'>
           <Image
             className='object-cover rounded-full mx-auto w-24 h-24'
             src='/static/images/kyuri.png'
