@@ -7,7 +7,7 @@
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}' && prettier --write './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.8",
+    "@tailwindcss/typography": "^0.5.10",
     "babel-plugin-prismjs": "^2.1.0",
     "camelcase-keys": "^8.0.2",
     "date-fns": "2.30.0",
