@@ -961,10 +961,10 @@ camelcase-keys@^6.2.2:
     map-obj "^4.0.0"
     quick-lru "^4.0.1"
 
-camelcase-keys@^9.1.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-9.1.0.tgz#d8a29d60ee8130bc41cdc84c4170f0afbf69920c"
-  integrity sha512-RcLmR20cA5J6ZSqOQcPLcJ8fpiczDLVM5V5aOR0w7UgMcev35tPU8z8Q380wWekRRQDON9cLhWOuGm03VDQ7Hg==
+camelcase-keys@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/camelcase-keys/-/camelcase-keys-9.1.2.tgz#d287a4451245325984fe5148359a54397655e264"
+  integrity sha512-nFhquwz7p3nWSHeVYoIkefNPdR2Rt4EuKs9/gaqx3DhJL6HkNHIEcsH+D6N4NvW/MHxc4TT+rp0rc4K7E7x9hw==
   dependencies:
     camelcase "^8.0.0"
     map-obj "5.0.0"
