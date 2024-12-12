@@ -20,7 +20,7 @@
     "sass-loader": "^16.0.4"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^6.0.0",
+    "@fullhuman/postcss-purgecss": "^7.0.2",
     "@types/eslint": "^8.4.1",
     "@types/node": "^22.10.2",
     "@types/prettier": "^3.0.0",
